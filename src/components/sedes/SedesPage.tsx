@@ -14,7 +14,7 @@ const competitionBlocks = [
   ] },
   { date: "31 de mayo", items: [
     { title: "Bloque 4", text: "Danza\nno aérea" },
-    { title: "Bloque 5", text: "Teens\n+ Legacy" },
+    { title: "Bloque 5", text: "Teens\nLegacy" },
     { title: "Bloque 6", text: "Senior" },
   ] },
 ];
@@ -87,6 +87,20 @@ function SectionHeading({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
+function renderBlockText(text: string) {
+  const highlightedTerms = new Set(["baby", "junior", "petite", "teens", "senior", "legacy"]);
+
+  return text.split("\n").map((line) => (
+    <span className="sedes-block-line" key={line}>
+      {line.split(/\b(Baby|Junior|Petite|Teens|Senior|Legacy)\b/gi).map((part, index) => (
+        highlightedTerms.has(part.toLowerCase())
+          ? <span className="sedes-block-level" key={`${part}-${index}`}>{part}</span>
+          : part
+      ))}
+    </span>
+  ));
+}
+
 export function SedesPage() {
   return (
     <main className="sedes-page">
@@ -123,50 +137,52 @@ export function SedesPage() {
         </div>
       </section>
 
-      <section className="sedes-light-section sedes-genres">
-        <SectionHeading kicker="Géneros" title="Participantes" />
-        <div className="sedes-genre-grid">
-          <article className="sedes-genre-card sedes-genre-card--motion">
-            <img src={assets.competition} alt="Participante de danza motion en escena" />
-            <div>
-              <h3>Motion</h3>
-              <ul>
-                {motionGenres.map((genre) => <li key={genre}>{genre}</li>)}
-              </ul>
-            </div>
-          </article>
-
-          <article className="sedes-genre-card sedes-genre-card--aerial">
-            <div>
-              <h3>Aerial</h3>
-              <ul>
-                {aerialGenres.map((genre) => <li key={genre}>{genre}</li>)}
-              </ul>
-            </div>
-            <img src={assets.hero} alt="Participante aérea en aro" />
-          </article>
-        </div>
-      </section>
-
-      <section className="sedes-light-section sedes-blocks">
-        <SectionHeading kicker="Bloques" title="de competencia" />
-        <div className="sedes-block-columns">
-          {competitionBlocks.map((day) => (
-            <div className="sedes-block-day" key={day.date}>
-              <h3>{day.date}</h3>
+      <div className="sedes-light-flow">
+        <section className="sedes-light-section sedes-genres">
+          <SectionHeading kicker="Géneros" title="Participantes" />
+          <div className="sedes-genre-grid">
+            <article className="sedes-genre-card sedes-genre-card--motion">
+              <img src={assets.competition} alt="Participante de danza motion en escena" />
               <div>
-                {day.items.map((item) => (
-                  <article key={item.title}>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
+                <h3>Motion</h3>
+                <ul>
+                  {motionGenres.map((genre) => <li key={genre}>{genre}</li>)}
+                </ul>
               </div>
-            </div>
-          ))}
-        </div>
-        <p className="sedes-note">*Horarios a definir. La logística puede cambiar.</p>
-      </section>
+            </article>
+
+            <article className="sedes-genre-card sedes-genre-card--aerial">
+              <div>
+                <h3>Aerial</h3>
+                <ul>
+                  {aerialGenres.map((genre) => <li key={genre}>{genre}</li>)}
+                </ul>
+              </div>
+              <img src={assets.hero} alt="Participante aérea en aro" />
+            </article>
+          </div>
+        </section>
+
+        <section className="sedes-light-section sedes-blocks">
+          <SectionHeading kicker="Bloques" title="de competencia" />
+          <div className="sedes-block-columns">
+            {competitionBlocks.map((day) => (
+              <div className="sedes-block-day" key={day.date}>
+                <h3>{day.date}</h3>
+                <div>
+                  {day.items.map((item) => (
+                    <article key={item.title}>
+                      <h4>{item.title}</h4>
+                      <p>{renderBlockText(item.text)}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="sedes-note">*Horarios a definir. La logística puede cambiar.</p>
+        </section>
+      </div>
 
       <section className="sedes-workshops">
         <div className="sedes-workshops__intro">
@@ -225,7 +241,6 @@ export function SedesPage() {
               <img src={judge.image} alt="" aria-hidden="true" />
               <h3>{judge.name}</h3>
               <p>{judge.specialty}</p>
-              <a href="/#contacto">Ver trayectoria <ArrowUpRight aria-hidden="true" size={14} /></a>
             </article>
           ))}
         </div>

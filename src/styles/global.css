@@ -6354,6 +6354,8 @@ button {
 
 .sedes-kicker,
 .sedes-section-heading p {
+  position: relative;
+  display: inline-block;
   margin: 0;
   color: var(--sedes-pink);
   font-size: clamp(1rem, 1.55vw, 1.42rem);
@@ -6464,6 +6466,18 @@ button {
   color: var(--sedes-ink);
 }
 
+.sedes-light-flow {
+  background:
+    radial-gradient(circle at 96% 15%, rgba(231, 70, 151, 0.2), transparent 31rem),
+    radial-gradient(circle at 88% 48%, rgba(231, 70, 151, 0.08), transparent 28rem),
+    linear-gradient(180deg, #fbf7f2 0%, #f8f3ee 44%, #f4efe9 100%);
+  color: var(--sedes-ink);
+}
+
+.sedes-light-flow .sedes-light-section {
+  background: transparent;
+}
+
 .sedes-section-heading {
   display: flex;
   align-items: baseline;
@@ -6481,14 +6495,15 @@ button {
   text-transform: uppercase;
 }
 
-.sedes-section-heading::after {
+.sedes-section-heading p::after {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 0;
   display: block;
-  width: 86px;
+  width: 100%;
   height: 3px;
-  margin-left: 10px;
   background: var(--sedes-pink);
   content: "";
-  transform: translateY(10px);
 }
 
 .sedes-genre-grid {
@@ -6503,7 +6518,7 @@ button {
   position: relative;
   display: grid;
   grid-template-columns: minmax(170px, 0.55fr) minmax(230px, 1fr);
-  align-items: center;
+  align-items: stretch;
   min-height: 300px;
   overflow: hidden;
   border: 1px solid rgba(5, 5, 5, 0.06);
@@ -6516,13 +6531,19 @@ button {
 }
 
 .sedes-genre-card img {
+  width: 100%;
+  height: 100%;
   min-height: 300px;
+  object-fit: cover;
   object-position: center;
   filter: saturate(1.02) hue-rotate(306deg);
 }
 
 .sedes-genre-card > div {
-  padding: clamp(22px, 3.4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(46px, 5.4vw, 70px) clamp(22px, 3.4vw, 44px) clamp(22px, 3.4vw, 44px);
 }
 
 .sedes-genre-card h3 {
@@ -6603,15 +6624,19 @@ button {
   height: 100%;
   padding: 26px 22px;
   border: 1px solid rgba(5, 5, 5, 0.13);
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 16px 38px rgba(43, 28, 42, 0.055);
   text-align: left;
   transition:
     border-color 180ms ease,
+    box-shadow 220ms var(--ease-out),
     transform 220ms var(--ease-out);
 }
 
 .sedes-block-day article:hover {
   border-color: rgba(231, 70, 151, 0.55);
+  box-shadow: 0 18px 42px rgba(43, 28, 42, 0.085);
   transform: translateY(-4px);
 }
 
@@ -6630,7 +6655,19 @@ button {
   font-size: clamp(1rem, 1.08vw, 1.14rem);
   font-weight: 750;
   line-height: 1.55;
-  white-space: pre-line;
+}
+
+.sedes-block-line {
+  display: block;
+}
+
+.sedes-block-level {
+  color: var(--sedes-pink);
+  font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-size: 1.14em;
+  font-weight: 400;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
 }
 
 .sedes-note {
@@ -6891,8 +6928,10 @@ button {
 }
 
 .sedes-jury-card img {
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  aspect-ratio: 4 / 3.95;
   height: auto;
+  object-fit: cover;
   filter: saturate(0.95) hue-rotate(306deg) contrast(1.05);
 }
 
@@ -6907,25 +6946,11 @@ button {
 }
 
 .sedes-jury-card p {
-  margin: 0 16px 14px;
+  margin: 0 16px 20px;
   color: var(--sedes-pink);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.sedes-jury-card a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 16px 18px;
-  padding: 9px 12px;
-  border: 1px solid rgba(231, 70, 151, 0.48);
-  color: var(--sedes-ink);
-  font-size: 0.68rem;
-  font-weight: 950;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -7322,7 +7347,7 @@ button {
   }
 
   .sedes-jury-card img {
-    height: 220px;
+    height: 250px;
   }
 
   .sedes-final-cta__line {
