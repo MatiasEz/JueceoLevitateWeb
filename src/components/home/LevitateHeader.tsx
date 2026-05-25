@@ -12,17 +12,17 @@ const navItems = [
     label: "Convocatoria",
     href: "#convocatorias",
     children: [
-      { label: "Reglamento", href: "/reglamento" },
+      { label: "Reglamento", href: "#convocatorias" },
       {
         label: "Sedes",
-        href: "#convocatorias",
+        href: "/sedes",
         children: [
           { label: "Ciudad de México", href: "/sedes/ciudad-de-mexico" },
           { label: "Puebla", href: "/sedes/monterrey" },
           { label: "Estado de México", href: "/sedes/silo-dallas" },
         ],
       },
-      { label: "Evaluación", href: "#premios" },
+      { label: "Evaluaciones", href: "/evaluaciones" },
       { label: "Premiación", href: "#premios" },
     ],
   },
@@ -35,7 +35,15 @@ const navItems = [
     ],
   },
   { label: "Workshops", href: "#workshops" },
-  { label: "Costos", href: "#premios" },
+  {
+    label: "Costos",
+    href: "#premios",
+    children: [
+      { label: "Inscripción", href: "#premios" },
+      { label: "Boletos", href: "#premios" },
+      { label: "Fotografía y video", href: "#premios" },
+    ],
+  },
   { label: "Contacto", href: "#contacto" },
 ] satisfies NavItem[];
 

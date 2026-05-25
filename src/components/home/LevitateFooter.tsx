@@ -4,13 +4,13 @@ import { Logo } from "./LevitateHeader";
 const footerColumns = [
   { title: "Enlaces", items: ["Inicio", "Convocatorias", "Categorías", "Workshops", "Premios", "Contacto"] },
   { title: "Sobre Levitate", items: ["Quiénes somos", "Misión y visión", "Comunidad", "Preguntas frecuentes"] },
-  { title: "Participa", items: ["Bases", "Reglamento", "Requisitos", "Términos y condiciones"] },
+  { title: "Participa", items: ["Bases", "Evaluaciones", "Requisitos", "Términos y condiciones"] },
   { title: "Síguenos", items: ["Instagram", "Facebook", "TikTok", "YouTube"] },
 ];
 
 function getFooterHref(item: string, useRootLinks: boolean) {
-  if (item === "Reglamento") {
-    return "/reglamento";
+  if (item === "Evaluaciones") {
+    return "/evaluaciones";
   }
 
   const anchors: Record<string, string> = {

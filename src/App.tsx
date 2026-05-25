@@ -1,14 +1,21 @@
 import { HomePage } from "./components/home/HomePage";
 import { RulesPage } from "./components/rules/RulesPage";
+import { SedesPage } from "./components/sedes/SedesPage";
 import { VenuePage } from "./components/venue/VenuePage";
 import { getVenueBySlug } from "./data/venueContent";
 
 export default function App() {
-  const rulesMatch = window.location.pathname.match(/^\/reglamento\/?$/);
+  const evaluationsMatch = window.location.pathname.match(/^\/evaluaciones\/?$/);
+  const legacyRulesMatch = window.location.pathname.match(/^\/reglamento\/?$/);
+  const sedesMatch = window.location.pathname.match(/^\/sedes\/?$/);
   const venueMatch = window.location.pathname.match(/^\/sedes\/([^/]+)\/?$/);
 
-  if (rulesMatch) {
+  if (evaluationsMatch || legacyRulesMatch) {
     return <RulesPage />;
+  }
+
+  if (sedesMatch) {
+    return <SedesPage />;
   }
 
   if (venueMatch) {

@@ -110,7 +110,7 @@ export function RulesPage() {
 
       <section className="rules-hero">
         <div className="rules-hero__copy">
-          <p className="rules-eyebrow">Reglamento</p>
+          <p className="rules-eyebrow">Evaluaciones</p>
           <h1>Cómo se evalúa tu presentación</h1>
         </div>
 
@@ -177,7 +177,7 @@ export function RulesPage() {
       <section className="rules-bottom">
         <p>Cada criterio se evalúa de manera individual y contribuye al puntaje final de tu presentación.</p>
         <a href="/#convocatorias">
-          Consulta el reglamento completo <ArrowUpRight aria-hidden="true" size={18} />
+          Consulta la guía de evaluación <ArrowUpRight aria-hidden="true" size={18} />
         </a>
         <a href="/#convocatorias">
           Inscribe tu coreografía <ArrowUpRight aria-hidden="true" size={18} />
