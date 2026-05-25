@@ -4488,13 +4488,14 @@ button {
   position: fixed;
   top: var(--levitate-menu-top);
   right: 0;
-  bottom: 0;
   left: 0;
   z-index: 90;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr);
   width: 100vw;
-  min-height: 0;
+  height: calc(100dvh - var(--levitate-menu-top));
+  min-height: calc(100vh - var(--levitate-menu-top));
   overflow: hidden;
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -4527,6 +4528,7 @@ button {
 .levitate-nav__dropdown-visual {
   position: relative;
   display: flex;
+  height: 100%;
   min-height: 100%;
   flex-direction: column;
   justify-content: flex-end;
@@ -4564,10 +4566,12 @@ button {
 
 .levitate-nav__dropdown-list {
   display: flex;
+  height: 100%;
   min-height: 100%;
   flex-direction: column;
   justify-content: center;
   gap: clamp(8px, 1.4vw, 15px);
+  overflow-y: auto;
   padding: clamp(26px, 5vw, 70px);
   background: rgba(247, 243, 239, 0.98);
 }
@@ -7210,11 +7214,12 @@ button {
   }
 
   .levitate-nav__dropdown {
-    top: 126px;
-    bottom: 0;
+    --levitate-menu-top: 126px;
+    top: var(--levitate-menu-top);
     grid-template-columns: 1fr 1fr;
     width: 100vw;
-    min-height: 0;
+    height: calc(100dvh - var(--levitate-menu-top));
+    min-height: calc(100vh - var(--levitate-menu-top));
   }
 
   .levitate-nav__dropdown-visual {
