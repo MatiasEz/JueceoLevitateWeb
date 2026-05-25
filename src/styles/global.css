@@ -6356,7 +6356,7 @@ button {
 .sedes-section-heading p {
   margin: 0;
   color: var(--sedes-pink);
-  font-size: 0.78rem;
+  font-size: clamp(1rem, 1.55vw, 1.42rem);
   font-weight: 900;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -6467,15 +6467,15 @@ button {
 .sedes-section-heading {
   display: flex;
   align-items: baseline;
-  gap: 4px;
-  margin: 0 auto 26px;
+  gap: 7px;
+  margin: 0 auto 30px;
   width: min(100%, 1480px);
 }
 
 .sedes-section-heading h2 {
   margin: 0;
   color: var(--sedes-ink);
-  font-size: 1.08rem;
+  font-size: clamp(1rem, 1.55vw, 1.42rem);
   font-weight: 950;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -6483,12 +6483,12 @@ button {
 
 .sedes-section-heading::after {
   display: block;
-  width: 46px;
+  width: 86px;
   height: 3px;
-  margin-left: 0;
+  margin-left: 10px;
   background: var(--sedes-pink);
   content: "";
-  transform: translateY(13px);
+  transform: translateY(10px);
 }
 
 .sedes-genre-grid {
@@ -6525,22 +6525,11 @@ button {
   padding: clamp(22px, 3.4vw, 44px);
 }
 
-.sedes-genre-icon {
-  display: grid;
-  width: 66px;
-  height: 66px;
-  margin-bottom: 18px;
-  place-items: center;
-  border-radius: 999px;
-  background: #050505;
-  color: var(--sedes-pink);
-}
-
 .sedes-genre-card h3 {
-  margin: 0 0 18px;
-  font-size: 1.1rem;
+  margin: 0 0 20px;
+  font-size: clamp(1.45rem, 2vw, 2.05rem);
   font-weight: 950;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 
@@ -6561,8 +6550,8 @@ button {
   position: relative;
   padding-left: 18px;
   color: rgba(17, 16, 21, 0.86);
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: clamp(1rem, 1.15vw, 1.18rem);
+  font-weight: 800;
 }
 
 .sedes-genre-card li::before {
@@ -6587,27 +6576,35 @@ button {
 .sedes-block-day h3 {
   margin: 0 0 16px;
   padding: 11px 18px;
-  background: var(--sedes-pink);
-  color: #fff;
-  font-size: 0.8rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+    #050505;
+  color: var(--sedes-pink);
+  font-size: 1rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.11em;
   text-align: center;
   text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(5, 5, 5, 0.16);
 }
 
 .sedes-block-day > div {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
   gap: 14px;
 }
 
 .sedes-block-day article {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: 155px;
-  padding: 24px 16px;
+  height: 100%;
+  padding: 26px 22px;
   border: 1px solid rgba(5, 5, 5, 0.13);
   background: rgba(255, 255, 255, 0.52);
-  text-align: center;
+  text-align: left;
   transition:
     border-color 180ms ease,
     transform 220ms var(--ease-out);
@@ -6618,25 +6615,21 @@ button {
   transform: translateY(-4px);
 }
 
-.sedes-block-day svg {
-  margin: 0 auto 16px;
-  color: var(--sedes-pink);
-}
-
 .sedes-block-day h4 {
-  margin: 0 0 9px;
-  font-size: 0.92rem;
+  margin: 0 0 18px;
+  font-size: clamp(1.35rem, 1.65vw, 1.75rem);
   font-weight: 950;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .sedes-block-day p {
+  min-height: 4.65em;
   margin: 0;
   color: rgba(17, 16, 21, 0.82);
-  font-size: 0.88rem;
-  font-weight: 650;
-  line-height: 1.42;
+  font-size: clamp(1rem, 1.08vw, 1.14rem);
+  font-weight: 750;
+  line-height: 1.55;
   white-space: pre-line;
 }
 
@@ -6743,59 +6736,119 @@ button {
 
 .sedes-workshop-card {
   display: grid;
-  grid-template-columns: 82px 1fr;
-  gap: 18px;
-  min-height: 205px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: 22px;
+  min-height: 310px;
+  padding: clamp(22px, 2.8vw, 34px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at 18% 4%, rgba(255, 255, 255, 0.08), transparent 9rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.012)),
     #0d0d10;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 22px 64px rgba(0, 0, 0, 0.26);
 }
 
-.sedes-workshop-card img {
-  width: 76px;
-  height: 76px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: 999px;
-  filter: saturate(0.9) contrast(1.12);
+.sedes-workshop-card__head {
+  display: grid;
+  align-content: start;
+  min-height: clamp(106px, 7.4vw, 126px);
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
 }
 
 .sedes-workshop-card h3 {
-  margin: 4px 0 6px;
+  margin: 0 0 8px;
   color: #fff;
-  font-size: 0.95rem;
-  font-weight: 950;
-  letter-spacing: 0.06em;
+  font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(2rem, 2.9vw, 3.05rem);
+  font-weight: 400;
+  letter-spacing: 0.085em;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
 .sedes-workshop-card strong {
   display: block;
   color: var(--sedes-pink);
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(1.55rem, 2.1vw, 2.3rem);
+  font-weight: 400;
   letter-spacing: 0.08em;
+  line-height: 0.95;
   text-transform: uppercase;
 }
 
 .sedes-workshop-card ul {
-  grid-column: 2;
   display: grid;
-  gap: 13px;
+  gap: 0;
   margin: 0;
-  padding: 17px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0;
   list-style: none;
 }
 
 .sedes-workshop-card li {
-  display: flex;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
+  gap: clamp(16px, 1.6vw, 22px);
+  min-height: 84px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(247, 243, 239, 0.74);
-  font-size: 0.82rem;
   line-height: 1.3;
+}
+
+.sedes-workshop-card li.sedes-workshop-card__session--tagged {
+  grid-template-columns: minmax(82px, 0.28fr) 42px minmax(210px, 1fr);
+}
+
+.sedes-workshop-card li:last-child {
+  border-bottom: 0;
+}
+
+.sedes-workshop-card__tag {
+  display: block;
+  color: var(--sedes-pink);
+  font-size: clamp(0.84rem, 0.96vw, 1rem);
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sedes-workshop-card__clock {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 2px solid rgba(231, 70, 151, 0.72);
+  border-radius: 999px;
+  color: var(--sedes-pink);
+}
+
+.sedes-workshop-card__session-copy {
+  display: grid;
+  min-width: 0;
+}
+
+.sedes-workshop-card__time {
+  display: block;
+  color: rgba(247, 243, 239, 0.9);
+  font-size: clamp(0.94rem, 1.08vw, 1.14rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sedes-workshop-card__group {
+  display: block;
+  margin-top: 5px;
+  color: rgba(247, 243, 239, 0.7);
+  font-size: clamp(0.92rem, 1.02vw, 1.08rem);
+  font-weight: 750;
 }
 
 .sedes-jury {
@@ -6803,16 +6856,13 @@ button {
 }
 
 .sedes-jury__header {
-  display: grid;
-  grid-template-columns: minmax(240px, 0.65fr) minmax(280px, 0.7fr);
-  align-items: start;
-  gap: clamp(22px, 4vw, 64px);
+  display: block;
   width: min(100%, 1480px);
   margin: 0 auto 26px;
 }
 
 .sedes-jury__header .sedes-section-heading {
-  margin: 0;
+  margin: 0 0 14px;
 }
 
 .sedes-jury__header > p {
@@ -6841,7 +6891,8 @@ button {
 }
 
 .sedes-jury-card img {
-  height: 245px;
+  aspect-ratio: 4 / 3;
+  height: auto;
   filter: saturate(0.95) hue-rotate(306deg) contrast(1.05);
 }
 
@@ -6878,46 +6929,140 @@ button {
   text-transform: uppercase;
 }
 
-.sedes-bottom-cta {
+.sedes-final-cta {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  min-height: clamp(560px, 64vw, 760px);
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(46px, 6vw, 78px) clamp(22px, 4vw, 64px);
+  background:
+    radial-gradient(circle at 7% 72%, rgba(231, 70, 151, 0.36), transparent 22rem),
+    radial-gradient(circle at 92% 25%, rgba(231, 70, 151, 0.24), transparent 24rem),
+    #050505;
+  color: #fff;
+  isolation: isolate;
+}
+
+.sedes-final-cta > img {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 78% 42%;
+  opacity: 0.23;
+  filter: saturate(1.1) hue-rotate(306deg) contrast(1.18) brightness(0.55);
+}
+
+.sedes-final-cta::before,
+.sedes-final-cta::after {
+  position: absolute;
+  z-index: -2;
+  width: 42vw;
+  height: 32vw;
+  border-radius: 999px;
+  background: rgba(231, 70, 151, 0.26);
+  content: "";
+  filter: blur(72px);
+  opacity: 0.62;
+}
+
+.sedes-final-cta::before {
+  bottom: 5%;
+  left: -16%;
+}
+
+.sedes-final-cta::after {
+  top: 8%;
+  right: -15%;
+}
+
+.sedes-final-cta__line {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) auto minmax(80px, 1fr);
   align-items: center;
-  gap: 28px;
-  padding: 24px clamp(22px, 4vw, 46px);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: #050505;
+  gap: 18px;
+  width: min(100%, 1480px);
+  color: var(--sedes-pink);
 }
 
-.sedes-bottom-cta p {
-  max-width: 440px;
-  margin: 0;
-  color: rgba(247, 243, 239, 0.7);
-  font-size: 0.84rem;
-  line-height: 1.45;
+.sedes-final-cta__line::before,
+.sedes-final-cta__line::after {
+  height: 1px;
+  background: rgba(247, 243, 239, 0.72);
+  content: "";
 }
 
-.sedes-bottom-cta a {
+.sedes-final-cta__line span {
+  color: var(--sedes-pink);
+  font-size: 2.2rem;
+  line-height: 1;
+  text-shadow: 0 0 18px rgba(231, 70, 151, 0.55);
+}
+
+.sedes-final-cta__content {
+  display: grid;
+  justify-items: center;
+  max-width: 1040px;
+  padding: clamp(54px, 8vw, 110px) 0;
+  text-align: center;
+}
+
+.sedes-final-cta__content p {
+  margin: 0 0 18px;
+  color: var(--sedes-pink);
+  font-size: clamp(1.05rem, 1.7vw, 1.55rem);
+  font-weight: 950;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.sedes-final-cta__content span {
+  color: rgba(247, 243, 239, 0.94);
+  font-size: clamp(1.35rem, 2.6vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.sedes-final-cta__content h2 {
+  margin: 36px 0 44px;
+  color: #fff;
+  font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(4.9rem, 10vw, 10.8rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.16);
+}
+
+.sedes-final-cta__content a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-width: 260px;
-  padding: 16px 22px;
-  border: 1px solid rgba(231, 70, 151, 0.62);
+  gap: 14px;
+  min-width: min(100%, 520px);
+  padding: 23px 34px;
+  border: 2px solid rgba(231, 70, 151, 0.82);
+  background: rgba(5, 5, 5, 0.34);
+  box-shadow: 0 18px 60px rgba(231, 70, 151, 0.16);
   color: #fff;
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  font-size: clamp(0.9rem, 1.25vw, 1.15rem);
+  font-weight: 950;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   transition:
-    background 180ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
     transform 220ms var(--ease-out);
 }
 
-.sedes-bottom-cta a:hover {
+.sedes-final-cta__content a:hover {
+  border-color: rgba(255, 121, 186, 0.95);
   background: rgba(231, 70, 151, 0.12);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 1080px) {
@@ -7004,9 +7149,7 @@ button {
   .sedes-event-info,
   .sedes-genre-grid,
   .sedes-block-columns,
-  .sedes-workshops,
-  .sedes-jury__header,
-  .sedes-bottom-cta {
+  .sedes-workshops {
     grid-template-columns: 1fr;
   }
 
@@ -7023,9 +7166,6 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sedes-bottom-cta a {
-    width: fit-content;
-  }
 }
 
 @media (max-width: 680px) {
@@ -7146,7 +7286,7 @@ button {
 
   .sedes-light-section,
   .sedes-workshops,
-  .sedes-bottom-cta {
+  .sedes-final-cta {
     padding-right: 20px;
     padding-left: 20px;
   }
@@ -7162,13 +7302,46 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .sedes-workshop-card li {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .sedes-workshop-card li.sedes-workshop-card__session--tagged {
+    grid-template-columns: minmax(70px, 0.32fr) 34px minmax(0, 1fr);
+  }
+
+  .sedes-workshop-card__clock {
+    width: 30px;
+    height: 30px;
+  }
+
+  .sedes-workshop-card__time {
+    font-size: clamp(0.86rem, 4vw, 1rem);
+    white-space: normal;
+  }
+
   .sedes-jury-card img {
     height: 220px;
   }
 
-  .sedes-bottom-cta a {
+  .sedes-final-cta__line {
+    gap: 12px;
+  }
+
+  .sedes-final-cta__line span {
+    font-size: 1.7rem;
+  }
+
+  .sedes-final-cta__content h2 {
+    letter-spacing: 0.11em;
+  }
+
+  .sedes-final-cta__content a {
     width: 100%;
     min-width: 0;
+    padding-right: 18px;
+    padding-left: 18px;
   }
 }
 
@@ -7204,7 +7377,7 @@ button {
   .sedes-hero__image,
   .sedes-event-info a,
   .sedes-block-day article,
-  .sedes-bottom-cta a {
+  .sedes-final-cta__content a {
     animation: none !important;
     transform: none !important;
     transition: none !important;
