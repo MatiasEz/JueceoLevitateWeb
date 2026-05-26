@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type NavItem = {
   label: string;
@@ -72,6 +72,25 @@ type LevitateHeaderProps = {
 export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }: LevitateHeaderProps) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const activeNavItem = navItems.find((item) => item.label === activeMenu && item.children);
+
+  useEffect(() => {
+    if (!activeMenu) {
+      return;
+    }
+
+    const closeMenu = () => setActiveMenu(null);
+    const listenerOptions = { passive: true, capture: true };
+
+    window.addEventListener("wheel", closeMenu, listenerOptions);
+    window.addEventListener("touchmove", closeMenu, listenerOptions);
+    window.addEventListener("scroll", closeMenu, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", closeMenu, listenerOptions);
+      window.removeEventListener("touchmove", closeMenu, listenerOptions);
+      window.removeEventListener("scroll", closeMenu);
+    };
+  }, [activeMenu]);
 
   return (
     <div className="levitate-menu-shell">
