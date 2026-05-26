@@ -6641,25 +6641,32 @@ button {
   text-transform: uppercase;
 }
 
-.sedes-genre-card ul {
+.sedes-genre-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(120px, 1fr));
-  gap: 10px 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+
+.sedes-genre-list--single {
+  grid-template-columns: 1fr;
+}
+
+.sedes-genre-list ul {
+  display: grid;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.sedes-genre-card--aerial ul {
-  grid-template-columns: 1fr;
-}
-
 .sedes-genre-card li {
   position: relative;
+  width: fit-content;
   padding-left: 18px;
   color: rgba(17, 16, 21, 0.86);
   font-size: clamp(1rem, 1.15vw, 1.18rem);
   font-weight: 800;
+  line-height: 1.18;
 }
 
 .sedes-genre-card li::before {
@@ -6671,6 +6678,31 @@ button {
   border-radius: 999px;
   background: var(--sedes-pink);
   content: "";
+}
+
+.sedes-genre-card li span {
+  display: inline-block;
+}
+
+.sedes-genre-card li em {
+  position: absolute;
+  right: -10px;
+  bottom: calc(100% - 5px);
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 7px;
+  border: 1px solid rgba(231, 70, 151, 0.34);
+  border-radius: 999px;
+  background: rgba(231, 70, 151, 0.1);
+  color: var(--sedes-pink);
+  font-size: 0.55rem;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: translateX(100%);
 }
 
 .sedes-block-columns {
@@ -7424,7 +7456,7 @@ button {
     flex-wrap: wrap;
   }
 
-  .sedes-genre-card ul,
+  .sedes-genre-list,
   .sedes-block-day > div,
   .sedes-workshop-grid,
   .sedes-jury-grid {

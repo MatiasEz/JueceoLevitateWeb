@@ -28,6 +28,7 @@ type JuryMember = {
 
 type SedeContent = {
   heroTitle: string;
+  eventName: string;
   venueName: string;
   heroImage: string;
   location: string;
@@ -51,6 +52,7 @@ type SedeContent = {
 const sedesContent: Record<"cdmx" | "puebla", SedeContent> = {
   cdmx: {
     heroTitle: "Sede CDMX",
+    eventName: "Cirko de Mente",
     venueName: "Fuentes Brotantes, Tlalpan",
     heroImage: assets.venue,
     location: "Fuentes Brotantes, Tlalpan",
@@ -124,21 +126,22 @@ const sedesContent: Record<"cdmx" | "puebla", SedeContent> = {
   },
   puebla: {
     heroTitle: "Sede Puebla",
+    eventName: "Auditorio Daniel Forcelledo",
     venueName: "Auditorio Daniel Forcelledo",
     heroImage: assets.hero,
-    location: "Auditorio Daniel Forcelledo",
+    location: "Tlatempa, San Pedro Cholula",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Auditorio%20Daniel%20Forcelledo%20Puebla",
-    date: "7\njunio 2026",
-    metaLabel: "Estado",
-    metaValue: "Puebla",
+    date: "7 junio 2026",
+    metaLabel: "Status",
+    metaValue: "Inscripciones abiertas",
     motionGenres: ["Acrojazz", "Ballet", "Belly Dance", "Contemporáneo", "Folklore", "Urbanos (nuevo!)", "Jazz", "Lírico", "Open (nuevo!)"],
     aerialGenres: ["Tela", "Aro", "Open"],
     competitionBlocks: [
       { date: "7 de junio", items: [
-        { title: "Bloque 1", text: "Motion - Baby y Petite" },
-        { title: "Bloque 2", text: "Motion - Junior, Teen y Senior" },
-        { title: "Bloque 3", text: "Aerial - Baby y Petite" },
-        { title: "Bloque 4", text: "Aerial - Junior, Teen y Senior" },
+        { title: "Bloque 1", text: "Baby y Petite - Motion" },
+        { title: "Bloque 2", text: "Junior, Teen y Senior - Motion" },
+        { title: "Bloque 3", text: "Baby y Petite - Aerial" },
+        { title: "Bloque 4", text: "Junior, Teen y Senior - Aerial" },
       ] },
     ],
     jury: [
@@ -159,12 +162,37 @@ function SectionHeading({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
+function GenreList({ columns = 2, items }: { columns?: 1 | 2; items: string[] }) {
+  const midpoint = Math.ceil(items.length / columns);
+  const groupedItems = columns === 1 ? [items] : [items.slice(0, midpoint), items.slice(midpoint)];
+
+  return (
+    <div className={`sedes-genre-list${columns === 1 ? " sedes-genre-list--single" : ""}`}>
+      {groupedItems.map((group, index) => (
+        <ul key={index}>
+          {group.map((genre) => {
+            const isNew = /\(nuevo!\)/i.test(genre);
+            const label = genre.replace(/\s*\(nuevo!\)/i, "");
+
+            return (
+              <li className={isNew ? "sedes-genre-item sedes-genre-item--new" : "sedes-genre-item"} key={genre}>
+                <span>{label}</span>
+                {isNew ? <em>Nuevo</em> : null}
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  );
+}
+
 function renderBlockText(text: string) {
-  const highlightedTerms = new Set(["aerial", "baby", "junior", "legacy", "motion", "petite", "senior", "teen", "teens"]);
+  const highlightedTerms = new Set(["baby", "junior", "legacy", "petite", "senior", "teen", "teens"]);
 
   return text.split("\n").map((line) => (
     <span className="sedes-block-line" key={line}>
-      {line.split(/\b(Aerial|Baby|Junior|Legacy|Motion|Petite|Senior|Teen|Teens)\b/gi).map((part, index) => (
+      {line.split(/\b(Baby|Junior|Legacy|Petite|Senior|Teen|Teens)\b/gi).map((part, index) => (
         highlightedTerms.has(part.toLowerCase())
           ? <span className="sedes-block-level" key={`${part}-${index}`}>{part}</span>
           : part
@@ -190,7 +218,7 @@ export function SedesPage({ venueKey = "cdmx" }: SedesPageProps) {
         <div className="sedes-hero__content">
           <p className="sedes-kicker">Convocatoria</p>
           <h1>{venue.heroTitle}</h1>
-          <strong>{venue.venueName}</strong>
+          <strong>{venue.eventName}</strong>
 
           <div className="sedes-event-info" aria-label="Información principal de la sede">
             <article>
@@ -223,18 +251,14 @@ export function SedesPage({ venueKey = "cdmx" }: SedesPageProps) {
               <img src={assets.competition} alt="Participante de danza motion en escena" />
               <div>
                 <h3>Motion</h3>
-                <ul>
-                  {venue.motionGenres.map((genre) => <li key={genre}>{genre}</li>)}
-                </ul>
+                <GenreList items={venue.motionGenres} />
               </div>
             </article>
 
             <article className="sedes-genre-card sedes-genre-card--aerial">
               <div>
                 <h3>Aerial</h3>
-                <ul>
-                  {venue.aerialGenres.map((genre) => <li key={genre}>{genre}</li>)}
-                </ul>
+                <GenreList columns={1} items={venue.aerialGenres} />
               </div>
               <img src={assets.hero} alt="Participante aérea en aro" />
             </article>
@@ -331,7 +355,7 @@ export function SedesPage({ venueKey = "cdmx" }: SedesPageProps) {
         <div className="sedes-final-cta__line" aria-hidden="true"><span>✦</span></div>
         <div className="sedes-final-cta__content">
           <p>Convocatoria</p>
-          <span>Checa todos los detalles de esta sede</span>
+          <span>Consulta todos los detalles de esta sede</span>
           <h2>El vuelo te espera</h2>
           <a href="/#convocatorias">
             Descargar convocatoria <ArrowUpRight aria-hidden="true" size={18} />
