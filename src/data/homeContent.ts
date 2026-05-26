@@ -85,11 +85,11 @@ export const events = [
     image: assets.venue,
   },
   {
-    slug: "monterrey",
-    date: "16 AGO",
+    slug: "puebla",
+    date: "07 JUN",
     name: "Levitate MX",
-    venue: "Monterrey",
-    location: "Monterrey, NL",
+    venue: "Auditorio Daniel Forcelledo",
+    location: "Puebla",
     image: assets.competition,
   },
   {

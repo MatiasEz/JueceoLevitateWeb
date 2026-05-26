@@ -24,11 +24,11 @@ const venues = [
     href: "/sedes/ciudad-de-mexico",
   },
   {
-    title: "Auditorio Forcelledo",
-    city: "Cholula, Puebla",
+    title: "Auditorio Daniel Forcelledo",
+    city: "Puebla",
     date: "7 de junio 2026",
     image: assets.hero,
-    href: "/sedes/monterrey",
+    href: "/sedes/puebla",
   },
   {
     title: "Teatro El Gran Recinto",

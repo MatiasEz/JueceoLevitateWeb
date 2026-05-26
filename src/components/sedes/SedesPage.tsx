@@ -3,27 +3,10 @@ import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
 
-const motionGenres = ["Acrojazz", "Ballet", "Belly Dance", "Contemporáneo", "Folklore", "Urbanos", "Jazz", "Lírico", "Open"];
-const aerialGenres = ["Tela", "Aro", "Open"];
-
-const competitionBlocks = [
-  { date: "30 de mayo", items: [
-    { title: "Bloque 1", text: "Baby · Aéreo\nPetite · Aro · Open\nJunior · Tela" },
-    { title: "Bloque 2", text: "Petite · Tela" },
-    { title: "Bloque 3", text: "Junior · Tela" },
-  ] },
-  { date: "31 de mayo", items: [
-    { title: "Bloque 4", text: "Danza\nno aérea" },
-    { title: "Bloque 5", text: "Teens\nLegacy" },
-    { title: "Bloque 6", text: "Senior" },
-  ] },
-];
-
-const workshopGroups = [
-  { label: "Grupo A", text: "Menores de 12 años\nDanza aérea" },
-  { label: "Grupo B", text: "Mayores de 13 años\nDanza aérea" },
-  { label: "Grupo C", text: "Flex" },
-];
+type CompetitionBlockDay = {
+  date: string;
+  items: Array<{ title: string; text: string }>;
+};
 
 type WorkshopSession = {
   label?: string;
@@ -37,46 +20,135 @@ type WorkshopCoach = {
   sessions: WorkshopSession[];
 };
 
-const workshops: WorkshopCoach[] = [
-  {
-    name: "Alex Nájera",
-    specialty: "Telas",
-    sessions: [
-      { time: "10:00 AM - 11:30 AM", group: "Grupo A" },
-      { time: "11:45 AM - 1:15 PM", group: "Grupo B" },
-    ],
-  },
-  {
-    name: "Vladimir Garza",
-    sessions: [
-      { label: "Aro", time: "11:45 AM - 1:15 PM", group: "Grupo A" },
-      { label: "Trapecio", time: "10:00 AM - 11:30 AM", group: "Grupo B" },
-    ],
-  },
-  {
-    name: "Luis Raio",
-    specialty: "Cintas",
-    sessions: [
-      { time: "2:00 PM - 4:00 PM", group: "Grupo B" },
-    ],
-  },
-  {
-    name: "Yoli Campos",
-    specialty: "Flex",
-    sessions: [
-      { time: "2:00 PM - 4:00 PM", group: "Grupo A" },
-      { time: "2:00 PM - 4:00 PM", group: "Grupo B" },
-    ],
-  },
-];
+type JuryMember = {
+  name: string;
+  specialty: string;
+  image: string;
+};
 
-const jury = [
-  { name: "Andrea Salinas", specialty: "Contemporary · Jazz", image: assets.community },
-  { name: "Mariana Ríos", specialty: "Hip Hop · Urbano", image: assets.workshops },
-  { name: "Daniel Figueroa", specialty: "Ballet · Técnica clásica", image: assets.venue },
-  { name: "Oscar Ramírez", specialty: "Acrobacia · Tricks", image: assets.competition },
-  { name: "Lucía Torres", specialty: "Danza contemporánea", image: assets.hero },
-];
+type SedeContent = {
+  heroTitle: string;
+  venueName: string;
+  heroImage: string;
+  location: string;
+  mapsUrl: string;
+  date: string;
+  metaLabel: string;
+  metaValue: string;
+  motionGenres: string[];
+  aerialGenres: string[];
+  competitionBlocks: CompetitionBlockDay[];
+  workshops?: {
+    title: string;
+    location: string;
+    groups: Array<{ label: string; text: string }>;
+    footnote: string;
+    coaches: WorkshopCoach[];
+  };
+  jury: JuryMember[];
+};
+
+const sedesContent: Record<"cdmx" | "puebla", SedeContent> = {
+  cdmx: {
+    heroTitle: "Sede CDMX",
+    venueName: "Fuentes Brotantes, Tlalpan",
+    heroImage: assets.venue,
+    location: "Fuentes Brotantes, Tlalpan",
+    mapsUrl: "https://maps.app.goo.gl/1k47MRq8nSqp82AE7",
+    date: "29 · 30 · 31\nmayo 2026",
+    metaLabel: "Status",
+    metaValue: "Convocatoria\nfinalizada",
+    motionGenres: ["Acrojazz", "Ballet", "Belly Dance", "Contemporáneo", "Folklore", "Urbanos", "Jazz", "Lírico", "Open"],
+    aerialGenres: ["Tela", "Aro", "Open"],
+    competitionBlocks: [
+      { date: "30 de mayo", items: [
+        { title: "Bloque 1", text: "Baby · Aéreo\nPetite · Aro · Open\nJunior · Tela" },
+        { title: "Bloque 2", text: "Petite · Tela" },
+        { title: "Bloque 3", text: "Junior · Tela" },
+      ] },
+      { date: "31 de mayo", items: [
+        { title: "Bloque 4", text: "Danza\nno aérea" },
+        { title: "Bloque 5", text: "Teens\nLegacy" },
+        { title: "Bloque 6", text: "Senior" },
+      ] },
+    ],
+    workshops: {
+      title: "Viernes 29 de mayo",
+      location: "Parque Juana de Asbaje",
+      groups: [
+        { label: "Grupo A", text: "Menores de 12 años\nDanza aérea" },
+        { label: "Grupo B", text: "Mayores de 13 años\nDanza aérea" },
+        { label: "Grupo C", text: "Flex" },
+      ],
+      footnote: "*Cada participante podrá tomar 3 clases.",
+      coaches: [
+        {
+          name: "Alex Nájera",
+          specialty: "Telas",
+          sessions: [
+            { time: "10:00 AM - 11:30 AM", group: "Grupo A" },
+            { time: "11:45 AM - 1:15 PM", group: "Grupo B" },
+          ],
+        },
+        {
+          name: "Vladimir Garza",
+          sessions: [
+            { label: "Aro", time: "11:45 AM - 1:15 PM", group: "Grupo A" },
+            { label: "Trapecio", time: "10:00 AM - 11:30 AM", group: "Grupo B" },
+          ],
+        },
+        {
+          name: "Luis Raio",
+          specialty: "Cintas",
+          sessions: [
+            { time: "2:00 PM - 4:00 PM", group: "Grupo B" },
+          ],
+        },
+        {
+          name: "Yoli Campos",
+          specialty: "Flex",
+          sessions: [
+            { time: "2:00 PM - 4:00 PM", group: "Grupo A" },
+            { time: "2:00 PM - 4:00 PM", group: "Grupo B" },
+          ],
+        },
+      ],
+    },
+    jury: [
+      { name: "Andrea Salinas", specialty: "Contemporary · Jazz", image: assets.community },
+      { name: "Mariana Ríos", specialty: "Hip Hop · Urbano", image: assets.workshops },
+      { name: "Daniel Figueroa", specialty: "Ballet · Técnica clásica", image: assets.venue },
+      { name: "Oscar Ramírez", specialty: "Acrobacia · Tricks", image: assets.competition },
+      { name: "Lucía Torres", specialty: "Danza contemporánea", image: assets.hero },
+    ],
+  },
+  puebla: {
+    heroTitle: "Sede Puebla",
+    venueName: "Auditorio Daniel Forcelledo",
+    heroImage: assets.hero,
+    location: "Auditorio Daniel Forcelledo",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Auditorio%20Daniel%20Forcelledo%20Puebla",
+    date: "7\njunio 2026",
+    metaLabel: "Estado",
+    metaValue: "Puebla",
+    motionGenres: ["Acrojazz", "Ballet", "Belly Dance", "Contemporáneo", "Folklore", "Urbanos (nuevo!)", "Jazz", "Lírico", "Open (nuevo!)"],
+    aerialGenres: ["Tela", "Aro", "Open"],
+    competitionBlocks: [
+      { date: "7 de junio", items: [
+        { title: "Bloque 1", text: "Motion - Baby y Petite" },
+        { title: "Bloque 2", text: "Motion - Junior, Teen y Senior" },
+        { title: "Bloque 3", text: "Aerial - Baby y Petite" },
+        { title: "Bloque 4", text: "Aerial - Junior, Teen y Senior" },
+      ] },
+    ],
+    jury: [
+      { name: "Andrea Salinas", specialty: "Contemporary · Jazz", image: assets.community },
+      { name: "Mariana Ríos", specialty: "Hip Hop · Urbano", image: assets.workshops },
+      { name: "Daniel Figueroa", specialty: "Ballet · Técnica clásica", image: assets.venue },
+      { name: "Lucía Torres", specialty: "Danza contemporánea", image: assets.hero },
+    ],
+  },
+};
 
 function SectionHeading({ kicker, title }: { kicker: string; title: string }) {
   return (
@@ -88,11 +160,11 @@ function SectionHeading({ kicker, title }: { kicker: string; title: string }) {
 }
 
 function renderBlockText(text: string) {
-  const highlightedTerms = new Set(["baby", "junior", "petite", "teens", "senior", "legacy"]);
+  const highlightedTerms = new Set(["aerial", "baby", "junior", "legacy", "motion", "petite", "senior", "teen", "teens"]);
 
   return text.split("\n").map((line) => (
     <span className="sedes-block-line" key={line}>
-      {line.split(/\b(Baby|Junior|Petite|Teens|Senior|Legacy)\b/gi).map((part, index) => (
+      {line.split(/\b(Aerial|Baby|Junior|Legacy|Motion|Petite|Senior|Teen|Teens)\b/gi).map((part, index) => (
         highlightedTerms.has(part.toLowerCase())
           ? <span className="sedes-block-level" key={`${part}-${index}`}>{part}</span>
           : part
@@ -101,37 +173,43 @@ function renderBlockText(text: string) {
   ));
 }
 
-export function SedesPage() {
+type SedesPageProps = {
+  venueKey?: keyof typeof sedesContent;
+};
+
+export function SedesPage({ venueKey = "cdmx" }: SedesPageProps) {
+  const venue = sedesContent[venueKey] ?? sedesContent.cdmx;
+
   return (
     <main className="sedes-page">
       <section className="sedes-hero">
         <LevitateHeader activeLabel="Convocatoria" useRootLinks />
-        <img className="sedes-hero__image" src={assets.venue} alt="" aria-hidden="true" />
+        <img className="sedes-hero__image" src={venue.heroImage} alt="" aria-hidden="true" />
         <div className="sedes-hero__shade" aria-hidden="true" />
 
         <div className="sedes-hero__content">
           <p className="sedes-kicker">Convocatoria</p>
-          <h1>Sede CDMX</h1>
-          <strong>Fuentes Brotantes, Tlalpan</strong>
+          <h1>{venue.heroTitle}</h1>
+          <strong>{venue.venueName}</strong>
 
           <div className="sedes-event-info" aria-label="Información principal de la sede">
             <article>
               <MapPin aria-hidden="true" size={24} />
               <span>Lugar</span>
-              <p>Fuentes Brotantes, Tlalpan</p>
-              <a href="https://maps.app.goo.gl/1k47MRq8nSqp82AE7" target="_blank" rel="noreferrer">
+              <p>{venue.location}</p>
+              <a href={venue.mapsUrl} target="_blank" rel="noreferrer">
                 Ver en Google Maps <ArrowUpRight aria-hidden="true" size={15} />
               </a>
             </article>
             <article>
               <CalendarDays aria-hidden="true" size={24} />
               <span>Fecha del evento</span>
-              <p>29 · 30 · 31<br />mayo 2026</p>
+              <p>{venue.date}</p>
             </article>
             <article>
               <CheckCircle2 aria-hidden="true" size={24} />
-              <span>Status</span>
-              <p>Convocatoria<br />finalizada</p>
+              <span>{venue.metaLabel}</span>
+              <p>{venue.metaValue}</p>
             </article>
           </div>
         </div>
@@ -146,7 +224,7 @@ export function SedesPage() {
               <div>
                 <h3>Motion</h3>
                 <ul>
-                  {motionGenres.map((genre) => <li key={genre}>{genre}</li>)}
+                  {venue.motionGenres.map((genre) => <li key={genre}>{genre}</li>)}
                 </ul>
               </div>
             </article>
@@ -155,7 +233,7 @@ export function SedesPage() {
               <div>
                 <h3>Aerial</h3>
                 <ul>
-                  {aerialGenres.map((genre) => <li key={genre}>{genre}</li>)}
+                  {venue.aerialGenres.map((genre) => <li key={genre}>{genre}</li>)}
                 </ul>
               </div>
               <img src={assets.hero} alt="Participante aérea en aro" />
@@ -165,8 +243,8 @@ export function SedesPage() {
 
         <section className="sedes-light-section sedes-blocks">
           <SectionHeading kicker="Bloques" title="de competencia" />
-          <div className="sedes-block-columns">
-            {competitionBlocks.map((day) => (
+          <div className={`sedes-block-columns${venue.competitionBlocks.length === 1 ? " sedes-block-columns--single" : ""}`}>
+            {venue.competitionBlocks.map((day) => (
               <div className="sedes-block-day" key={day.date}>
                 <h3>{day.date}</h3>
                 <div>
@@ -184,59 +262,61 @@ export function SedesPage() {
         </section>
       </div>
 
-      <section className="sedes-workshops">
-        <div className="sedes-workshops__intro">
-          <p className="sedes-kicker">Workshops</p>
-          <h2>Viernes 29 de mayo</h2>
-          <span><MapPin aria-hidden="true" size={17} /> Parque Juana de Asbaje</span>
+      {venue.workshops ? (
+        <section className="sedes-workshops">
+          <div className="sedes-workshops__intro">
+            <p className="sedes-kicker">Workshops</p>
+            <h2>{venue.workshops.title}</h2>
+            <span><MapPin aria-hidden="true" size={17} /> {venue.workshops.location}</span>
 
-          <div className="sedes-workshop-groups">
-            {workshopGroups.map((group) => (
-              <article key={group.label}>
-                <span>{group.label}</span>
-                <p>{group.text}</p>
+            <div className="sedes-workshop-groups">
+              {venue.workshops.groups.map((group) => (
+                <article key={group.label}>
+                  <span>{group.label}</span>
+                  <p>{group.text}</p>
+                </article>
+              ))}
+            </div>
+            <small>{venue.workshops.footnote}</small>
+          </div>
+
+          <div className="sedes-workshop-grid">
+            {venue.workshops.coaches.map((workshop) => (
+              <article className="sedes-workshop-card" key={workshop.name}>
+                <div className="sedes-workshop-card__head">
+                  <div>
+                    <h3>{workshop.name}</h3>
+                    {workshop.specialty ? <strong>{workshop.specialty}</strong> : null}
+                  </div>
+                </div>
+                <ul>
+                  {workshop.sessions.map((session) => (
+                    <li
+                      className={session.label ? "sedes-workshop-card__session sedes-workshop-card__session--tagged" : "sedes-workshop-card__session"}
+                      key={`${workshop.name}-${session.time}-${session.group}`}
+                    >
+                      {session.label ? <span className="sedes-workshop-card__tag">{session.label}</span> : null}
+                      <span className="sedes-workshop-card__clock"><Clock3 aria-hidden="true" size={24} /></span>
+                      <span className="sedes-workshop-card__session-copy">
+                        <span className="sedes-workshop-card__time">{session.time}</span>
+                        <span className="sedes-workshop-card__group">{session.group}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
-          <small>*Cada participante podrá tomar 3 clases.</small>
-        </div>
-
-        <div className="sedes-workshop-grid">
-          {workshops.map((workshop) => (
-            <article className="sedes-workshop-card" key={workshop.name}>
-              <div className="sedes-workshop-card__head">
-                <div>
-                  <h3>{workshop.name}</h3>
-                  {workshop.specialty ? <strong>{workshop.specialty}</strong> : null}
-                </div>
-              </div>
-              <ul>
-                {workshop.sessions.map((session) => (
-                  <li
-                    className={session.label ? "sedes-workshop-card__session sedes-workshop-card__session--tagged" : "sedes-workshop-card__session"}
-                    key={`${workshop.name}-${session.time}-${session.group}`}
-                  >
-                    {session.label ? <span className="sedes-workshop-card__tag">{session.label}</span> : null}
-                    <span className="sedes-workshop-card__clock"><Clock3 aria-hidden="true" size={24} /></span>
-                    <span className="sedes-workshop-card__session-copy">
-                      <span className="sedes-workshop-card__time">{session.time}</span>
-                      <span className="sedes-workshop-card__group">{session.group}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="sedes-light-section sedes-jury">
         <div className="sedes-jury__header">
           <SectionHeading kicker="Jurado" title="invitado" />
           <p>Conoce al panel de artistas y profesionales que formarán parte de esta sede.</p>
         </div>
-        <div className="sedes-jury-grid">
-          {jury.map((judge) => (
+        <div className={`sedes-jury-grid${venue.jury.length === 4 ? " sedes-jury-grid--four" : ""}`}>
+          {venue.jury.map((judge) => (
             <article className="sedes-jury-card" key={judge.name}>
               <img src={judge.image} alt="" aria-hidden="true" />
               <h3>{judge.name}</h3>
@@ -247,7 +327,7 @@ export function SedesPage() {
       </section>
 
       <section className="sedes-final-cta">
-        <img src={assets.hero} alt="" aria-hidden="true" />
+        <img src={venue.heroImage} alt="" aria-hidden="true" />
         <div className="sedes-final-cta__line" aria-hidden="true"><span>✦</span></div>
         <div className="sedes-final-cta__content">
           <p>Convocatoria</p>

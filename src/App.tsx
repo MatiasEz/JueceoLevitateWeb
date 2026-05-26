@@ -19,6 +19,16 @@ export default function App() {
   }
 
   if (venueMatch) {
+    const venueSlug = venueMatch[1];
+
+    if (venueSlug === "ciudad-de-mexico" || venueSlug === "cdmx") {
+      return <SedesPage venueKey="cdmx" />;
+    }
+
+    if (venueSlug === "puebla" || venueSlug === "monterrey") {
+      return <SedesPage venueKey="puebla" />;
+    }
+
     return <VenuePage venue={getVenueBySlug(venueMatch[1])} />;
   }
 

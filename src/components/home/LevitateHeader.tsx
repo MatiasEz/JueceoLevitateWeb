@@ -13,13 +13,12 @@ const navItems = [
     label: "Convocatoria",
     href: "#convocatorias",
     children: [
-      { label: "Reglamento", href: "#convocatorias" },
       {
         label: "Sedes",
         href: "/sedes",
         children: [
           { label: "Ciudad de México", href: "/sedes/ciudad-de-mexico" },
-          { label: "Puebla", href: "/sedes/monterrey" },
+          { label: "Puebla", href: "/sedes/puebla" },
           { label: "Estado de México", href: "/sedes/silo-dallas" },
         ],
       },
@@ -72,20 +71,23 @@ type LevitateHeaderProps = {
 
 export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }: LevitateHeaderProps) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const activeNavItem = navItems.find((item) => item.label === activeMenu && item.children);
-  const dropdown = activeNavItem ? (
+  const [renderedMenu, setRenderedMenu] = useState<string | null>(null);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
+  const renderedNavItem = navItems.find((item) => item.label === renderedMenu && item.children);
+  const dropdown = renderedNavItem ? (
     <div
-      aria-label={`${activeNavItem.label} submenu`}
-      className="levitate-nav__dropdown is-open"
-      onFocus={() => setActiveMenu(activeNavItem.label)}
-      onMouseEnter={() => setActiveMenu(activeNavItem.label)}
+      aria-hidden={isMenuClosing}
+      aria-label={`${renderedNavItem.label} submenu`}
+      className={`levitate-nav__dropdown ${isMenuClosing ? "is-closing" : "is-open"}`}
+      onFocus={() => setActiveMenu(renderedNavItem.label)}
+      onMouseEnter={() => setActiveMenu(renderedNavItem.label)}
       onMouseLeave={() => setActiveMenu(null)}
-      onPointerEnter={() => setActiveMenu(activeNavItem.label)}
+      onPointerEnter={() => setActiveMenu(renderedNavItem.label)}
       onPointerLeave={() => setActiveMenu(null)}
     >
       <div className="levitate-nav__dropdown-visual" aria-hidden="true" />
       <div className="levitate-nav__dropdown-list">
-        {activeNavItem.children?.map((child) => (
+        {renderedNavItem.children?.map((child) => (
           <div className="levitate-nav__dropdown-item" key={child.label}>
             <a className="levitate-nav__dropdown-main" href={resolveHref(child.href, useRootLinks)}>
               {child.label}
@@ -104,6 +106,26 @@ export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }:
       </div>
     </div>
   ) : null;
+
+  useEffect(() => {
+    if (activeMenu) {
+      setRenderedMenu(activeMenu);
+      setIsMenuClosing(false);
+      return;
+    }
+
+    if (!renderedMenu) {
+      return;
+    }
+
+    setIsMenuClosing(true);
+    const closeTimer = window.setTimeout(() => {
+      setRenderedMenu(null);
+      setIsMenuClosing(false);
+    }, 280);
+
+    return () => window.clearTimeout(closeTimer);
+  }, [activeMenu, renderedMenu]);
 
   useEffect(() => {
     if (!activeMenu) {
