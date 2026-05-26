@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type NavItem = {
   label: string;
@@ -72,6 +73,37 @@ type LevitateHeaderProps = {
 export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }: LevitateHeaderProps) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const activeNavItem = navItems.find((item) => item.label === activeMenu && item.children);
+  const dropdown = activeNavItem ? (
+    <div
+      aria-label={`${activeNavItem.label} submenu`}
+      className="levitate-nav__dropdown is-open"
+      onFocus={() => setActiveMenu(activeNavItem.label)}
+      onMouseEnter={() => setActiveMenu(activeNavItem.label)}
+      onMouseLeave={() => setActiveMenu(null)}
+      onPointerEnter={() => setActiveMenu(activeNavItem.label)}
+      onPointerLeave={() => setActiveMenu(null)}
+    >
+      <div className="levitate-nav__dropdown-visual" aria-hidden="true" />
+      <div className="levitate-nav__dropdown-list">
+        {activeNavItem.children?.map((child) => (
+          <div className="levitate-nav__dropdown-item" key={child.label}>
+            <a className="levitate-nav__dropdown-main" href={resolveHref(child.href, useRootLinks)}>
+              {child.label}
+            </a>
+            {child.children ? (
+              <div className="levitate-nav__dropdown-sublist" aria-label={`${child.label} sedes`}>
+                {child.children.map((nestedChild) => (
+                  <a href={resolveHref(nestedChild.href, useRootLinks)} key={nestedChild.label}>
+                    {nestedChild.label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : null;
 
   useEffect(() => {
     if (!activeMenu) {
@@ -160,37 +192,7 @@ export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }:
         </nav>
       </header>
 
-      {activeNavItem ? (
-        <div
-          aria-label={`${activeNavItem.label} submenu`}
-          className="levitate-nav__dropdown is-open"
-          onFocus={() => setActiveMenu(activeNavItem.label)}
-          onMouseEnter={() => setActiveMenu(activeNavItem.label)}
-          onMouseLeave={() => setActiveMenu(null)}
-          onPointerEnter={() => setActiveMenu(activeNavItem.label)}
-          onPointerLeave={() => setActiveMenu(null)}
-        >
-          <div className="levitate-nav__dropdown-visual" aria-hidden="true" />
-          <div className="levitate-nav__dropdown-list">
-            {activeNavItem.children?.map((child) => (
-              <div className="levitate-nav__dropdown-item" key={child.label}>
-                <a className="levitate-nav__dropdown-main" href={resolveHref(child.href, useRootLinks)}>
-                  {child.label}
-                </a>
-                {child.children ? (
-                  <div className="levitate-nav__dropdown-sublist" aria-label={`${child.label} sedes`}>
-                    {child.children.map((nestedChild) => (
-                      <a href={resolveHref(nestedChild.href, useRootLinks)} key={nestedChild.label}>
-                        {nestedChild.label}
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
+      {dropdown && typeof document !== "undefined" ? createPortal(dropdown, document.body) : null}
     </div>
   );
 }
