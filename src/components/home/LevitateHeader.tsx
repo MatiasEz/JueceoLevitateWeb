@@ -22,7 +22,7 @@ const navItems = [
           { label: "Estado de México", href: "/sedes/silo-dallas" },
         ],
       },
-      { label: "Evaluaciones", href: "/evaluaciones" },
+      { label: "Workshops", href: "#workshops" },
       { label: "Premiación", href: "#premios" },
     ],
   },
@@ -30,11 +30,27 @@ const navItems = [
     label: "Modalidades",
     href: "#categorías",
     children: [
-      { label: "Levitate Motion", href: "#categorías" },
-      { label: "Levitate Aerial", href: "#categorías" },
+      {
+        label: "Levitate Motion",
+        href: "#categorías",
+        children: [
+          { label: "Géneros", href: "#categorías" },
+          { label: "Reglamento", href: "#reglamento-motion" },
+          { label: "Evaluación", href: "/evaluaciones" },
+        ],
+      },
+      {
+        label: "Levitate Aerial",
+        href: "#categorías",
+        children: [
+          { label: "Géneros y niveles", href: "#categorías" },
+          { label: "Reglamento", href: "#reglamento-aerial" },
+          { label: "Seguridad", href: "#seguridad" },
+          { label: "Evaluación", href: "/evaluaciones" },
+        ],
+      },
     ],
   },
-  { label: "Workshops", href: "#workshops" },
   {
     label: "Costos",
     href: "#premios",
@@ -42,6 +58,15 @@ const navItems = [
       { label: "Inscripción", href: "#premios" },
       { label: "Boletos", href: "#premios" },
       { label: "Fotografía y video", href: "#premios" },
+    ],
+  },
+  {
+    label: "Salón de la fama",
+    href: "#salon-de-la-fama",
+    children: [
+      { label: "MVPs", href: "#mvps" },
+      { label: "Premios especiales", href: "#premios-especiales" },
+      { label: "Becados", href: "#becados" },
     ],
   },
   { label: "Contacto", href: "#contacto" },
@@ -93,7 +118,7 @@ export function LevitateHeader({ activeLabel = "Inicio", useRootLinks = false }:
               {child.label}
             </a>
             {child.children ? (
-              <div className="levitate-nav__dropdown-sublist" aria-label={`${child.label} sedes`}>
+              <div className="levitate-nav__dropdown-sublist" aria-label={`${child.label} submenu`}>
                 {child.children.map((nestedChild) => (
                   <a href={resolveHref(nestedChild.href, useRootLinks)} key={nestedChild.label}>
                     {nestedChild.label}
