@@ -3513,25 +3513,17 @@ button {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  min-height: clamp(210px, 21vw, 300px);
-  padding: clamp(18px, 2.6vw, 34px);
-  overflow: hidden;
-  border: 1px solid rgba(23, 20, 27, 0.1);
-  border-radius: 10px;
-  background:
-    radial-gradient(circle at 22% 35%, rgba(228, 92, 154, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(247, 243, 239, 0.58));
-  box-shadow: 0 24px 80px rgba(20, 14, 16, 0.08);
+  min-height: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .premiation-direct__stage::before {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent 0 18%, rgba(228, 92, 154, 0.12) 18.2%, transparent 18.6%),
-    linear-gradient(90deg, transparent 0 66%, rgba(228, 92, 154, 0.1) 66.2%, transparent 66.6%);
-  content: "";
+  content: none;
 }
 
 .premiation-rank-card {
@@ -3603,13 +3595,7 @@ button {
 }
 
 .premiation-direct__motion-line {
-  position: absolute;
-  right: 28px;
-  bottom: 24px;
-  left: 28px;
-  height: 2px;
-  overflow: hidden;
-  background: rgba(228, 92, 154, 0.14);
+  display: none;
 }
 
 .premiation-direct__motion-line::after {
@@ -3714,20 +3700,15 @@ button {
 .premiation-medal-card {
   position: relative;
   min-height: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(228, 92, 154, 0.16), transparent 35%),
-    #050505;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
-  transition:
-    transform 420ms var(--ease-out),
-    border-color 420ms var(--ease-out);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 420ms var(--ease-out);
 }
 
 .premiation-medal-card:hover {
-  border-color: rgba(228, 92, 154, 0.5);
   transform: translateY(-6px);
 }
 
@@ -3895,11 +3876,41 @@ button {
   text-transform: uppercase;
 }
 
-.premiation-sheets {
+.premiation-dark-flow {
+  position: relative;
+  overflow: hidden;
+  color: var(--premiation-white);
   background:
-    radial-gradient(circle at 20% 18%, rgba(228, 92, 154, 0.16), transparent 24%),
-    radial-gradient(circle at 88% 78%, rgba(142, 49, 93, 0.26), transparent 28%),
-    linear-gradient(180deg, #050505 0%, #0c080c 100%);
+    radial-gradient(circle at 84% 15%, rgba(228, 92, 154, 0.18), transparent 30%),
+    radial-gradient(circle at 9% 58%, rgba(142, 49, 93, 0.28), transparent 32%),
+    radial-gradient(circle at 68% 92%, rgba(228, 92, 154, 0.08), transparent 34%),
+    linear-gradient(180deg, #050505 0%, #090609 46%, #050505 100%);
+}
+
+.premiation-dark-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, transparent 0 49%, rgba(228, 92, 154, 0.065) 49.2%, transparent 57%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 5px);
+  opacity: 0.72;
+}
+
+.premiation-dark-flow > .premiation-section,
+.premiation-dark-flow > .premiation-bottom {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.premiation-dark-flow > .premiation-section::before {
+  content: none;
+}
+
+.premiation-sheets {
+  background: transparent;
 }
 
 .premiation-sheets__layout {
@@ -3915,6 +3926,44 @@ button {
 
 .premiation-sheets__intro p:not(.premiation-kicker) {
   margin: 18px 0 0;
+}
+
+.premiation-sheets__cta {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  width: fit-content;
+  margin-top: 28px;
+  padding: 16px 20px;
+  color: var(--premiation-white);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.13em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgba(228, 92, 154, 0.58);
+  background: rgba(228, 92, 154, 0.08);
+  transition:
+    color 260ms var(--ease-out),
+    background 260ms var(--ease-out),
+    border-color 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+.premiation-sheets__cta svg {
+  color: var(--premiation-pink);
+  transition: transform 260ms var(--ease-out);
+}
+
+.premiation-sheets__cta:hover {
+  color: var(--premiation-white);
+  background: rgba(228, 92, 154, 0.16);
+  border-color: var(--premiation-pink);
+  transform: translateY(-2px);
+}
+
+.premiation-sheets__cta:hover svg {
+  transform: translate(3px, -3px);
 }
 
 .premiation-sheets__steps {
@@ -4036,10 +4085,7 @@ button {
 .premiation-alliances {
   padding-top: clamp(34px, 4vw, 56px);
   padding-bottom: clamp(34px, 4vw, 56px);
-  background:
-    radial-gradient(circle at 82% 18%, rgba(228, 92, 154, 0.2), transparent 28%),
-    radial-gradient(circle at 12% 90%, rgba(142, 49, 93, 0.3), transparent 30%),
-    linear-gradient(180deg, #050505 0%, #0b070b 100%);
+  background: transparent;
 }
 
 .premiation-alliances h2 {
@@ -4058,16 +4104,13 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 118px;
-  padding: 14px clamp(24px, 3vw, 42px);
-  border-right: 1px solid var(--premiation-line);
-  border-left: 1px solid var(--premiation-line);
+  padding: 0;
+  border-right: 0;
+  border-left: 0;
 }
 
 .premiation-alliances .premiation-logos {
-  border-color: rgba(228, 92, 154, 0.36);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(228, 92, 154, 0.055), rgba(255, 255, 255, 0.04)),
-    rgba(255, 255, 255, 0.02);
+  background: transparent;
 }
 
 .premiation-logo-mark {
@@ -4102,22 +4145,30 @@ button {
   font-weight: 950;
 }
 
+.premiation-alliances__accent {
+  margin-top: 12px !important;
+  color: var(--premiation-pink) !important;
+  font-weight: 950;
+}
+
 .premiation-bottom {
   display: grid;
   grid-template-columns: minmax(260px, 0.86fr) minmax(280px, 1fr);
   gap: clamp(24px, 4vw, 60px);
   align-items: center;
   padding: clamp(42px, 5vw, 70px) clamp(22px, 4vw, 64px);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    radial-gradient(circle at 88% 50%, rgba(228, 92, 154, 0.24), transparent 26%),
-    linear-gradient(180deg, #050505 0%, #09070a 100%);
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
 }
 
 .premiation-bottom article {
   position: relative;
   min-height: 190px;
+}
+
+.premiation-bottom article:first-child h2 {
+  color: var(--premiation-pink);
 }
 
 .premiation-bottom ul {

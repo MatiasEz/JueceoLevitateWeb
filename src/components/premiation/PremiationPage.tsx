@@ -1,4 +1,5 @@
 import {
+  ArrowUpRight,
   CheckCircle2,
   ClipboardCheck,
   FileText,
@@ -128,9 +129,7 @@ const mvpAwards = [
 const considerations = [
   "Los resultados son finales y no hay apelaciones.",
   "Las premiaciones dependen del registro, inscripción, asistencia y participación.",
-  "La organización se reserva el derecho de modificar los premios sin previo aviso.",
   "Los premios no son canjeables por dinero ni mercancía.",
-  "Las premiaciones se entregarán únicamente durante la ceremonia oficial.",
 ];
 
 export function PremiationPage() {
@@ -196,68 +195,66 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <section className="premiation-section premiation-section--dark premiation-medals">
-        <div className="premiation-section__body">
-          <p className="premiation-kicker">Medallero</p>
-          <div className="premiation-medals__layout">
-            <div>
-              <span className="premiation-medals__badge">Sin competencia directa</span>
-              <h2>Sistema de medallero</h2>
-              <p className="premiation-pink">
-                Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
-                programa.
-              </p>
-              <p>
-                Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
-                categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por puntaje
-                absoluto del jurado.
-              </p>
-            </div>
+      <div className="premiation-dark-flow">
+        <section className="premiation-section premiation-section--dark premiation-medals">
+          <div className="premiation-section__body">
+            <p className="premiation-kicker">Medallero</p>
+            <div className="premiation-medals__layout">
+              <div>
+                <span className="premiation-medals__badge">Sin competencia directa</span>
+                <h2>Sistema de medallero</h2>
+                <p className="premiation-pink">
+                  Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
+                  programa.
+                </p>
+                <p>
+                  Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
+                  categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por
+                  puntaje absoluto del jurado.
+                </p>
+              </div>
 
-            <div className="premiation-medal-grid">
-              {medalSystem.map((medal) => (
-                <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
-                  <img src={medal.image} alt={medal.alt} loading="lazy" />
-                </article>
-              ))}
+              <div className="premiation-medal-grid">
+                {medalSystem.map((medal) => (
+                  <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
+                    <img src={medal.image} alt={medal.alt} loading="lazy" />
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="premiation-section premiation-section--dark premiation-recognition">
-        <div className="premiation-section__body">
-          <div className="premiation-split-heading premiation-recognition__heading">
+        <section className="premiation-section premiation-section--dark premiation-recognition">
+          <div className="premiation-section__body">
+            <div className="premiation-split-heading premiation-recognition__heading">
             <div>
               <p className="premiation-kicker">Reconocimientos Levitate</p>
               <h2>Lo que se entrega en escena.</h2>
             </div>
-            <p>
-              Cada premio está pensado como parte de la experiencia: una pieza física, memorable y alineada con el
-              nivel de producción de Levitate.
-            </p>
           </div>
 
-          <div className="premiation-recognition__grid">
-            {recognitionShowcase.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article className="premiation-recognition__card" key={item.title}>
-                  <div className="premiation-recognition__visual" aria-hidden="true">
-                    <span />
-                    <Icon size={62} />
-                  </div>
-                  <div>
-                    <span className="premiation-recognition__label">{item.label}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.copy}</p>
-                  </div>
-                </article>
-              );
-            })}
+            <div className="premiation-recognition__grid">
+              {recognitionShowcase.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article className="premiation-recognition__card" key={item.title}>
+                    <div className="premiation-recognition__visual" aria-hidden="true">
+                      <span />
+                      <Icon size={62} />
+                    </div>
+                    <div>
+                      <span className="premiation-recognition__label">{item.label}</span>
+                      <h3>{item.title}</h3>
+                      <p>{item.copy}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section className="premiation-section premiation-section--light premiation-special">
         <div className="premiation-section__body">
@@ -266,10 +263,6 @@ export function PremiationPage() {
               <p className="premiation-kicker">Premios especiales</p>
               <h2>Premios especiales por bloque</h2>
             </div>
-            <p>
-              Además de los premios por categoría, en cada bloque de competencia se otorgan premios individuales
-              seleccionados por el staff técnico entre quienes mejor representen el espíritu de Levitate MX.
-            </p>
           </div>
           <div className="premiation-special-grid">
             {specialAwards.map((award) => {
@@ -286,100 +279,104 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <section className="premiation-section premiation-section--dark premiation-sheets">
-        <div className="premiation-section__body">
-          <div className="premiation-sheets__layout">
-            <div className="premiation-sheets__intro">
-              <p className="premiation-kicker">Hojas de jueceo</p>
-              <h2>Feedback claro al finalizar cada bloque.</h2>
-              <p>
-                Al cierre de cada bloque, Levitate envía la información de jueceo al responsable de la academia para
-                que cada resultado pueda revisarse con orden y transparencia.
-              </p>
-            </div>
-
-            <div className="premiation-sheets__steps">
-              {judgingSheetSteps.map((step) => {
-                const Icon = step.icon;
-                return (
-                  <article key={step.title}>
-                    <Icon size={34} />
-                    <div>
-                      <h3>{step.title}</h3>
-                      <p>{step.copy}</p>
-                    </div>
+      <div className="premiation-dark-flow">
+        <section className="premiation-section premiation-section--dark premiation-mvp">
+          <div className="premiation-section__body">
+            <p className="premiation-kicker">MVP Levitate</p>
+            <div className="premiation-mvp__layout">
+              <div>
+                <h2>El mejor puntaje del evento.</h2>
+                <p>
+                  El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
+                  sin importar el nivel, división o categoría.
+                </p>
+              </div>
+              <div className="premiation-mvp__cards">
+                {mvpAwards.map((award) => (
+                  <article key={award.title}>
+                    <img src={award.image} alt="" aria-hidden="true" />
+                    <Star size={34} />
+                    <h3>{award.title}</h3>
+                    <p>{award.copy}</p>
                   </article>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="premiation-section premiation-section--dark premiation-mvp">
-        <div className="premiation-section__body">
-          <p className="premiation-kicker">MVP Levitate</p>
-          <div className="premiation-mvp__layout">
-            <div>
-              <h2>El mejor puntaje del evento.</h2>
+        <section className="premiation-section premiation-section--dark premiation-sheets">
+          <div className="premiation-section__body">
+            <div className="premiation-sheets__layout">
+              <div className="premiation-sheets__intro">
+                <p className="premiation-kicker">Hojas de jueceo</p>
+                <h2>Feedback claro al finalizar cada bloque.</h2>
+                <p>
+                  Al cierre de cada bloque, Levitate envía la información de jueceo al responsable de la academia para
+                  que cada resultado pueda revisarse con orden y transparencia.
+                </p>
+                <a className="premiation-sheets__cta" href="/evaluaciones">
+                  Consulta los criterios de evaluación <ArrowUpRight aria-hidden="true" size={18} />
+                </a>
+              </div>
+
+              <div className="premiation-sheets__steps">
+                {judgingSheetSteps.map((step) => {
+                  const Icon = step.icon;
+                  return (
+                    <article key={step.title}>
+                      <Icon size={34} />
+                      <div>
+                        <h3>{step.title}</h3>
+                        <p>{step.copy}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="premiation-section premiation-section--dark premiation-alliances">
+          <div className="premiation-section__body">
+            <p className="premiation-kicker">Becas y alianzas</p>
+            <div className="premiation-alliances__layout">
+              <h2>Alianzas que impulsan tu vuelo.</h2>
+              <div className="premiation-logos">
+                <span className="premiation-logo-mark premiation-logo-mark--dark">
+                  <img src="/assets/dnzre-logo.png" alt="DNZRE" />
+                </span>
+                <span className="premiation-logo-mark">
+                  <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
+                </span>
+              </div>
               <p>
-                El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto, sin
-                importar el nivel, división o categoría.
+                Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te
+                abren la puerta a nuevas oportunidades dentro y fuera del país.
               </p>
+              <p className="premiation-alliances__accent">Tu mejor presentación puede llevarte más lejos.</p>
             </div>
-            <div className="premiation-mvp__cards">
-              {mvpAwards.map((award) => (
-                <article key={award.title}>
-                  <img src={award.image} alt="" aria-hidden="true" />
-                  <Star size={34} />
-                  <h3>{award.title}</h3>
-                  <p>{award.copy}</p>
-                </article>
+          </div>
+        </section>
+
+        <section className="premiation-bottom">
+          <article>
+            <p className="premiation-kicker">Entrega de premios</p>
+            <h2>Premiación por bloque</h2>
+          </article>
+          <article>
+            <p className="premiation-kicker">Consideraciones importantes</p>
+            <ul>
+              {considerations.map((item) => (
+                <li key={item}>
+                  <CheckCircle2 size={18} /> {item}
+                </li>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="premiation-section premiation-section--dark premiation-alliances">
-        <div className="premiation-section__body">
-          <p className="premiation-kicker">Becas y alianzas</p>
-          <div className="premiation-alliances__layout">
-            <h2>Alianzas que impulsan tu vuelo.</h2>
-            <div className="premiation-logos">
-              <span className="premiation-logo-mark premiation-logo-mark--dark">
-                <img src="/assets/dnzre-logo.png" alt="DNZRE" />
-              </span>
-              <span className="premiation-logo-mark">
-                <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
-              </span>
-            </div>
-            <p>
-              Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te abren
-              la puerta a nuevas oportunidades dentro y fuera del país. <span>Tu mejor presentación puede llevarte más lejos.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="premiation-bottom">
-        <article>
-          <p className="premiation-kicker">Entrega de premios</p>
-          <h2>Premiación por bloque</h2>
-          <p>
-            La premiación se realiza al concluir cada bloque de competencia. Los horarios y dinámicas por premio podrán
-            variar; consúltalos en tu recibo oficial o en la app Levitate MX.
-          </p>
-        </article>
-        <article>
-          <p className="premiation-kicker">Consideraciones importantes</p>
-          <ul>
-            {considerations.map((item) => (
-              <li key={item}><CheckCircle2 size={18} /> {item}</li>
-            ))}
-          </ul>
-        </article>
-      </section>
+            </ul>
+          </article>
+        </section>
+      </div>
 
       <LevitateFooter useRootLinks />
     </main>
