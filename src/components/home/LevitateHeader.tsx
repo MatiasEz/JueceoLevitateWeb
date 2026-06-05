@@ -23,7 +23,7 @@ const navItems = [
         ],
       },
       { label: "Workshops", href: "#workshops" },
-      { label: "Premiación", href: "#premios" },
+      { label: "Premiación", href: "/premiacion" },
     ],
   },
   {
