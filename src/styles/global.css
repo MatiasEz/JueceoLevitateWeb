@@ -3916,6 +3916,32 @@ button {
   text-transform: uppercase;
 }
 
+.premiation-light-flow {
+  position: relative;
+  overflow: hidden;
+  color: var(--premiation-dark-text);
+  background:
+    radial-gradient(circle at 7% 12%, rgba(228, 92, 154, 0.09), transparent 28%),
+    radial-gradient(circle at 92% 52%, rgba(228, 92, 154, 0.08), transparent 30%),
+    linear-gradient(180deg, #fbf8f4 0%, #fbf8f4 100%);
+}
+
+.premiation-light-flow > .premiation-section {
+  background: transparent;
+}
+
+.premiation-light-flow > .premiation-section::before {
+  content: none;
+}
+
+.premiation-light-flow .premiation-special {
+  padding-bottom: clamp(28px, 4vw, 56px);
+}
+
+.premiation-light-flow .premiation-mvp {
+  padding-top: clamp(28px, 4vw, 56px);
+}
+
 .premiation-dark-flow {
   position: relative;
   overflow: hidden;
@@ -4757,11 +4783,13 @@ button {
   display: block;
   width: 70px;
   height: 70px;
+  padding: 10px;
+  box-sizing: border-box;
   border: 1px solid rgba(231, 70, 151, 0.26);
   border-radius: 18px;
   background: #050505;
   box-shadow: 0 14px 32px rgba(17, 16, 21, 0.12);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .workshops-note,
@@ -4799,9 +4827,11 @@ button {
   width: 34px;
   height: 34px;
   min-width: 34px;
+  padding: 5px;
+  box-sizing: border-box;
   border-radius: 10px;
   background: #050505;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .workshops-important > div {
@@ -5172,11 +5202,13 @@ button {
   display: block;
   width: 58px;
   height: 58px;
+  padding: 8px;
+  box-sizing: border-box;
   border: 1px solid rgba(231, 70, 151, 0.24);
   border-radius: 16px;
   background: #050505;
   box-shadow: 0 12px 28px rgba(17, 16, 21, 0.1);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .workshops-basics__grid h3 {

@@ -257,53 +257,55 @@ export function PremiationPage() {
         </section>
       </div>
 
-      <section className="premiation-section premiation-section--light premiation-special">
-        <div className="premiation-section__body">
-          <div className="premiation-split-heading">
-            <div>
-              <p className="premiation-kicker">Premios especiales</p>
-              <h2>Premios especiales por bloque</h2>
+      <div className="premiation-light-flow">
+        <section className="premiation-section premiation-section--light premiation-special">
+          <div className="premiation-section__body">
+            <div className="premiation-split-heading">
+              <div>
+                <p className="premiation-kicker">Premios especiales</p>
+                <h2>Premios especiales por bloque</h2>
+              </div>
+            </div>
+            <div className="premiation-special-grid">
+              {specialAwards.map((award) => {
+                const Icon = award.icon;
+                return (
+                  <article key={award.title}>
+                    <Icon size={34} />
+                    <h3>{award.title}</h3>
+                    <p>{award.copy}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
-          <div className="premiation-special-grid">
-            {specialAwards.map((award) => {
-              const Icon = award.icon;
-              return (
-                <article key={award.title}>
-                  <Icon size={34} />
-                  <h3>{award.title}</h3>
-                  <p>{award.copy}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="premiation-section premiation-section--light premiation-mvp">
-        <div className="premiation-section__body">
-          <p className="premiation-kicker">MVP Levitate</p>
-          <div className="premiation-mvp__layout">
-            <div>
-              <h2>El mejor puntaje del evento.</h2>
-              <p>
-                El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
-                sin importar el nivel, división o categoría.
-              </p>
-            </div>
-            <div className="premiation-mvp__cards">
-              {mvpAwards.map((award) => (
-                <article key={award.title}>
-                  <img src={award.image} alt="" aria-hidden="true" />
-                  <Star size={34} />
-                  <h3>{award.title}</h3>
-                  <p>{award.copy}</p>
-                </article>
-              ))}
+        <section className="premiation-section premiation-section--light premiation-mvp">
+          <div className="premiation-section__body">
+            <p className="premiation-kicker">MVP Levitate</p>
+            <div className="premiation-mvp__layout">
+              <div>
+                <h2>El mejor puntaje del evento.</h2>
+                <p>
+                  El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
+                  sin importar el nivel, división o categoría.
+                </p>
+              </div>
+              <div className="premiation-mvp__cards">
+                {mvpAwards.map((award) => (
+                  <article key={award.title}>
+                    <img src={award.image} alt="" aria-hidden="true" />
+                    <Star size={34} />
+                    <h3>{award.title}</h3>
+                    <p>{award.copy}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <div className="premiation-dark-flow">
         <section className="premiation-section premiation-section--dark premiation-sheets">
