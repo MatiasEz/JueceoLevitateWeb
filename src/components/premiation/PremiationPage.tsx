@@ -5,11 +5,9 @@ import {
   FileText,
   Mail,
   Megaphone,
-  Medal,
   Music2,
   Sparkles,
   Star,
-  Trophy,
   WandSparkles,
 } from "lucide-react";
 import { assets } from "../../data/homeContent";
@@ -45,21 +43,24 @@ const medalSystem = [
 
 const recognitionShowcase = [
   {
-    icon: Medal,
     title: "Medallas",
     label: "Oro · Plata · Bronce · Participación",
+    image: "/assets/medallero-oro.png",
+    alt: "Medalla de oro del sistema de medallero Levitate.",
     copy: "Reconocimientos individuales diseñados para distinguir ranking, puntaje absoluto y participación dentro de cada sede.",
   },
   {
-    icon: Trophy,
     title: "Trofeos",
     label: "Dúos · Tríos · Grupales",
+    image: assets.venue,
+    alt: "Escenario Levitate preparado para entrega de trofeos.",
     copy: "Piezas de escenario para primeros lugares en formatos colectivos, acompañadas por medallas para sus integrantes.",
   },
   {
-    icon: Sparkles,
     title: "Premios especiales",
     label: "MVP · Vestuario · Música · Porra",
+    image: assets.community,
+    alt: "Comunidad Levitate celebrando una experiencia de competencia.",
     copy: "Distinciones seleccionadas por el equipo técnico para reconocer presencia, creatividad, energía y propuesta artística.",
   },
 ];
@@ -67,9 +68,9 @@ const recognitionShowcase = [
 const directCriteria = ["División", "Género", "Nivel", "Categoría"];
 
 const directRanking = [
-  { place: "01", label: "1er lugar", award: "Oro" },
-  { place: "02", label: "2do lugar", award: "Plata" },
-  { place: "03", label: "3er lugar", award: "Bronce" },
+  { place: "01", position: "1er", award: "Oro" },
+  { place: "02", position: "2ndo", award: "Plata" },
+  { place: "03", position: "3er", award: "Bronce" },
 ];
 
 const judgingSheetSteps = [
@@ -159,9 +160,13 @@ export function PremiationPage() {
           <h2>Competencia directa</h2>
           <div className="premiation-direct__grid">
             <div className="premiation-direct__intro">
-              <div className="premiation-podium" aria-hidden="true">
-                <Trophy size={54} />
-              </div>
+              <figure className="premiation-direct__image">
+                <img
+                  src={assets.competition}
+                  alt="Participante en escena durante una competencia Levitate."
+                  loading="lazy"
+                />
+              </figure>
               <p>
                 Cuando dos o más participaciones comparten la misma ruta de competencia, se comparan entre sí y el
                 resultado se define por ranking.
@@ -177,7 +182,7 @@ export function PremiationPage() {
                 {directRanking.map((rank) => (
                   <article className="premiation-rank-card" key={rank.place}>
                     <span>{rank.place}</span>
-                    <strong>{rank.label}</strong>
+                    <strong>{rank.position}</strong>
                     <small>{rank.award}</small>
                   </article>
                 ))}
@@ -195,62 +200,58 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <div className="premiation-dark-flow">
-        <section className="premiation-section premiation-section--dark premiation-medals">
-          <div className="premiation-section__body">
-            <p className="premiation-kicker">Medallero</p>
-            <div className="premiation-medals__layout">
-              <div>
-                <span className="premiation-medals__badge">Sin competencia directa</span>
-                <h2>Sistema de medallero</h2>
-                <p className="premiation-pink">
-                  Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
-                  programa.
-                </p>
-                <p>
-                  Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
-                  categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por
-                  puntaje absoluto del jurado.
-                </p>
-              </div>
+      <section className="premiation-section premiation-section--light premiation-medals">
+        <div className="premiation-section__body">
+          <p className="premiation-kicker">Medallero</p>
+          <div className="premiation-medals__layout">
+            <div>
+              <span className="premiation-medals__badge">Sin competencia directa</span>
+              <h2>Sistema de medallero</h2>
+              <p className="premiation-pink">
+                Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
+                programa.
+              </p>
+              <p>
+                Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
+                categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por puntaje
+                absoluto del jurado.
+              </p>
+            </div>
 
-              <div className="premiation-medal-grid">
-                {medalSystem.map((medal) => (
-                  <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
-                    <img src={medal.image} alt={medal.alt} loading="lazy" />
-                  </article>
-                ))}
-              </div>
+            <div className="premiation-medal-grid">
+              {medalSystem.map((medal) => (
+                <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
+                  <img src={medal.image} alt={medal.alt} loading="lazy" />
+                </article>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="premiation-dark-flow">
         <section className="premiation-section premiation-section--dark premiation-recognition">
           <div className="premiation-section__body">
             <div className="premiation-split-heading premiation-recognition__heading">
-            <div>
-              <p className="premiation-kicker">Reconocimientos Levitate</p>
-              <h2>Lo que se entrega en escena.</h2>
+              <div>
+                <p className="premiation-kicker">Reconocimientos Levitate</p>
+                <h2>Lo que se entrega en escena.</h2>
+              </div>
             </div>
-          </div>
 
             <div className="premiation-recognition__grid">
-              {recognitionShowcase.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <article className="premiation-recognition__card" key={item.title}>
-                    <div className="premiation-recognition__visual" aria-hidden="true">
-                      <span />
-                      <Icon size={62} />
-                    </div>
-                    <div>
-                      <span className="premiation-recognition__label">{item.label}</span>
-                      <h3>{item.title}</h3>
-                      <p>{item.copy}</p>
-                    </div>
-                  </article>
-                );
-              })}
+              {recognitionShowcase.map((item) => (
+                <article className="premiation-recognition__card" key={item.title}>
+                  <figure className="premiation-recognition__visual">
+                    <img src={item.image} alt={item.alt} loading="lazy" />
+                  </figure>
+                  <div>
+                    <span className="premiation-recognition__label">{item.label}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.copy}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -279,32 +280,32 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <div className="premiation-dark-flow">
-        <section className="premiation-section premiation-section--dark premiation-mvp">
-          <div className="premiation-section__body">
-            <p className="premiation-kicker">MVP Levitate</p>
-            <div className="premiation-mvp__layout">
-              <div>
-                <h2>El mejor puntaje del evento.</h2>
-                <p>
-                  El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
-                  sin importar el nivel, división o categoría.
-                </p>
-              </div>
-              <div className="premiation-mvp__cards">
-                {mvpAwards.map((award) => (
-                  <article key={award.title}>
-                    <img src={award.image} alt="" aria-hidden="true" />
-                    <Star size={34} />
-                    <h3>{award.title}</h3>
-                    <p>{award.copy}</p>
-                  </article>
-                ))}
-              </div>
+      <section className="premiation-section premiation-section--light premiation-mvp">
+        <div className="premiation-section__body">
+          <p className="premiation-kicker">MVP Levitate</p>
+          <div className="premiation-mvp__layout">
+            <div>
+              <h2>El mejor puntaje del evento.</h2>
+              <p>
+                El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
+                sin importar el nivel, división o categoría.
+              </p>
+            </div>
+            <div className="premiation-mvp__cards">
+              {mvpAwards.map((award) => (
+                <article key={award.title}>
+                  <img src={award.image} alt="" aria-hidden="true" />
+                  <Star size={34} />
+                  <h3>{award.title}</h3>
+                  <p>{award.copy}</p>
+                </article>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="premiation-dark-flow">
         <section className="premiation-section premiation-section--dark premiation-sheets">
           <div className="premiation-section__body">
             <div className="premiation-sheets__layout">

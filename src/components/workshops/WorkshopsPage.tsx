@@ -1,9 +1,18 @@
-import { ArrowUpRight, CalendarDays, Clock3, Info, MapPin, Play, Sparkles, Ticket, Users } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock3, MapPin, Play, Sparkles, Ticket, Users } from "lucide-react";
 import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
 
-const disciplines = ["Telas", "Aro", "Trapecio", "Cintas", "Flex", "Expresión corporal"];
+const workshopIconBase = "/assets/icons/workshops";
+
+const disciplines = [
+  { label: "Telas", icon: `${workshopIconBase}/telas.png` },
+  { label: "Aro", icon: `${workshopIconBase}/aro.png` },
+  { label: "Trapecio", icon: `${workshopIconBase}/trapecio.png` },
+  { label: "Cintas", icon: `${workshopIconBase}/cintas.png` },
+  { label: "Flex", icon: `${workshopIconBase}/flex.png` },
+  { label: "Expresión corporal", icon: `${workshopIconBase}/expresion-corporal.png` },
+];
 
 const includedCards = [
   {
@@ -14,7 +23,7 @@ const includedCards = [
   {
     icon: Ticket,
     title: "Público externo",
-    copy: "¿No estás inscrito en la competencia? También puedes ser parte con el acceso para el público en los workshops de cada sede.",
+    copy: "¿No estás inscrito en la competencia? También puedes ser parte con el acceso para el público en los workshops de algunas sedes.",
   },
   {
     icon: Sparkles,
@@ -35,27 +44,21 @@ const confirmedWorkshops = [
   { discipline: "Flex", coach: "Yoli Campos" },
 ];
 
-const quotes = [
-  "Me reté, aprendí un montón y conocí a increíbles artistas.",
-  "Los docentes inspiran, motivan y te impulsan a dar más.",
-  "Me voy con nuevas herramientas y una energía única.",
-];
-
 const basics = [
   {
     title: "Agua",
     copy: "Para mantenerte hidratado durante la práctica.",
-    icon: "♢",
+    icon: `${workshopIconBase}/water.png`,
   },
   {
     title: "Ropa cómoda",
     copy: "Que te permita moverte con libertad y seguridad en el aula.",
-    icon: "◇",
+    icon: `${workshopIconBase}/shirt.png`,
   },
   {
     title: "Cabello recogido",
     copy: "Por tu seguridad y la de quienes entrenan a tu lado.",
-    icon: "○",
+    icon: `${workshopIconBase}/hair.png`,
   },
 ];
 
@@ -74,23 +77,6 @@ export function WorkshopsPage() {
             experiencia en la competencia.
           </p>
 
-          <div className="workshops-hero__features">
-            <article>
-              <Users aria-hidden="true" size={34} />
-              <div>
-                <h2>Incluidos para participantes</h2>
-                <p>Formación de alto nivel sin costo adicional. Un beneficio exclusivo por ser parte de Levitate.</p>
-              </div>
-            </article>
-            <article>
-              <Ticket aria-hidden="true" size={34} />
-              <div>
-                <h2>También para el público</h2>
-                <p>Una oportunidad abierta para aprender, inspirarte y conectar con la comunidad.</p>
-              </div>
-            </article>
-          </div>
-
           <a className="workshops-outline-cta" href="#workshops-disponibles">
             Ver workshops disponibles <ArrowUpRight aria-hidden="true" size={18} />
           </a>
@@ -98,8 +84,8 @@ export function WorkshopsPage() {
       </section>
 
       <section className="workshops-light-section workshops-intro">
-        <div className="workshops-two-col">
-          <article>
+        <div className="workshops-intro__layout">
+          <article className="workshops-intro__panel">
             <p className="workshops-light-kicker">¿Qué son los workshops Levitate?</p>
             <h2>Más que una clase, una experiencia formativa.</h2>
             <p>
@@ -108,20 +94,31 @@ export function WorkshopsPage() {
             </p>
             <div className="workshops-disciplines" aria-label="Disciplinas de workshops">
               {disciplines.map((discipline) => (
-                <span key={discipline}>
-                  <i aria-hidden="true" />
-                  {discipline}
+                <span key={discipline.label}>
+                  <img src={discipline.icon} alt="" aria-hidden="true" loading="lazy" />
+                  {discipline.label}
                 </span>
               ))}
             </div>
             <div className="workshops-note">
-              <Info aria-hidden="true" size={18} />
+              <img
+                className="workshops-inline-icon"
+                src={`${workshopIconBase}/info.png`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
               No todas las sedes cuentan con workshops. La disponibilidad se comunica y publica en la convocatoria de
               cada evento.
             </div>
           </article>
 
-          <article>
+          <figure className="workshops-intro__media">
+            <img src={assets.workshops} alt="Participantes entrenando en una experiencia formativa Levitate." loading="lazy" />
+            <figcaption>Entrenamiento escénico · técnica · expresión</figcaption>
+          </figure>
+
+          <article className="workshops-intro__panel">
             <p className="workshops-light-kicker">¿Quién puede tomarlos?</p>
             <h2>Para quienes empiezan, entrenan y quieren seguir creciendo.</h2>
             <p>
@@ -129,7 +126,13 @@ export function WorkshopsPage() {
               opciones para cada nivel, objetivo y momento de tu camino artístico.
             </p>
             <div className="workshops-important">
-              <Info aria-hidden="true" size={30} />
+              <img
+                className="workshops-inline-icon"
+                src={`${workshopIconBase}/info.png`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
               <div>
                 <h3>Importante</h3>
                 <p>
@@ -233,12 +236,6 @@ export function WorkshopsPage() {
             <span>1:45</span>
           </div>
         </article>
-
-        <div className="workshops-quotes">
-          {quotes.map((quote) => (
-            <blockquote key={quote}>{quote}</blockquote>
-          ))}
-        </div>
       </section>
 
       <section className="workshops-light-section workshops-basics">
@@ -249,39 +246,13 @@ export function WorkshopsPage() {
         <div className="workshops-basics__grid">
           {basics.map((basic) => (
             <article key={basic.title}>
-              <span aria-hidden="true">{basic.icon}</span>
+              <img src={basic.icon} alt="" aria-hidden="true" loading="lazy" />
               <div>
                 <h3>{basic.title}</h3>
                 <p>{basic.copy}</p>
               </div>
             </article>
           ))}
-        </div>
-        <div className="workshops-note">
-          <Info aria-hidden="true" size={18} />
-          Las recomendaciones pueden variar según cada workshop y disciplina. Te avisaremos en la información de cada
-          sede.
-        </div>
-      </section>
-
-      <section className="workshops-final">
-        <img src={assets.competition} alt="" aria-hidden="true" loading="lazy" />
-        <div>
-          <h2>
-            Entrena. Explora. <span>Eleva tu técnica.</span>
-          </h2>
-          <p>
-            Consulta los workshops disponibles en cada sede y da el siguiente paso en tu crecimiento artístico. Más
-            entrenamiento, más conexión, más vuelo.
-          </p>
-        </div>
-        <div className="workshops-final__actions">
-          <a href="/sedes">
-            Ver próximas sedes <ArrowUpRight aria-hidden="true" size={18} />
-          </a>
-          <a href="#workshops-disponibles">
-            Inscribir coreografía <ArrowUpRight aria-hidden="true" size={18} />
-          </a>
         </div>
       </section>
 
