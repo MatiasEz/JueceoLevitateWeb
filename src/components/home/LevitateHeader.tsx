@@ -22,7 +22,7 @@ const navItems = [
           { label: "Estado de México", href: "/sedes/silo-dallas" },
         ],
       },
-      { label: "Workshops", href: "#workshops" },
+      { label: "Workshops", href: "/workshops" },
       { label: "Premiación", href: "/premiacion" },
     ],
   },

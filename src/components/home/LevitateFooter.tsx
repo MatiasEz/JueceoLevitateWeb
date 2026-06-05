@@ -17,6 +17,10 @@ function getFooterHref(item: string, useRootLinks: boolean) {
     return "/premiacion";
   }
 
+  if (item === "Workshops") {
+    return "/workshops";
+  }
+
   const anchors: Record<string, string> = {
     Bases: "#convocatorias",
     Categorías: "#categorías",
@@ -24,7 +28,6 @@ function getFooterHref(item: string, useRootLinks: boolean) {
     Convocatorias: "#convocatorias",
     Inicio: "#inicio",
     Requisitos: "#convocatorias",
-    Workshops: "#workshops",
   };
 
   const href = anchors[item] ?? "#inicio";

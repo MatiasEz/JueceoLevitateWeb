@@ -3,6 +3,7 @@ import { PremiationPage } from "./components/premiation/PremiationPage";
 import { RulesPage } from "./components/rules/RulesPage";
 import { SedesPage } from "./components/sedes/SedesPage";
 import { VenuePage } from "./components/venue/VenuePage";
+import { WorkshopsPage } from "./components/workshops/WorkshopsPage";
 import { getVenueBySlug } from "./data/venueContent";
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
   const legacyRulesMatch = window.location.pathname.match(/^\/reglamento\/?$/);
   const premiationMatch = window.location.pathname.match(/^\/premiacion\/?$/);
   const sedesMatch = window.location.pathname.match(/^\/sedes\/?$/);
+  const workshopsMatch = window.location.pathname.match(/^\/workshops\/?$/);
   const venueMatch = window.location.pathname.match(/^\/sedes\/([^/]+)\/?$/);
 
   if (premiationMatch) {
@@ -22,6 +24,10 @@ export default function App() {
 
   if (sedesMatch) {
     return <SedesPage />;
+  }
+
+  if (workshopsMatch) {
+    return <WorkshopsPage />;
   }
 
   if (venueMatch) {
