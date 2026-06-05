@@ -339,28 +339,6 @@ export function PremiationPage() {
           </div>
         </section>
 
-        <section className="premiation-section premiation-section--dark premiation-alliances">
-          <div className="premiation-section__body">
-            <p className="premiation-kicker">Becas y alianzas</p>
-            <div className="premiation-alliances__layout">
-              <h2>Alianzas que impulsan tu vuelo.</h2>
-              <div className="premiation-logos">
-                <span className="premiation-logo-mark premiation-logo-mark--dark">
-                  <img src="/assets/dnzre-logo.png" alt="DNZRE" />
-                </span>
-                <span className="premiation-logo-mark">
-                  <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
-                </span>
-              </div>
-              <p>
-                Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te
-                abren la puerta a nuevas oportunidades dentro y fuera del país.
-              </p>
-              <p className="premiation-alliances__accent">Tu mejor presentación puede llevarte más lejos.</p>
-            </div>
-          </div>
-        </section>
-
         <section className="premiation-bottom">
           <article>
             <p className="premiation-kicker">Entrega de premios</p>
@@ -376,6 +354,30 @@ export function PremiationPage() {
               ))}
             </ul>
           </article>
+        </section>
+
+        <section className="premiation-section premiation-section--dark premiation-alliances">
+          <div className="premiation-section__body">
+            <p className="premiation-kicker">Becas y alianzas</p>
+            <div className="premiation-alliances__layout">
+              <h2>Alianzas que impulsan tu vuelo.</h2>
+              <div className="premiation-logos">
+                <span className="premiation-logo-mark premiation-logo-mark--dark">
+                  <img src="/assets/dnzre-logo.png" alt="DNZRE" />
+                </span>
+                <span className="premiation-logo-mark">
+                  <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
+                </span>
+              </div>
+              <div>
+                <p>
+                  Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te
+                  abren la puerta a nuevas oportunidades dentro y fuera del país.
+                </p>
+                <p className="premiation-alliances__accent">Tu mejor presentación puede llevarte más lejos.</p>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 

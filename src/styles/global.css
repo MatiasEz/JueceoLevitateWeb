@@ -3688,6 +3688,14 @@ button {
   align-items: center;
 }
 
+.premiation-medals {
+  margin-top: -1px;
+  background:
+    radial-gradient(circle at 8% -8%, rgba(228, 92, 154, 0.08), transparent 26%),
+    radial-gradient(circle at 92% 88%, rgba(228, 92, 154, 0.09), transparent 26%),
+    linear-gradient(180deg, #fbf8f4 0%, #fbf8f4 42%, #f7f3ef 100%);
+}
+
 .premiation-medals__badge {
   display: inline-flex;
   width: fit-content;
@@ -3858,6 +3866,8 @@ button {
 }
 
 .premiation-recognition__card h3 {
+  min-height: 1.72em;
+  margin: 0;
   color: var(--premiation-white);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
   font-size: clamp(2.8rem, 4vw, 4.8rem);
