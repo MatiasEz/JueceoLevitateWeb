@@ -1,10 +1,11 @@
 import {
-  ArrowUpRight,
   CheckCircle2,
+  ClipboardCheck,
+  FileText,
+  Mail,
   Megaphone,
   Medal,
   Music2,
-  Ribbon,
   Sparkles,
   Star,
   Trophy,
@@ -15,10 +16,77 @@ import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
 
 const medalSystem = [
-  { label: "Oro", place: "1er lugar", range: "181-210", icon: Medal, tone: "gold" },
-  { label: "Plata", place: "2do lugar", range: "161-180", icon: Medal, tone: "silver" },
-  { label: "Bronce", place: "3er lugar", range: "141-160", icon: Medal, tone: "bronze" },
-  { label: "Participación", place: "Reconocimiento", range: "Menor a 140", icon: Ribbon, tone: "pink" },
+  {
+    label: "Oro",
+    image: "/assets/medallero-oro.png",
+    alt: "Oro, 1er lugar, 181 a 210 puntos",
+    tone: "gold",
+  },
+  {
+    label: "Plata",
+    image: "/assets/medallero-plata.png",
+    alt: "Plata, 2do lugar, 161 a 180 puntos",
+    tone: "silver",
+  },
+  {
+    label: "Bronce",
+    image: "/assets/medallero-bronce.png",
+    alt: "Bronce, 3er lugar, 141 a 160 puntos",
+    tone: "bronze",
+  },
+  {
+    label: "Participación",
+    image: "/assets/medallero-participacion.png",
+    alt: "Participación, menor a 140 puntos",
+    tone: "pink",
+  },
+];
+
+const recognitionShowcase = [
+  {
+    icon: Medal,
+    title: "Medallas",
+    label: "Oro · Plata · Bronce · Participación",
+    copy: "Reconocimientos individuales diseñados para distinguir ranking, puntaje absoluto y participación dentro de cada sede.",
+  },
+  {
+    icon: Trophy,
+    title: "Trofeos",
+    label: "Dúos · Tríos · Grupales",
+    copy: "Piezas de escenario para primeros lugares en formatos colectivos, acompañadas por medallas para sus integrantes.",
+  },
+  {
+    icon: Sparkles,
+    title: "Premios especiales",
+    label: "MVP · Vestuario · Música · Porra",
+    copy: "Distinciones seleccionadas por el equipo técnico para reconocer presencia, creatividad, energía y propuesta artística.",
+  },
+];
+
+const directCriteria = ["División", "Género", "Nivel", "Categoría"];
+
+const directRanking = [
+  { place: "01", label: "1er lugar", award: "Oro" },
+  { place: "02", label: "2do lugar", award: "Plata" },
+  { place: "03", label: "3er lugar", award: "Bronce" },
+];
+
+const judgingSheetSteps = [
+  {
+    icon: Mail,
+    title: "Envío por correo",
+    copy: "Las hojas se hacen llegar al encargado o maestro de la academia por correo electrónico al finalizar cada bloque.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Participaciones incluidas",
+    copy: "El envío reúne las participaciones evaluadas dentro del bloque correspondiente para mantener el seguimiento claro.",
+  },
+  {
+    icon: FileText,
+    title: "Tres PDFs de criterios",
+    copy: "Se incluyen tres archivos PDF con los criterios evaluados por los jueces durante la presentación.",
+  },
 ];
 
 const specialAwards = [
@@ -47,12 +115,12 @@ const specialAwards = [
 const mvpAwards = [
   {
     title: "MVP Motion",
-    copy: "Para el mejor puntaje de estilo libre con el puntaje más alto del evento.",
+    copy: "Para el puntaje más alto de la competencia de géneros de piso.",
     image: assets.workshops,
   },
   {
     title: "MVP Aerial",
-    copy: "Para el mejor puntaje aéreo con el puntaje más alto del evento.",
+    copy: "Para el puntaje más alto de la competencia de géneros aéreos.",
     image: assets.competition,
   },
 ];
@@ -87,67 +155,111 @@ export function PremiationPage() {
       </section>
 
       <section className="premiation-section premiation-section--light premiation-direct">
-        <div className="premiation-section__number">01.</div>
         <div className="premiation-section__body">
           <p className="premiation-kicker">Sistemas de premiación</p>
           <h2>Competencia directa</h2>
           <div className="premiation-direct__grid">
-            <div className="premiation-podium" aria-hidden="true">
-              <Trophy size={54} />
-            </div>
-            <div className="premiation-direct__copy">
-              <p>
-                Cuando las participaciones comparten la misma división, género, nivel y categoría, compiten directamente
-                entre sí.
-              </p>
-              <div className="premiation-places">
-                <span><strong>01</strong>1er lugar</span>
-                <span><strong>02</strong>2do lugar</span>
-                <span><strong>03</strong>3er lugar</span>
+            <div className="premiation-direct__intro">
+              <div className="premiation-podium" aria-hidden="true">
+                <Trophy size={54} />
               </div>
               <p>
-                Si una categoría cuenta con más de tres participaciones, las presentaciones restantes reciben medalla de
-                participación.
+                Cuando dos o más participaciones comparten la misma ruta de competencia, se comparan entre sí y el
+                resultado se define por ranking.
               </p>
+              <div className="premiation-direct__criteria" aria-label="Criterios para competencia directa">
+                {directCriteria.map((criterion) => (
+                  <span key={criterion}>{criterion}</span>
+                ))}
+              </div>
+            </div>
+            <div className="premiation-direct__copy">
+              <div className="premiation-direct__stage" aria-label="Ranking de competencia directa">
+                {directRanking.map((rank) => (
+                  <article className="premiation-rank-card" key={rank.place}>
+                    <span>{rank.place}</span>
+                    <strong>{rank.label}</strong>
+                    <small>{rank.award}</small>
+                  </article>
+                ))}
+                <div className="premiation-direct__motion-line" aria-hidden="true" />
+              </div>
+              <div className="premiation-direct__note">
+                <strong>Ranking real por bloque.</strong>
+                <p>
+                  Si una categoría cuenta con más de tres participaciones, las coreografías restantes reciben medalla de
+                  participación.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="premiation-section premiation-section--dark premiation-medals">
-        <div className="premiation-section__number">02.</div>
         <div className="premiation-section__body">
           <p className="premiation-kicker">Medallero</p>
           <div className="premiation-medals__layout">
             <div>
+              <span className="premiation-medals__badge">Sin competencia directa</span>
               <h2>Sistema de medallero</h2>
-              <p className="premiation-pink">En Levitate MX no se asignan posiciones de manera automática.</p>
+              <p className="premiation-pink">
+                Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
+                programa.
+              </p>
               <p>
-                Se premia el nivel real de cada participante, reflejando su presencia, ejecución y puntaje obtenido bajo
-                los criterios oficiales de jueceo.
+                Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
+                categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por puntaje
+                absoluto del jurado.
               </p>
             </div>
 
             <div className="premiation-medal-grid">
-              {medalSystem.map((medal) => {
-                const Icon = medal.icon;
-                return (
-                  <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
-                    <Icon size={45} />
-                    <h3>{medal.label}</h3>
-                    <span>{medal.place}</span>
-                    <strong>{medal.range}</strong>
-                    <small>Puntos</small>
-                  </article>
-                );
-              })}
+              {medalSystem.map((medal) => (
+                <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
+                  <img src={medal.image} alt={medal.alt} loading="lazy" />
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
+      <section className="premiation-section premiation-section--dark premiation-recognition">
+        <div className="premiation-section__body">
+          <div className="premiation-split-heading premiation-recognition__heading">
+            <div>
+              <p className="premiation-kicker">Reconocimientos Levitate</p>
+              <h2>Lo que se entrega en escena.</h2>
+            </div>
+            <p>
+              Cada premio está pensado como parte de la experiencia: una pieza física, memorable y alineada con el
+              nivel de producción de Levitate.
+            </p>
+          </div>
+
+          <div className="premiation-recognition__grid">
+            {recognitionShowcase.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article className="premiation-recognition__card" key={item.title}>
+                  <div className="premiation-recognition__visual" aria-hidden="true">
+                    <span />
+                    <Icon size={62} />
+                  </div>
+                  <div>
+                    <span className="premiation-recognition__label">{item.label}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.copy}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="premiation-section premiation-section--light premiation-special">
-        <div className="premiation-section__number">03.</div>
         <div className="premiation-section__body">
           <div className="premiation-split-heading">
             <div>
@@ -174,8 +286,37 @@ export function PremiationPage() {
         </div>
       </section>
 
+      <section className="premiation-section premiation-section--dark premiation-sheets">
+        <div className="premiation-section__body">
+          <div className="premiation-sheets__layout">
+            <div className="premiation-sheets__intro">
+              <p className="premiation-kicker">Hojas de jueceo</p>
+              <h2>Feedback claro al finalizar cada bloque.</h2>
+              <p>
+                Al cierre de cada bloque, Levitate envía la información de jueceo al responsable de la academia para
+                que cada resultado pueda revisarse con orden y transparencia.
+              </p>
+            </div>
+
+            <div className="premiation-sheets__steps">
+              {judgingSheetSteps.map((step) => {
+                const Icon = step.icon;
+                return (
+                  <article key={step.title}>
+                    <Icon size={34} />
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.copy}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="premiation-section premiation-section--dark premiation-mvp">
-        <div className="premiation-section__number">04.</div>
         <div className="premiation-section__body">
           <p className="premiation-kicker">MVP Levitate</p>
           <div className="premiation-mvp__layout">
@@ -200,18 +341,21 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <section className="premiation-section premiation-section--light premiation-alliances">
-        <div className="premiation-section__number">05.</div>
+      <section className="premiation-section premiation-section--dark premiation-alliances">
         <div className="premiation-section__body">
           <p className="premiation-kicker">Becas y alianzas</p>
           <div className="premiation-alliances__layout">
             <h2>Alianzas que impulsan tu vuelo.</h2>
             <div className="premiation-logos">
-              <strong>DNZARE</strong>
-              <strong>Costa Rica<br />Open Dance</strong>
+              <span className="premiation-logo-mark premiation-logo-mark--dark">
+                <img src="/assets/dnzre-logo.png" alt="DNZRE" />
+              </span>
+              <span className="premiation-logo-mark">
+                <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
+              </span>
             </div>
             <p>
-              Levitate MX cuenta con alianzas con competencias aliadas como DNZARE y Costa Rica Open Dance, que te abren
+              Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te abren
               la puerta a nuevas oportunidades dentro y fuera del país. <span>Tu mejor presentación puede llevarte más lejos.</span>
             </p>
           </div>
@@ -220,7 +364,6 @@ export function PremiationPage() {
 
       <section className="premiation-bottom">
         <article>
-          <span>06.</span>
           <p className="premiation-kicker">Entrega de premios</p>
           <h2>Premiación por bloque</h2>
           <p>
@@ -229,7 +372,6 @@ export function PremiationPage() {
           </p>
         </article>
         <article>
-          <span>07.</span>
           <p className="premiation-kicker">Consideraciones importantes</p>
           <ul>
             {considerations.map((item) => (
@@ -237,9 +379,6 @@ export function PremiationPage() {
             ))}
           </ul>
         </article>
-        <a href="/#convocatorias">
-          Inscribe tu coreografía <ArrowUpRight size={18} />
-        </a>
       </section>
 
       <LevitateFooter useRootLinks />
