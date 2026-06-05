@@ -16,28 +16,37 @@ import { LevitateHeader } from "../home/LevitateHeader";
 
 const medalSystem = [
   {
-    label: "Oro",
-    image: "/assets/medallero-oro.png",
-    alt: "Oro, 1er lugar, 181 a 210 puntos",
-    tone: "gold",
-  },
-  {
-    label: "Plata",
-    image: "/assets/medallero-plata.png",
-    alt: "Plata, 2do lugar, 161 a 180 puntos",
-    tone: "silver",
+    label: "Participación",
+    place: "Participación",
+    range: "Menor a 140 puntos",
+    image: "/assets/medallero-participacion.png",
+    alt: "Medalla de participación Levitate 2026.",
+    tone: "pink",
   },
   {
     label: "Bronce",
+    place: "3er lugar",
+    range: "141-160 puntos",
     image: "/assets/medallero-bronce.png",
-    alt: "Bronce, 3er lugar, 141 a 160 puntos",
+    alt: "Medalla de bronce Levitate 2026.",
     tone: "bronze",
+    featured: true,
   },
   {
-    label: "Participación",
-    image: "/assets/medallero-participacion.png",
-    alt: "Participación, menor a 140 puntos",
-    tone: "pink",
+    label: "Plata",
+    place: "2do lugar",
+    range: "161-180 puntos",
+    image: "/assets/medallero-plata.png",
+    alt: "Medalla de plata Levitate 2026.",
+    tone: "silver",
+  },
+  {
+    label: "Oro",
+    place: "1er lugar",
+    range: "181-210 puntos",
+    image: "/assets/medallero-oro.png",
+    alt: "Medalla de oro Levitate 2026.",
+    tone: "gold",
   },
 ];
 
@@ -202,28 +211,48 @@ export function PremiationPage() {
 
       <section className="premiation-section premiation-section--light premiation-medals">
         <div className="premiation-section__body">
-          <p className="premiation-kicker">Medallero</p>
           <div className="premiation-medals__layout">
-            <div>
-              <span className="premiation-medals__badge">Sin competencia directa</span>
-              <h2>Sistema de medallero</h2>
+            <div className="premiation-medals__intro">
+              <p className="premiation-medals__logo">Levitate MX</p>
+              <h2>
+                <span>Sistema de</span>
+                <strong>Medallero</strong>
+              </h2>
+              <i className="premiation-medals__rule" aria-hidden="true" />
               <p className="premiation-pink">
-                Este sistema aplica para participaciones o coreografías que no tienen competencia directa dentro del
-                programa.
+                Aplica para participaciones o coreografías que no tienen competencia directa dentro del programa.
               </p>
               <p>
-                Es decir, cuando no existe otra participación que corresponda a su mismo nivel, género, división o
-                categoría. En esos casos no se asigna un lugar por comparación: el reconocimiento se define por puntaje
-                absoluto del jurado.
+                En estos casos, el reconocimiento se define por el puntaje absoluto otorgado por el jurado.
               </p>
             </div>
 
-            <div className="premiation-medal-grid">
-              {medalSystem.map((medal) => (
-                <article className={`premiation-medal-card premiation-medal-card--${medal.tone}`} key={medal.label}>
-                  <img src={medal.image} alt={medal.alt} loading="lazy" />
-                </article>
-              ))}
+            <div className="premiation-medals__showcase">
+              <div className="premiation-medal-track">
+                {medalSystem.map((medal) => (
+                  <article
+                    className={`premiation-medal-card premiation-medal-card--${medal.tone}${
+                      medal.featured ? " is-featured" : ""
+                    }`}
+                    key={medal.label}
+                  >
+                    <div className="premiation-medal-card__image">
+                      <img src={medal.image} alt={medal.alt} loading="lazy" />
+                    </div>
+                    <div className="premiation-medal-card__copy">
+                      <h3>{medal.label}</h3>
+                      <span>{medal.place}</span>
+                      <i aria-hidden="true" />
+                      <p>{medal.range}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="premiation-medals__dots" aria-hidden="true">
+                <span />
+                <span className="is-active" />
+                <span />
+              </div>
             </div>
           </div>
         </div>
