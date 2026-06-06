@@ -74,12 +74,29 @@ const recognitionShowcase = [
   },
 ];
 
-const directCriteria = ["División", "Género", "Nivel", "Categoría"];
-
 const directRanking = [
-  { place: "01", position: "1er", award: "Oro" },
-  { place: "02", position: "2ndo", award: "Plata" },
-  { place: "03", position: "3er", award: "Bronce" },
+  {
+    place: "2do lugar",
+    award: "Plata",
+    image: assets.community,
+    alt: "Participante recibiendo reconocimiento en escenario Levitate.",
+    variant: "silver",
+  },
+  {
+    place: "1er lugar",
+    award: "Oro",
+    image: assets.venue,
+    alt: "Escenario Levitate durante una premiación.",
+    variant: "gold",
+    featured: true,
+  },
+  {
+    place: "3er lugar",
+    award: "Bronce",
+    image: assets.workshops,
+    alt: "Participantes durante una experiencia Levitate.",
+    variant: "bronze",
+  },
 ];
 
 const judgingSheetSteps = [
@@ -163,41 +180,40 @@ export function PremiationPage() {
         </div>
       </section>
 
-      <section className="premiation-section premiation-section--light premiation-direct">
-        <div className="premiation-section__body">
-          <p className="premiation-kicker">Sistemas de premiación</p>
-          <h2>Competencia directa</h2>
-          <div className="premiation-direct__grid">
-            <div className="premiation-direct__intro">
-              <figure className="premiation-direct__image">
-                <img
-                  src={assets.competition}
-                  alt="Participante en escena durante una competencia Levitate."
-                  loading="lazy"
-                />
-              </figure>
+      <div className="premiation-awards-flow">
+        <section className="premiation-section premiation-section--light premiation-direct">
+          <div className="premiation-section__body">
+            <div className="premiation-direct__header">
+              <p className="premiation-kicker">✦ Sistemas de premiación ✦</p>
+              <h2>Competencia directa</h2>
               <p>
-                Cuando dos o más participaciones comparten la misma ruta de competencia, se comparan entre sí y el
-                resultado se define por ranking.
+                Cuando dos o más participaciones comparten la misma división, género, nivel y categoría, se comparan
+                entre sí y el resultado se define por ranking.
               </p>
-              <div className="premiation-direct__criteria" aria-label="Criterios para competencia directa">
-                {directCriteria.map((criterion) => (
-                  <span key={criterion}>{criterion}</span>
-                ))}
-              </div>
             </div>
-            <div className="premiation-direct__copy">
-              <div className="premiation-direct__stage" aria-label="Ranking de competencia directa">
-                {directRanking.map((rank) => (
-                  <article className="premiation-rank-card" key={rank.place}>
-                    <span>{rank.place}</span>
-                    <strong>{rank.position}</strong>
+
+            <div className="premiation-direct__stage" aria-label="Ranking de competencia directa">
+              {directRanking.map((rank) => (
+                <article
+                  className={`premiation-rank-card premiation-rank-card--${rank.variant}${
+                    rank.featured ? " is-featured" : ""
+                  }`}
+                  key={rank.place}
+                >
+                  <figure>
+                    <img src={rank.image} alt={rank.alt} loading="lazy" />
+                  </figure>
+                  <div>
+                    <strong>{rank.place}</strong>
                     <small>{rank.award}</small>
-                  </article>
-                ))}
-                <div className="premiation-direct__motion-line" aria-hidden="true" />
-              </div>
-              <div className="premiation-direct__note">
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="premiation-direct__note">
+              <Star aria-hidden="true" />
+              <div>
                 <strong>Ranking real por bloque.</strong>
                 <p>
                   Si una categoría cuenta con más de tres participaciones, las coreografías restantes reciben medalla de
@@ -206,57 +222,59 @@ export function PremiationPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="premiation-section premiation-section--light premiation-medals">
-        <div className="premiation-section__body">
-          <div className="premiation-medals__layout">
-            <div className="premiation-medals__intro">
-              <p className="premiation-medals__logo">Levitate MX</p>
-              <h2>
-                <span>Sistema de</span>
-                <strong>Medallero</strong>
-              </h2>
-              <i className="premiation-medals__rule" aria-hidden="true" />
-              <p className="premiation-pink">
-                Aplica para participaciones o coreografías que no tienen competencia directa dentro del programa.
-              </p>
-              <p>
-                En estos casos, el reconocimiento se define por el puntaje absoluto otorgado por el jurado.
-              </p>
-            </div>
-
-            <div className="premiation-medals__showcase">
-              <div className="premiation-medal-track">
-                {medalSystem.map((medal) => (
-                  <article
-                    className={`premiation-medal-card premiation-medal-card--${medal.tone}${
-                      medal.featured ? " is-featured" : ""
-                    }`}
-                    key={medal.label}
-                  >
-                    <div className="premiation-medal-card__image">
-                      <img src={medal.image} alt={medal.alt} loading="lazy" />
-                    </div>
-                    <div className="premiation-medal-card__copy">
-                      <h3>{medal.label}</h3>
-                      <span>{medal.place}</span>
-                      <i aria-hidden="true" />
-                      <p>{medal.range}</p>
-                    </div>
-                  </article>
-                ))}
+        <section className="premiation-section premiation-section--light premiation-medals">
+          <div className="premiation-section__body">
+            <div className="premiation-medals__layout">
+              <div className="premiation-medals__intro">
+                <h2>
+                  <span>Sistema de </span>
+                  <strong>Medallero</strong>
+                </h2>
+                <i className="premiation-medals__rule" aria-hidden="true" />
+                <div className="premiation-medals__copy">
+                  <p className="premiation-pink">
+                    Aplica para participaciones o coreografías que no tienen competencia directa dentro del programa.
+                  </p>
+                  <p>
+                    En estos casos, el reconocimiento se define por el puntaje absoluto otorgado por el jurado.
+                  </p>
+                </div>
               </div>
-              <div className="premiation-medals__dots" aria-hidden="true">
-                <span />
-                <span className="is-active" />
-                <span />
+
+              <div className="premiation-medals__showcase">
+                <div className="premiation-medal-track">
+                  {medalSystem.map((medal) => (
+                    <article
+                      className={`premiation-medal-card premiation-medal-card--${medal.tone}${
+                        medal.featured ? " is-featured" : ""
+                      }`}
+                      key={medal.label}
+                      tabIndex={0}
+                    >
+                      <div className="premiation-medal-card__image">
+                        <img src={medal.image} alt={medal.alt} loading="lazy" />
+                      </div>
+                      <div className="premiation-medal-card__copy">
+                        <h3>{medal.label}</h3>
+                        <span>{medal.place}</span>
+                        <i aria-hidden="true" />
+                        <p>{medal.range}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <div className="premiation-medals__dots" aria-hidden="true">
+                  <span />
+                  <span className="is-active" />
+                  <span />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <div className="premiation-dark-flow">
         <section className="premiation-section premiation-section--dark premiation-recognition">
