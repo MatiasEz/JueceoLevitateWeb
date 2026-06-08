@@ -3268,6 +3268,14 @@ button {
   --premiation-soft-text: #5d5860;
   --premiation-pink: #e45c9a;
   --premiation-line: rgba(228, 92, 154, 0.58);
+  --premiation-kicker-size: clamp(0.78rem, 0.82vw, 0.92rem);
+  --premiation-title-size: clamp(3.9rem, 5.7vw, 6.8rem);
+  --premiation-title-line: 0.88;
+  --premiation-feature-title-size: clamp(3.4rem, 4.4vw, 5.3rem);
+  --premiation-card-heading-size: clamp(2.35rem, 3.1vw, 3.8rem);
+  --premiation-small-title-size: clamp(1rem, 1.1vw, 1.18rem);
+  --premiation-lead-size: clamp(1.05rem, 1.25vw, 1.32rem);
+  --premiation-body-size: clamp(0.96rem, 1.02vw, 1.08rem);
   background: var(--premiation-black);
   color: var(--premiation-white);
   overflow-x: hidden;
@@ -3397,10 +3405,11 @@ button {
 
 .premiation-kicker {
   margin: 0 0 8px;
-  font-size: 0.8rem;
+  color: var(--premiation-pink);
+  font-size: var(--premiation-kicker-size);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -3408,11 +3417,23 @@ button {
 .premiation-bottom h2 {
   margin: 0;
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(2.6rem, 4.8vw, 5.7rem);
+  font-size: var(--premiation-title-size);
   font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: 0.04em;
+  line-height: var(--premiation-title-line);
+  letter-spacing: 0.055em;
   text-transform: uppercase;
+}
+
+.premiation-section h2 span,
+.premiation-section h2 strong,
+.premiation-bottom h2 span,
+.premiation-bottom h2 strong {
+  font: inherit;
+}
+
+.premiation-section h2 strong,
+.premiation-bottom h2 strong {
+  color: var(--premiation-pink);
 }
 
 .premiation-section h3,
@@ -3423,7 +3444,7 @@ button {
 .premiation-section p,
 .premiation-bottom p,
 .premiation-bottom li {
-  font-size: clamp(0.96rem, 1vw, 1.08rem);
+  font-size: var(--premiation-body-size);
   line-height: 1.6;
 }
 
@@ -3433,6 +3454,13 @@ button {
 
 .premiation-section--dark p {
   color: var(--premiation-muted);
+}
+
+.premiation-section .premiation-kicker,
+.premiation-bottom .premiation-kicker {
+  color: var(--premiation-pink);
+  font-size: var(--premiation-kicker-size);
+  line-height: 1;
 }
 
 .premiation-awards-flow {
@@ -3507,17 +3535,17 @@ button {
 }
 
 .premiation-direct__header h2 {
-  font-size: clamp(5rem, 8vw, 10.5rem);
-  line-height: 0.78;
-  letter-spacing: 0.08em;
+  font-size: var(--premiation-title-size);
+  line-height: var(--premiation-title-line);
+  letter-spacing: 0.055em;
 }
 
-.premiation-direct__header p {
-  max-width: 860px;
+.premiation-direct__header > p:not(.premiation-kicker) {
+  max-width: 780px;
   margin: 0;
   color: var(--premiation-soft-text);
-  font-size: clamp(1.05rem, 1.35vw, 1.42rem);
-  line-height: 1.45;
+  font-size: var(--premiation-lead-size);
+  line-height: 1.5;
 }
 
 .premiation-direct__stage {
@@ -3658,7 +3686,7 @@ button {
   margin-top: 0;
   color: var(--rank-tone, var(--premiation-pink));
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(3.4rem, 4.9vw, 6.6rem);
+  font-size: var(--premiation-feature-title-size);
   font-weight: 400;
   line-height: 0.82;
   letter-spacing: 0.06em;
@@ -3671,7 +3699,7 @@ button {
   margin-top: 0;
   padding: 0 34px;
   color: var(--rank-tone, var(--premiation-pink));
-  font-size: clamp(0.86rem, 1.05vw, 1.1rem);
+  font-size: var(--premiation-kicker-size);
   font-weight: 950;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -3788,10 +3816,10 @@ button {
 .premiation-medals__intro h2 {
   margin: 0;
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(4.4rem, 8vw, 9rem);
+  font-size: var(--premiation-title-size);
   font-weight: 400;
-  line-height: 0.86;
-  letter-spacing: 0.08em;
+  line-height: var(--premiation-title-line);
+  letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 
@@ -3841,11 +3869,11 @@ button {
 
 .premiation-medals__copy p {
   width: 100%;
-  max-width: none;
+  max-width: 780px;
   color: #1e1920;
-  font-size: clamp(1.08rem, 1.45vw, 1.5rem);
+  font-size: var(--premiation-lead-size);
   font-weight: 650;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
 .premiation-pink {
@@ -3897,10 +3925,10 @@ button {
 
 .premiation-medal-system__kicker {
   margin: 0;
-  color: #18141b;
+  color: var(--premiation-pink);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(1rem, 1.15vw, 1.28rem);
-  letter-spacing: 0.08em;
+  font-size: var(--premiation-small-title-size);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -3908,10 +3936,10 @@ button {
   margin: clamp(6px, 0.8vw, 10px) 0 clamp(12px, 1.2vw, 18px);
   color: var(--premiation-pink);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(4.4rem, 6.5vw, 7.2rem);
+  font-size: var(--premiation-feature-title-size);
   font-weight: 400;
   line-height: 0.88;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -3921,7 +3949,7 @@ button {
   gap: 10px;
   margin: 0 0 clamp(14px, 1.4vw, 20px);
   color: #1f1a20;
-  font-size: clamp(0.98rem, 1.05vw, 1.1rem);
+  font-size: var(--premiation-body-size);
   font-weight: 800;
 }
 
@@ -3965,7 +3993,7 @@ button {
   max-width: 360px;
   margin: 0;
   color: #1f1a20;
-  font-size: clamp(1rem, 1.08vw, 1.15rem);
+  font-size: var(--premiation-body-size);
   font-weight: 650;
   line-height: 1.45;
 }
@@ -4026,7 +4054,7 @@ button {
 .premiation-medal-rule strong {
   display: block;
   margin-bottom: 6px;
-  font-size: clamp(1rem, 1.2vw, 1.32rem);
+  font-size: var(--premiation-small-title-size);
   font-weight: 950;
   line-height: 1;
   text-transform: uppercase;
@@ -4051,7 +4079,7 @@ button {
 .premiation-medal-rule p {
   margin: 0;
   color: #282329;
-  font-size: clamp(0.96rem, 1vw, 1.08rem);
+  font-size: var(--premiation-body-size);
   font-weight: 650;
   line-height: 1.35;
 }
@@ -4177,7 +4205,7 @@ button {
   margin: 0;
   color: var(--premiation-white);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(2.8rem, 4vw, 4.8rem);
+  font-size: var(--premiation-card-heading-size);
   font-weight: 400;
   line-height: 0.86;
   letter-spacing: 0.055em;
@@ -4190,9 +4218,10 @@ button {
 
 .premiation-split-heading {
   display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1fr);
-  gap: clamp(26px, 5vw, 90px);
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 1.4vw, 18px);
   align-items: start;
+  max-width: 860px;
 }
 
 .premiation-special-grid {
@@ -4203,6 +4232,9 @@ button {
 }
 
 .premiation-special-grid article {
+  display: grid;
+  align-content: start;
+  gap: 14px;
   min-height: 260px;
   padding: clamp(22px, 2.4vw, 34px);
   border: 1px solid rgba(23, 20, 27, 0.1);
@@ -4216,11 +4248,16 @@ button {
 }
 
 .premiation-special-grid h3 {
-  margin-top: 18px;
-  font-size: 0.92rem;
+  margin: 2px 0 0;
+  color: var(--premiation-pink);
+  font-size: var(--premiation-small-title-size);
   font-weight: 950;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.premiation-special-grid p {
+  margin: 0;
 }
 
 .premiation-light-flow {
@@ -4287,6 +4324,18 @@ button {
   grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.5fr);
   gap: clamp(28px, 5vw, 78px);
   align-items: center;
+}
+
+.premiation-mvp__layout > div:first-child {
+  display: grid;
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.premiation-mvp__layout > div:first-child p {
+  max-width: 620px;
+  margin: 0;
+  font-size: var(--premiation-lead-size);
+  line-height: 1.5;
 }
 
 .premiation-mvp__cards {
@@ -4358,7 +4407,7 @@ button {
 .premiation-mvp__cards h3 {
   margin-top: 0;
   color: var(--premiation-pink);
-  font-size: 1.1rem;
+  font-size: var(--premiation-small-title-size);
   font-weight: 950;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4414,10 +4463,10 @@ button {
   max-width: 640px;
   margin: 0;
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(6.6rem, 9.4vw, 11.2rem);
+  font-size: var(--premiation-title-size);
   font-weight: 400;
-  line-height: 0.78;
-  letter-spacing: 0.045em;
+  line-height: var(--premiation-title-line);
+  letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 
@@ -4447,8 +4496,9 @@ button {
   margin: 0;
   color: rgba(247, 243, 239, 0.78);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(1.15rem, 1.45vw, 1.55rem);
-  letter-spacing: 0.12em;
+  font-size: var(--premiation-small-title-size);
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -4473,7 +4523,7 @@ button {
   gap: 16px;
   align-items: start;
   color: rgba(247, 243, 239, 0.78);
-  font-size: clamp(1rem, 1.1vw, 1.16rem);
+  font-size: var(--premiation-body-size);
   line-height: 1.45;
 }
 
@@ -4490,11 +4540,11 @@ button {
   align-items: center;
   justify-content: center;
   min-width: min(100%, 430px);
-  min-height: 64px;
-  padding: 18px 30px;
+  min-height: 58px;
+  padding: 16px 28px;
   color: var(--premiation-pink);
   font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: clamp(1.35rem, 1.8vw, 2rem);
+  font-size: clamp(1.12rem, 1.35vw, 1.5rem);
   font-weight: 400;
   letter-spacing: 0.13em;
   text-decoration: none;
@@ -4549,7 +4599,7 @@ button {
 .premiation-alliances__heading h2 {
   max-width: 590px;
   margin-top: 10px;
-  font-size: clamp(3.8rem, 5.1vw, 6.2rem);
+  font-size: var(--premiation-title-size);
 }
 
 .premiation-alliances__heading h2::first-letter {
@@ -4569,8 +4619,8 @@ button {
   max-width: 720px;
   margin: 0;
   color: rgba(247, 243, 239, 0.78);
-  font-size: clamp(1.1rem, 1.35vw, 1.42rem);
-  line-height: 1.65;
+  font-size: var(--premiation-lead-size);
+  line-height: 1.55;
 }
 
 .premiation-alliances__accent {
@@ -4578,7 +4628,7 @@ button {
   margin-top: clamp(28px, 3.2vw, 42px) !important;
   padding-top: clamp(24px, 2.8vw, 36px);
   color: var(--premiation-pink) !important;
-  font-size: clamp(1.35rem, 2vw, 2.1rem) !important;
+  font-size: var(--premiation-lead-size) !important;
   font-weight: 950;
   line-height: 1.25 !important;
   border-top: 1px solid rgba(228, 92, 154, 0.72);
@@ -4754,6 +4804,12 @@ button {
 }
 
 @media (max-width: 720px) {
+  .premiation-page {
+    --premiation-title-size: clamp(3.3rem, 14vw, 5rem);
+    --premiation-feature-title-size: clamp(3.1rem, 13vw, 4.8rem);
+    --premiation-card-heading-size: clamp(2.5rem, 11vw, 3.7rem);
+  }
+
   .premiation-hero {
     min-height: 660px;
   }
@@ -4772,7 +4828,7 @@ button {
   }
 
   .premiation-medals__intro h2 {
-    font-size: clamp(3.4rem, 14vw, 5.2rem);
+    font-size: var(--premiation-title-size);
   }
 
   .premiation-medal-system {
@@ -4789,7 +4845,7 @@ button {
   }
 
   .premiation-medal-system__content h3 {
-    font-size: clamp(4rem, 17vw, 5.8rem);
+    font-size: var(--premiation-feature-title-size);
   }
 
   .premiation-medal-rule {
@@ -4833,7 +4889,7 @@ button {
   }
 
   .premiation-bottom__headline h2 {
-    font-size: clamp(5.2rem, 21vw, 7.4rem);
+    font-size: var(--premiation-title-size);
   }
 
   .premiation-bottom li {
@@ -4850,7 +4906,7 @@ button {
   }
 
   .premiation-alliances__heading h2 {
-    font-size: clamp(3.2rem, 14vw, 4.8rem);
+    font-size: var(--premiation-title-size);
   }
 }
 

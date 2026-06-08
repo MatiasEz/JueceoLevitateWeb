@@ -181,7 +181,9 @@ export function PremiationPage() {
           <div className="premiation-section__body">
             <div className="premiation-direct__header">
               <p className="premiation-kicker">Sistemas de premiación</p>
-              <h2>Competencia directa</h2>
+              <h2>
+                Competencia <strong>directa</strong>
+              </h2>
               <p>
                 Cuando dos o más participaciones comparten la misma división, género, nivel y categoría, se comparan
                 entre sí y el resultado se define por ranking.
@@ -295,7 +297,9 @@ export function PremiationPage() {
             <div className="premiation-split-heading premiation-recognition__heading">
               <div>
                 <p className="premiation-kicker">Reconocimientos Levitate</p>
-                <h2>Lo que se entrega en escena.</h2>
+                <h2>
+                  Lo que se entrega <strong>en escena.</strong>
+                </h2>
               </div>
             </div>
 
@@ -323,7 +327,9 @@ export function PremiationPage() {
             <div className="premiation-split-heading">
               <div>
                 <p className="premiation-kicker">Premios especiales</p>
-                <h2>Premios especiales por bloque</h2>
+                <h2>
+                  Premios especiales <strong>por bloque</strong>
+                </h2>
               </div>
             </div>
             <div className="premiation-special-grid">
@@ -346,7 +352,9 @@ export function PremiationPage() {
             <p className="premiation-kicker">MVP Levitate</p>
             <div className="premiation-mvp__layout">
               <div>
-                <h2>El mejor puntaje del evento.</h2>
+                <h2>
+                  El mejor puntaje <strong>del evento.</strong>
+                </h2>
                 <p>
                   El MVP de Levitate MX se concede a la rutina de toda la competencia que obtenga el puntaje más alto,
                   sin importar el nivel, división o categoría.
@@ -372,6 +380,7 @@ export function PremiationPage() {
             <p className="premiation-kicker">Entrega de premios</p>
             <h2>
               <span>Premiación</span>
+              {" "}
               <strong>por bloque</strong>
             </h2>
             <i aria-hidden="true" />
@@ -395,7 +404,9 @@ export function PremiationPage() {
             <div className="premiation-alliances__layout">
               <div className="premiation-alliances__heading">
                 <p className="premiation-kicker">Becas y alianzas</p>
-                <h2>Alianzas que impulsan tu vuelo.</h2>
+                <h2>
+                  Alianzas que impulsan <strong>tu vuelo.</strong>
+                </h2>
                 <div className="premiation-logos" aria-label="Alianzas Levitate">
                   <article className="premiation-logo-card">
                     <img src="/assets/dnzre-logo.png" alt="DNZRE" />
