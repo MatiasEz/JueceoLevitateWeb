@@ -1,10 +1,6 @@
 import {
-  ArrowUpRight,
   BarChart3,
   CheckCircle2,
-  ClipboardCheck,
-  FileText,
-  Mail,
   Megaphone,
   Music2,
   SlidersHorizontal,
@@ -118,24 +114,6 @@ const directRanking = [
   },
 ];
 
-const judgingSheetSteps = [
-  {
-    icon: Mail,
-    title: "Envío por correo",
-    copy: "Las hojas se hacen llegar al encargado o maestro de la academia por correo electrónico al finalizar cada bloque.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Participaciones incluidas",
-    copy: "El envío reúne las participaciones evaluadas dentro del bloque correspondiente para mantener el seguimiento claro.",
-  },
-  {
-    icon: FileText,
-    title: "Tres PDFs de criterios",
-    copy: "Se incluyen tres archivos PDF con los criterios evaluados por los jueces durante la presentación.",
-  },
-];
-
 const specialAwards = [
   {
     icon: Music2,
@@ -175,7 +153,7 @@ const mvpAwards = [
 const considerations = [
   "Los resultados son finales y no hay apelaciones.",
   "Las premiaciones dependen del registro, inscripción, asistencia y participación.",
-  "Los premios no son canjeables por dinero ni mercancía.",
+  "La devolución de hojas de jueceo está disponible al concluir la ceremonia de premiación.",
 ];
 
 export function PremiationPage() {
@@ -388,71 +366,48 @@ export function PremiationPage() {
         </section>
       </div>
 
-      <div className="premiation-dark-flow">
-        <section className="premiation-section premiation-section--dark premiation-sheets">
-          <div className="premiation-section__body">
-            <div className="premiation-sheets__layout">
-              <div className="premiation-sheets__intro">
-                <p className="premiation-kicker">Hojas de jueceo</p>
-                <h2>Feedback claro al finalizar cada bloque.</h2>
-                <p>
-                  Al cierre de cada bloque, Levitate envía la información de jueceo al responsable de la academia para
-                  que cada resultado pueda revisarse con orden y transparencia.
-                </p>
-                <a className="premiation-sheets__cta" href="/evaluaciones">
-                  Consulta los criterios de evaluación <ArrowUpRight aria-hidden="true" size={18} />
-                </a>
-              </div>
-
-              <div className="premiation-sheets__steps">
-                {judgingSheetSteps.map((step) => {
-                  const Icon = step.icon;
-                  return (
-                    <article key={step.title}>
-                      <Icon size={34} />
-                      <div>
-                        <h3>{step.title}</h3>
-                        <p>{step.copy}</p>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
+      <div className="premiation-dark-flow premiation-awards-end">
         <section className="premiation-bottom">
-          <article>
+          <article className="premiation-bottom__headline">
             <p className="premiation-kicker">Entrega de premios</p>
-            <h2>Premiación por bloque</h2>
+            <h2>
+              <span>Premiación</span>
+              <strong>por bloque</strong>
+            </h2>
+            <i aria-hidden="true" />
+            <p>El vuelo también se reconoce.</p>
           </article>
-          <article>
+          <article className="premiation-bottom__details">
             <p className="premiation-kicker">Consideraciones importantes</p>
             <ul>
               {considerations.map((item) => (
                 <li key={item}>
-                  <CheckCircle2 size={18} /> {item}
+                  <CheckCircle2 size={22} /> <span>{item}</span>
                 </li>
               ))}
             </ul>
+            <a href="/evaluaciones">Consulta tus resultados</a>
           </article>
         </section>
 
         <section className="premiation-section premiation-section--dark premiation-alliances">
           <div className="premiation-section__body">
-            <p className="premiation-kicker">Becas y alianzas</p>
             <div className="premiation-alliances__layout">
-              <h2>Alianzas que impulsan tu vuelo.</h2>
-              <div className="premiation-logos">
-                <span className="premiation-logo-mark premiation-logo-mark--dark">
-                  <img src="/assets/dnzre-logo.png" alt="DNZRE" />
-                </span>
-                <span className="premiation-logo-mark">
-                  <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
-                </span>
+              <div className="premiation-alliances__heading">
+                <p className="premiation-kicker">Becas y alianzas</p>
+                <h2>Alianzas que impulsan tu vuelo.</h2>
+                <div className="premiation-logos" aria-label="Alianzas Levitate">
+                  <article className="premiation-logo-card">
+                    <img src="/assets/dnzre-logo.png" alt="DNZRE" />
+                    <span>DNZRE</span>
+                  </article>
+                  <article className="premiation-logo-card">
+                    <img src="/assets/costa-rica-open-logo.png" alt="Costa Rica Open Dance Fest" />
+                    <span>Costa Rica Open Dance</span>
+                  </article>
+                </div>
               </div>
-              <div>
+              <div className="premiation-alliances__copy">
                 <p>
                   Levitate MX cuenta con alianzas con competencias aliadas como DNZRE y Costa Rica Open Dance, que te
                   abren la puerta a nuevas oportunidades dentro y fuera del país.
