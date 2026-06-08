@@ -8,45 +8,76 @@ import {
   Music2,
   Sparkles,
   Star,
+  Trophy,
   WandSparkles,
 } from "lucide-react";
 import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
 
-const medalSystem = [
+const medalRules = [
   {
-    label: "Participación",
-    place: "Participación",
-    range: "Menor a 140 puntos",
-    image: "/assets/medallero-participacion.png",
-    alt: "Medalla de participación Levitate 2026.",
-    tone: "pink",
-  },
-  {
-    label: "Bronce",
-    place: "3er lugar",
-    range: "141-160 puntos",
-    image: "/assets/medallero-bronce.png",
-    alt: "Medalla de bronce Levitate 2026.",
-    tone: "bronze",
-    featured: true,
+    label: "Oro",
+    place: "1er lugar",
+    description: "Del puntaje más alto hasta 5 puntos menos.",
+    exampleRange: "146-151",
+    exampleDescription: "Del puntaje más alto hasta 5 puntos menos.",
+    image: "/assets/medallero-oro.png",
+    alt: "Medalla de oro Levitate 2026.",
+    tone: "gold",
   },
   {
     label: "Plata",
     place: "2do lugar",
-    range: "161-180 puntos",
+    description: "De 6 a 15 puntos por debajo del puntaje más alto.",
+    exampleRange: "136-145",
+    exampleDescription: "De 6 a 15 puntos por debajo del puntaje más alto.",
     image: "/assets/medallero-plata.png",
     alt: "Medalla de plata Levitate 2026.",
     tone: "silver",
   },
   {
-    label: "Oro",
-    place: "1er lugar",
-    range: "181-210 puntos",
-    image: "/assets/medallero-oro.png",
-    alt: "Medalla de oro Levitate 2026.",
-    tone: "gold",
+    label: "Bronce",
+    place: "3er lugar",
+    description: "De 16 a 25 puntos por debajo del puntaje más alto.",
+    exampleRange: "126-135",
+    exampleDescription: "De 16 a 25 puntos por debajo del puntaje más alto.",
+    image: "/assets/medallero-bronce.png",
+    alt: "Medalla de bronce Levitate 2026.",
+    tone: "bronze",
+  },
+  {
+    label: "Participación",
+    place: "",
+    description: "26 puntos o más por debajo del puntaje más alto.",
+    exampleRange: "125 o menos",
+    exampleDescription: "26 puntos o más por debajo del puntaje más alto.",
+    image: "/assets/medallero-participacion.png",
+    alt: "Medalla de participación Levitate 2026.",
+    tone: "pink",
+  },
+];
+
+const medalSystems = [
+  {
+    title: "Motion",
+    applies: "Aplica a géneros no aéreos.",
+    categoryLabel: "Divisiones",
+    options: ["Baby", "Petite", "Junior", "Teen", "Senior", "Legacy"],
+    reference: "La referencia es el Puntaje Mayor obtenido de cada división.",
+    image: assets.competition,
+    imageAlt: "Participante de Motion sobre escenario Levitate.",
+    reverse: false,
+  },
+  {
+    title: "Aerial",
+    applies: "Aplica a géneros aéreos.",
+    categoryLabel: "Niveles",
+    options: ["Nudo", "Principiante", "Intermedio", "Avanzado", "Elite"],
+    reference: "La referencia es el Puntaje Mayor obtenido de cada nivel.",
+    image: assets.hero,
+    imageAlt: "Participante de Aerial en telas durante una experiencia Levitate.",
+    reverse: true,
   },
 ];
 
@@ -226,52 +257,93 @@ export function PremiationPage() {
 
         <section className="premiation-section premiation-section--light premiation-medals">
           <div className="premiation-section__body">
-            <div className="premiation-medals__layout">
-              <div className="premiation-medals__intro">
-                <h2>
-                  <span>Sistema de </span>
-                  <strong>Medallero</strong>
-                </h2>
-                <i className="premiation-medals__rule" aria-hidden="true" />
-                <div className="premiation-medals__copy">
-                  <p className="premiation-pink">
-                    Aplica para participaciones o coreografías que no tienen competencia directa dentro del programa.
-                  </p>
-                  <p>
-                    En estos casos, el reconocimiento se define por el puntaje absoluto otorgado por el jurado.
-                  </p>
-                </div>
-              </div>
-
-              <div className="premiation-medals__showcase">
-                <div className="premiation-medal-track">
-                  {medalSystem.map((medal) => (
-                    <article
-                      className={`premiation-medal-card premiation-medal-card--${medal.tone}${
-                        medal.featured ? " is-featured" : ""
-                      }`}
-                      key={medal.label}
-                      tabIndex={0}
-                    >
-                      <div className="premiation-medal-card__image">
-                        <img src={medal.image} alt={medal.alt} loading="lazy" />
-                      </div>
-                      <div className="premiation-medal-card__copy">
-                        <h3>{medal.label}</h3>
-                        <span>{medal.place}</span>
-                        <i aria-hidden="true" />
-                        <p>{medal.range}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-                <div className="premiation-medals__dots" aria-hidden="true">
-                  <span />
-                  <span className="is-active" />
-                  <span />
-                </div>
+            <div className="premiation-medals__intro">
+              <h2>
+                <span>Sistema de </span>
+                <strong>Medallero</strong>
+              </h2>
+              <i className="premiation-medals__rule" aria-hidden="true" />
+              <div className="premiation-medals__copy">
+                <p className="premiation-pink">Así se premian las participaciones sin competencia directa.</p>
+                <p>Cada sistema se calcula por subbloques comparables para que la evaluación sea más justa.</p>
               </div>
             </div>
+
+            <div className="premiation-medal-systems">
+              {medalSystems.map((system) => (
+                <article
+                  className={`premiation-medal-system${system.reverse ? " premiation-medal-system--reverse" : ""}`}
+                  key={system.title}
+                >
+                  {system.reverse && (
+                    <figure className="premiation-medal-system__visual">
+                      <img src={system.image} alt={system.imageAlt} loading="lazy" />
+                    </figure>
+                  )}
+
+                  <div className="premiation-medal-system__content">
+                    <p className="premiation-medal-system__kicker">Sistema de medallero</p>
+                    <h3>{system.title}</h3>
+                    <p className="premiation-medal-system__applies">✦ {system.applies}</p>
+                    <p className="premiation-medal-system__label">{system.categoryLabel}</p>
+                    <div className="premiation-medal-system__chips" aria-label={system.categoryLabel}>
+                      {system.options.map((option) => (
+                        <span key={option}>{option}</span>
+                      ))}
+                    </div>
+                    <p className="premiation-medal-system__reference">✦ {system.reference}</p>
+
+                    <div className="premiation-medal-rules" aria-label={`Reglas del sistema ${system.title}`}>
+                      {medalRules.map((rule) => (
+                        <div className="premiation-medal-rule" key={`${system.title}-${rule.label}`}>
+                          <img src={rule.image} alt={rule.alt} loading="lazy" />
+                          <div className={`premiation-medal-rule__title premiation-medal-rule__title--${rule.tone}`}>
+                            <strong>{rule.label}</strong>
+                            {rule.place && <span>{rule.place}</span>}
+                          </div>
+                          <p>{rule.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {!system.reverse && (
+                    <figure className="premiation-medal-system__visual">
+                      <img src={system.image} alt={system.imageAlt} loading="lazy" />
+                    </figure>
+                  )}
+                </article>
+              ))}
+            </div>
+
+            <article className="premiation-medal-example">
+              <div className="premiation-medal-example__header">
+                <h3>Ejemplo de cómo se calcula</h3>
+                <p>Si el Puntaje Mayor es 151</p>
+              </div>
+              <div className="premiation-medal-example__grid">
+                {medalRules.map((rule) => (
+                  <div className={`premiation-medal-example__item is-${rule.tone}`} key={`example-${rule.label}`}>
+                    <img src={rule.image} alt="" aria-hidden="true" loading="lazy" />
+                    <strong>{rule.label}</strong>
+                    <span>{rule.exampleRange}</span>
+                    <p>{rule.exampleDescription}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="premiation-medal-callout">
+              <div className="premiation-medal-callout__icon" aria-hidden="true">
+                <Trophy size={58} />
+              </div>
+              <div>
+                <h3>
+                  Un medallero dinámico, <strong>más justo y alineado</strong> al nivel real de la competencia.
+                </h3>
+                <p>Se ajusta al rendimiento de cada subbloque para reconocer con mayor precisión cada logro.</p>
+              </div>
+            </article>
           </div>
         </section>
       </div>
