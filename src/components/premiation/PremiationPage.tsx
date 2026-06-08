@@ -7,8 +7,6 @@ import {
   Megaphone,
   Music2,
   Sparkles,
-  Star,
-  Trophy,
   WandSparkles,
 } from "lucide-react";
 import { assets } from "../../data/homeContent";
@@ -198,7 +196,6 @@ export function PremiationPage() {
         <img src={assets.competition} alt="" aria-hidden="true" />
         <div className="premiation-hero__shade" aria-hidden="true" />
         <div className="premiation-hero__content">
-          <p className="premiation-number">✶</p>
           <h1>Premiación</h1>
           <strong>El vuelo también se reconoce.</strong>
           <p>
@@ -215,7 +212,7 @@ export function PremiationPage() {
         <section className="premiation-section premiation-section--light premiation-direct">
           <div className="premiation-section__body">
             <div className="premiation-direct__header">
-              <p className="premiation-kicker">✦ Sistemas de premiación ✦</p>
+              <p className="premiation-kicker">Sistemas de premiación</p>
               <h2>Competencia directa</h2>
               <p>
                 Cuando dos o más participaciones comparten la misma división, género, nivel y categoría, se comparan
@@ -243,7 +240,6 @@ export function PremiationPage() {
             </div>
 
             <div className="premiation-direct__note">
-              <Star aria-hidden="true" />
               <div>
                 <strong>Ranking real por bloque.</strong>
                 <p>
@@ -284,14 +280,14 @@ export function PremiationPage() {
                   <div className="premiation-medal-system__content">
                     <p className="premiation-medal-system__kicker">Sistema de medallero</p>
                     <h3>{system.title}</h3>
-                    <p className="premiation-medal-system__applies">✦ {system.applies}</p>
+                    <p className="premiation-medal-system__applies">{system.applies}</p>
                     <p className="premiation-medal-system__label">{system.categoryLabel}</p>
                     <div className="premiation-medal-system__chips" aria-label={system.categoryLabel}>
                       {system.options.map((option) => (
                         <span key={option}>{option}</span>
                       ))}
                     </div>
-                    <p className="premiation-medal-system__reference">✦ {system.reference}</p>
+                    <p className="premiation-medal-system__reference">{system.reference}</p>
 
                     <div className="premiation-medal-rules" aria-label={`Reglas del sistema ${system.title}`}>
                       {medalRules.map((rule) => (
@@ -324,24 +320,11 @@ export function PremiationPage() {
               <div className="premiation-medal-example__grid">
                 {medalRules.map((rule) => (
                   <div className={`premiation-medal-example__item is-${rule.tone}`} key={`example-${rule.label}`}>
-                    <img src={rule.image} alt="" aria-hidden="true" loading="lazy" />
                     <strong>{rule.label}</strong>
                     <span>{rule.exampleRange}</span>
                     <p>{rule.exampleDescription}</p>
                   </div>
                 ))}
-              </div>
-            </article>
-
-            <article className="premiation-medal-callout">
-              <div className="premiation-medal-callout__icon" aria-hidden="true">
-                <Trophy size={58} />
-              </div>
-              <div>
-                <h3>
-                  Un medallero dinámico, <strong>más justo y alineado</strong> al nivel real de la competencia.
-                </h3>
-                <p>Se ajusta al rendimiento de cada subbloque para reconocer con mayor precisión cada logro.</p>
               </div>
             </article>
           </div>
@@ -415,7 +398,6 @@ export function PremiationPage() {
                 {mvpAwards.map((award) => (
                   <article key={award.title}>
                     <img src={award.image} alt="" aria-hidden="true" />
-                    <Star size={34} />
                     <h3>{award.title}</h3>
                     <p>{award.copy}</p>
                   </article>

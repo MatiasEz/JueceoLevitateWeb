@@ -3320,13 +3320,6 @@ button {
   padding: clamp(46px, 6vw, 90px) clamp(22px, 4vw, 64px) clamp(74px, 7vw, 118px);
 }
 
-.premiation-number {
-  margin: 0 0 10px;
-  color: var(--premiation-pink);
-  font-size: clamp(1.8rem, 3vw, 3rem);
-  line-height: 1;
-}
-
 .premiation-hero h1 {
   max-width: 680px;
   margin: 0;
@@ -3352,7 +3345,7 @@ button {
   color: var(--premiation-pink);
 }
 
-.premiation-hero p:not(.premiation-number) {
+.premiation-hero p {
   max-width: 520px;
   margin: 18px 0 0;
   color: var(--premiation-muted);
@@ -3701,7 +3694,7 @@ button {
 
 .premiation-direct__note {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 20px;
   max-width: 1080px;
@@ -3711,13 +3704,6 @@ button {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.46);
   box-shadow: 0 22px 60px rgba(29, 19, 25, 0.08);
-}
-
-.premiation-direct__note svg {
-  width: 42px;
-  height: 42px;
-  color: var(--premiation-pink);
-  stroke-width: 1.7;
 }
 
 .premiation-direct__note strong {
@@ -4041,8 +4027,7 @@ button {
   filter: saturate(0.98) contrast(1.04);
 }
 
-.premiation-medal-example,
-.premiation-medal-callout {
+.premiation-medal-example {
   position: relative;
   z-index: 2;
   margin-top: clamp(20px, 2.4vw, 34px);
@@ -4083,10 +4068,11 @@ button {
 }
 
 .premiation-medal-example__item {
+  container-type: inline-size;
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 4px;
+  gap: 6px;
   padding: clamp(10px, 1.5vw, 20px);
   border-left: 1px solid rgba(228, 92, 154, 0.18);
 }
@@ -4095,14 +4081,13 @@ button {
   border-left: 0;
 }
 
-.premiation-medal-example__item img {
-  width: 58px;
-  height: 46px;
-  object-fit: contain;
-  margin-bottom: 4px;
+.premiation-medal-example__item strong {
+  font-size: clamp(2.2rem, 14cqw, 3.75rem);
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.premiation-medal-example__item strong,
 .premiation-medal-example__item span {
   font-size: clamp(1rem, 1.15vw, 1.24rem);
   font-weight: 950;
@@ -4117,46 +4102,6 @@ button {
   font-size: clamp(0.78rem, 0.85vw, 0.95rem);
   font-weight: 700;
   line-height: 1.25;
-}
-
-.premiation-medal-callout {
-  display: grid;
-  grid-template-columns: minmax(120px, 0.26fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(20px, 3vw, 44px);
-  padding: clamp(22px, 2.8vw, 42px);
-}
-
-.premiation-medal-callout__icon {
-  display: grid;
-  place-items: center;
-  width: clamp(108px, 12vw, 160px);
-  aspect-ratio: 1;
-  color: var(--premiation-pink);
-  border-radius: 999px;
-  background:
-    radial-gradient(circle, rgba(228, 92, 154, 0.22), rgba(228, 92, 154, 0.04) 58%, transparent 60%);
-}
-
-.premiation-medal-callout h3 {
-  max-width: 780px;
-  margin: 0;
-  color: #19151b;
-  font-size: clamp(1.75rem, 2.4vw, 3rem);
-  font-weight: 950;
-  line-height: 1.04;
-}
-
-.premiation-medal-callout h3 strong {
-  color: var(--premiation-pink);
-}
-
-.premiation-medal-callout p {
-  max-width: 660px;
-  margin: 10px 0 0;
-  color: #4c454d;
-  font-size: clamp(1rem, 1.1vw, 1.22rem);
-  line-height: 1.45;
 }
 
 .premiation-recognition {
@@ -4555,19 +4500,14 @@ button {
   transform: scale(1.06);
 }
 
-.premiation-mvp__cards svg,
 .premiation-mvp__cards h3,
 .premiation-mvp__cards p {
   position: relative;
   z-index: 2;
 }
 
-.premiation-mvp__cards svg {
-  color: var(--premiation-pink);
-}
-
 .premiation-mvp__cards h3 {
-  margin-top: 20px;
+  margin-top: 0;
   color: var(--premiation-pink);
   font-size: 1.1rem;
   font-weight: 950;
@@ -4888,12 +4828,12 @@ button {
     border-top: 1px solid rgba(228, 92, 154, 0.18);
   }
 
-  .premiation-medal-example__item:first-child {
-    border-top: 0;
+  .premiation-medal-example__item strong {
+    font-size: clamp(2.2rem, 12.4cqw, 2.7rem);
   }
 
-  .premiation-medal-callout {
-    grid-template-columns: 1fr;
+  .premiation-medal-example__item:first-child {
+    border-top: 0;
   }
 
   .premiation-recognition__card {
