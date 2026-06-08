@@ -1,11 +1,13 @@
 import {
   ArrowUpRight,
+  BarChart3,
   CheckCircle2,
   ClipboardCheck,
   FileText,
   Mail,
   Megaphone,
   Music2,
+  SlidersHorizontal,
   Sparkles,
   WandSparkles,
 } from "lucide-react";
@@ -16,40 +18,28 @@ import { LevitateHeader } from "../home/LevitateHeader";
 const medalRules = [
   {
     label: "Oro",
-    place: "1er lugar",
     description: "Del puntaje más alto hasta 5 puntos menos.",
-    exampleRange: "146-151",
-    exampleDescription: "Del puntaje más alto hasta 5 puntos menos.",
     image: "/assets/medallero-oro.png",
     alt: "Medalla de oro Levitate 2026.",
     tone: "gold",
   },
   {
     label: "Plata",
-    place: "2do lugar",
     description: "De 6 a 15 puntos por debajo del puntaje más alto.",
-    exampleRange: "136-145",
-    exampleDescription: "De 6 a 15 puntos por debajo del puntaje más alto.",
     image: "/assets/medallero-plata.png",
     alt: "Medalla de plata Levitate 2026.",
     tone: "silver",
   },
   {
     label: "Bronce",
-    place: "3er lugar",
     description: "De 16 a 25 puntos por debajo del puntaje más alto.",
-    exampleRange: "126-135",
-    exampleDescription: "De 16 a 25 puntos por debajo del puntaje más alto.",
     image: "/assets/medallero-bronce.png",
     alt: "Medalla de bronce Levitate 2026.",
     tone: "bronze",
   },
   {
     label: "Participación",
-    place: "",
     description: "26 puntos o más por debajo del puntaje más alto.",
-    exampleRange: "125 o menos",
-    exampleDescription: "26 puntos o más por debajo del puntaje más alto.",
     image: "/assets/medallero-participacion.png",
     alt: "Medalla de participación Levitate 2026.",
     tone: "pink",
@@ -58,24 +48,24 @@ const medalRules = [
 
 const medalSystems = [
   {
+    icon: SlidersHorizontal,
     title: "Motion",
-    applies: "Aplica a géneros no aéreos.",
-    categoryLabel: "Divisiones",
+    adjustment: "Ajuste por división",
     options: ["Baby", "Petite", "Junior", "Teen", "Senior", "Legacy"],
-    reference: "La referencia es el Puntaje Mayor obtenido de cada división.",
+    copy: "Se aplican rangos de medalla de acuerdo con el mayor puntaje obtenido en una misma división.",
     image: assets.competition,
     imageAlt: "Participante de Motion sobre escenario Levitate.",
-    reverse: false,
+    imageFirst: true,
   },
   {
+    icon: BarChart3,
     title: "Aerial",
-    applies: "Aplica a géneros aéreos.",
-    categoryLabel: "Niveles",
-    options: ["Nudo", "Principiante", "Intermedio", "Avanzado", "Elite"],
-    reference: "La referencia es el Puntaje Mayor obtenido de cada nivel.",
+    adjustment: "Ajuste por nivel",
+    options: ["Nudo", "Principiantes", "Intermedio", "Avanzado", "Elite"],
+    copy: "Se aplican rangos de medalla de acuerdo con el mayor puntaje obtenido en un mismo nivel.",
     image: assets.hero,
     imageAlt: "Participante de Aerial en telas durante una experiencia Levitate.",
-    reverse: true,
+    imageFirst: false,
   },
 ];
 
@@ -260,72 +250,62 @@ export function PremiationPage() {
               </h2>
               <i className="premiation-medals__rule" aria-hidden="true" />
               <div className="premiation-medals__copy">
-                <p className="premiation-pink">Así se premian las participaciones sin competencia directa.</p>
-                <p>Cada sistema se calcula por subbloques comparables para que la evaluación sea más justa.</p>
+                <p>
+                  Así se premian las participaciones <strong>sin competencia directa.</strong>
+                </p>
               </div>
             </div>
 
             <div className="premiation-medal-systems">
-              {medalSystems.map((system) => (
-                <article
-                  className={`premiation-medal-system${system.reverse ? " premiation-medal-system--reverse" : ""}`}
-                  key={system.title}
-                >
-                  {system.reverse && (
-                    <figure className="premiation-medal-system__visual">
-                      <img src={system.image} alt={system.imageAlt} loading="lazy" />
-                    </figure>
-                  )}
+              {medalSystems.map((system) => {
+                const AdjustmentIcon = system.icon;
 
-                  <div className="premiation-medal-system__content">
-                    <p className="premiation-medal-system__kicker">Sistema de medallero</p>
-                    <h3>{system.title}</h3>
-                    <p className="premiation-medal-system__applies">{system.applies}</p>
-                    <p className="premiation-medal-system__label">{system.categoryLabel}</p>
-                    <div className="premiation-medal-system__chips" aria-label={system.categoryLabel}>
-                      {system.options.map((option) => (
-                        <span key={option}>{option}</span>
-                      ))}
+                return (
+                  <article
+                    className={`premiation-medal-system${system.imageFirst ? " premiation-medal-system--image-first" : ""}`}
+                    key={system.title}
+                  >
+                    {system.imageFirst && (
+                      <figure className="premiation-medal-system__visual">
+                        <img src={system.image} alt={system.imageAlt} loading="lazy" />
+                      </figure>
+                    )}
+                    <div className="premiation-medal-system__content">
+                      <p className="premiation-medal-system__kicker">Sistema de medallero</p>
+                      <h3>{system.title}</h3>
+                      <p className="premiation-medal-system__adjustment">
+                        <AdjustmentIcon aria-hidden="true" size={22} strokeWidth={2.6} />
+                        {system.adjustment}
+                      </p>
+                      <div className="premiation-medal-system__chips" aria-label={system.adjustment}>
+                        {system.options.map((option) => (
+                          <span key={option}>{option}</span>
+                        ))}
+                      </div>
+                      <i aria-hidden="true" />
+                      <p className="premiation-medal-system__copy">{system.copy}</p>
                     </div>
-                    <p className="premiation-medal-system__reference">{system.reference}</p>
 
-                    <div className="premiation-medal-rules" aria-label={`Reglas del sistema ${system.title}`}>
-                      {medalRules.map((rule) => (
-                        <div className="premiation-medal-rule" key={`${system.title}-${rule.label}`}>
-                          <img src={rule.image} alt={rule.alt} loading="lazy" />
-                          <div className={`premiation-medal-rule__title premiation-medal-rule__title--${rule.tone}`}>
-                            <strong>{rule.label}</strong>
-                            {rule.place && <span>{rule.place}</span>}
-                          </div>
-                          <p>{rule.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {!system.reverse && (
-                    <figure className="premiation-medal-system__visual">
-                      <img src={system.image} alt={system.imageAlt} loading="lazy" />
-                    </figure>
-                  )}
-                </article>
-              ))}
+                    {!system.imageFirst && (
+                      <figure className="premiation-medal-system__visual">
+                        <img src={system.image} alt={system.imageAlt} loading="lazy" />
+                      </figure>
+                    )}
+                  </article>
+                );
+              })}
             </div>
 
-            <article className="premiation-medal-example">
-              <div className="premiation-medal-example__header">
-                <h3>Ejemplo de cómo se calcula</h3>
-                <p>Si el Puntaje Mayor es 151</p>
-              </div>
-              <div className="premiation-medal-example__grid">
-                {medalRules.map((rule) => (
-                  <div className={`premiation-medal-example__item is-${rule.tone}`} key={`example-${rule.label}`}>
+            <article className="premiation-medal-rules" aria-label="Rangos del sistema de medallero">
+              {medalRules.map((rule) => (
+                <div className={`premiation-medal-rule is-${rule.tone}`} key={rule.label}>
+                  <img src={rule.image} alt={rule.alt} loading="lazy" />
+                  <div>
                     <strong>{rule.label}</strong>
-                    <span>{rule.exampleRange}</span>
-                    <p>{rule.exampleDescription}</p>
+                    <p>{rule.description}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </article>
           </div>
         </section>

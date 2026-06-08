@@ -198,16 +198,6 @@ export function HomePage() {
       </section>
 
       <section id="categorías" className="levitate-why">
-        <svg className="levitate-why__paths" viewBox="0 0 1440 620" aria-hidden="true" data-levitate-reveal>
-          <path pathLength="1" d="M585 75 C780 8 935 80 900 205 C880 280 950 330 1048 238 C1110 180 1122 130 1195 122" />
-          <path pathLength="1" d="M860 270 C960 270 1012 292 1094 292 C1135 292 1148 282 1195 282" />
-          <path pathLength="1" d="M875 354 C980 350 1036 386 1092 402 C1136 414 1158 432 1195 430" />
-          <path pathLength="1" d="M710 548 C830 568 944 555 1034 498 C1096 458 1138 574 1195 548" />
-          <circle cx="1110" cy="151" r="4" />
-          <circle cx="1110" cy="292" r="4" />
-          <circle cx="1110" cy="420" r="4" />
-          <circle cx="1070" cy="540" r="4" />
-        </svg>
         <div className="levitate-why__copy" data-levitate-reveal>
           <p className="levitate-eyebrow">¿Por qué</p>
           <h2>Levitate?</h2>
@@ -224,22 +214,16 @@ export function HomePage() {
           </p>
         </div>
 
-        <div className="levitate-why__art" data-levitate-reveal>
-          <div className="levitate-why__figure">
-            <img src={assets.competition} alt="Artista aérea durante una presentación Levitate" loading="lazy" />
-          </div>
-        </div>
-
         <div className="levitate-why__list" data-levitate-reveal>
-          {whyItems.map((item) => {
+          {whyItems.map((item, index) => {
             const Icon = item.icon;
             return (
               <article key={item.title}>
-                <div><Icon aria-hidden="true" size={26} /></div>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
+                <Icon aria-hidden="true" size={54} strokeWidth={1.7} />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.title}</h3>
+                <i aria-hidden="true" />
+                <p>{item.text}</p>
               </article>
             );
           })}
