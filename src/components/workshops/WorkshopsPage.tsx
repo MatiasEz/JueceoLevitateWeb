@@ -69,12 +69,11 @@ export function WorkshopsPage() {
         <LevitateHeader activeLabel="Convocatoria" useRootLinks />
         <img className="workshops-hero__image" src={assets.hero} alt="" aria-hidden="true" />
         <div className="workshops-hero__content">
-          <p className="workshops-kicker">✦ Workshops Levitate</p>
           <h1>Workshops</h1>
-          <strong>El vuelo también se entrena.</strong>
+          <strong>La técnica también se entrena.</strong>
           <p>
-            Los workshops Levitate son espacios de aprendizaje, exploración y crecimiento artístico que complementan tu
-            experiencia en la competencia.
+            Los talleres Levitate son espacios de aprendizaje, exploración y crecimiento que complementan y enriquecen
+            tu experiencia en nuestra competencia.
           </p>
 
           <a className="workshops-outline-cta" href="#workshops-disponibles">

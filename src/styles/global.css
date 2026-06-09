@@ -3839,7 +3839,7 @@ button {
   position: relative;
   width: clamp(150px, 18vw, 260px);
   height: 2px;
-  margin: clamp(14px, 1.5vw, 22px) 0 clamp(16px, 2vw, 26px);
+  margin: 0 0 clamp(16px, 1.8vw, 26px);
   background:
     linear-gradient(90deg, transparent, rgba(228, 92, 154, 0.7) 32%, transparent 32% 68%, rgba(228, 92, 154, 0.7) 68%, transparent);
 }
@@ -4034,10 +4034,10 @@ button {
 
 .premiation-medal-rule {
   display: grid;
-  grid-template-columns: clamp(72px, 6.8vw, 108px) minmax(0, 1fr);
-  gap: clamp(14px, 1.3vw, 22px);
+  grid-template-columns: clamp(88px, 7.6vw, 124px) minmax(0, 1fr);
+  gap: clamp(16px, 1.45vw, 24px);
   align-items: center;
-  min-height: clamp(128px, 10vw, 154px);
+  min-height: clamp(140px, 10.8vw, 168px);
   padding: clamp(20px, 2vw, 30px);
   border-left: 1px solid rgba(228, 92, 154, 0.18);
 }
@@ -4047,8 +4047,8 @@ button {
 }
 
 .premiation-medal-rule img {
-  width: clamp(66px, 6vw, 94px);
-  height: clamp(66px, 6vw, 94px);
+  width: clamp(82px, 7vw, 112px);
+  height: clamp(82px, 7vw, 112px);
   object-fit: contain;
   filter: drop-shadow(0 12px 18px rgba(43, 31, 35, 0.14));
 }
@@ -4490,18 +4490,8 @@ button {
   display: block;
   width: min(100%, 430px);
   height: 2px;
-  margin: clamp(22px, 2vw, 32px) 0 18px;
+  margin: clamp(22px, 2vw, 32px) 0 0;
   background: var(--premiation-pink);
-}
-
-.premiation-bottom__headline > p:last-child {
-  margin: 0;
-  color: rgba(247, 243, 239, 0.78);
-  font-family: "Bebas Neue", "Arial Narrow", sans-serif;
-  font-size: var(--premiation-small-title-size);
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .premiation-bottom__details {
@@ -4746,7 +4736,7 @@ button {
   }
 
   .premiation-medal-rule {
-    grid-template-columns: 74px minmax(0, 1fr);
+    grid-template-columns: 94px minmax(0, 1fr);
     min-height: auto;
     border-left: 0;
     border-top: 1px solid rgba(228, 92, 154, 0.18);

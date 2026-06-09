@@ -224,11 +224,11 @@ export function PremiationPage() {
         <section className="premiation-section premiation-section--light premiation-medals">
           <div className="premiation-section__body">
             <div className="premiation-medals__intro">
+              <i className="premiation-medals__rule" aria-hidden="true" />
               <h2>
                 <span>Sistema de </span>
                 <strong>Medallero</strong>
               </h2>
-              <i className="premiation-medals__rule" aria-hidden="true" />
               <div className="premiation-medals__copy">
                 <p>
                   Así se premian las participaciones <strong>sin competencia directa.</strong>
@@ -384,7 +384,6 @@ export function PremiationPage() {
               <strong>por bloque</strong>
             </h2>
             <i aria-hidden="true" />
-            <p>El vuelo también se reconoce.</p>
           </article>
           <article className="premiation-bottom__details">
             <p className="premiation-kicker">Consideraciones importantes</p>
