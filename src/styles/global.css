@@ -5430,103 +5430,88 @@ button {
 .workshops-experience {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(260px, 0.44fr) minmax(560px, 1fr);
-  gap: clamp(26px, 4vw, 64px);
-  align-items: center;
+  min-height: clamp(620px, 78vh, 880px);
   overflow: hidden;
-  padding: clamp(52px, 6vw, 86px) clamp(22px, 4vw, 64px);
-  background:
-    radial-gradient(circle at 94% 22%, rgba(231, 70, 151, 0.26), transparent 22rem),
-    radial-gradient(circle at 2% 96%, rgba(142, 49, 93, 0.28), transparent 22rem),
-    linear-gradient(180deg, #050505 0%, #090709 100%);
+  padding: 0;
+  background: #050505;
+  color: #fff;
+  isolation: isolate;
 }
 
-.workshops-experience > * {
-  position: relative;
+.workshops-experience::before {
   z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.56) 38%, rgba(5, 5, 5, 0.28) 64%, rgba(5, 5, 5, 0.78) 100%),
+    radial-gradient(circle at 88% 18%, rgba(231, 70, 151, 0.32), transparent 22rem),
+    radial-gradient(circle at 8% 88%, rgba(142, 49, 93, 0.28), transparent 24rem),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 5px);
+  opacity: 1;
+}
+
+.workshops-experience__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.82;
+  filter: saturate(1.08) hue-rotate(306deg) brightness(0.7) contrast(1.08);
+  transform: scale(1.03);
+}
+
+.workshops-experience__overlay {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
+  gap: clamp(36px, 8vw, 128px);
+  align-items: center;
+  width: min(100%, 1480px);
+  min-height: inherit;
+  margin: 0 auto;
+  padding: clamp(58px, 7vw, 104px) clamp(22px, 4vw, 64px);
+}
+
+.workshops-experience__copy {
+  max-width: 560px;
+  transition:
+    opacity 620ms ease,
+    transform 620ms var(--ease-out);
+}
+
+.workshops-experience.is-overlay-hidden .workshops-experience__copy {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
 }
 
 .workshops-experience h2 {
+  max-width: 620px;
   color: #fff;
 }
 
-.workshops-experience__copy p:not(.workshops-kicker) {
-  color: rgba(247, 243, 239, 0.78);
-  font-size: 0.96rem;
-  line-height: 1.65;
-}
-
-.workshops-video-card {
-  position: relative;
-  overflow: hidden;
-  min-height: clamp(360px, 36vw, 560px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  background: #111;
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
-}
-
-.workshops-video-card img {
-  width: 100%;
-  height: 100%;
-  min-height: inherit;
-  object-fit: cover;
-  opacity: 0.78;
-  filter: saturate(1.02) hue-rotate(306deg) brightness(0.82);
-}
-
-.workshops-video-card::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(5, 5, 5, 0.72) 100%);
-  content: "";
-}
-
-.workshops-video-card button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
+.workshops-experience__play {
+  justify-self: center;
   display: grid;
-  width: clamp(62px, 6vw, 86px);
+  width: clamp(76px, 8vw, 112px);
   aspect-ratio: 1;
   place-items: center;
   border: 0;
   border-radius: 999px;
   background: var(--workshops-pink);
   color: #fff;
-  transform: translate(-50%, -50%);
+  box-shadow: 0 24px 70px rgba(231, 70, 151, 0.42);
   transition:
     background 220ms ease,
+    opacity 420ms ease,
     transform 260ms var(--ease-out);
 }
 
-.workshops-video-card button:hover {
+.workshops-experience__play:hover {
   background: #ef65a5;
-  transform: translate(-50%, -50%) scale(1.04);
-}
-
-.workshops-video-card div {
-  position: absolute;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
-  z-index: 2;
-  display: grid;
-  gap: 4px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.workshops-video-card strong {
-  font-size: 0.94rem;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-}
-
-.workshops-video-card span {
-  color: rgba(247, 243, 239, 0.74);
-  font-size: 0.78rem;
+  transform: scale(1.04);
 }
 
 .workshops-basics {
@@ -5603,7 +5588,6 @@ button {
 @media (max-width: 1080px) {
   .workshops-two-col,
   .workshops-venue-grid,
-  .workshops-experience,
   .workshops-intro__panel {
     min-height: auto;
   }
@@ -5631,6 +5615,19 @@ button {
     grid-template-columns: repeat(3, minmax(80px, 1fr));
   }
 
+  .workshops-experience {
+    min-height: clamp(580px, 84vh, 760px);
+  }
+
+  .workshops-experience__overlay {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: clamp(44px, 7vw, 70px);
+  }
+
+  .workshops-experience__play {
+    justify-self: start;
+  }
 }
 
 @media (max-width: 720px) {
@@ -5675,6 +5672,19 @@ button {
     min-height: 260px;
   }
 
+  .workshops-experience {
+    min-height: 680px;
+  }
+
+  .workshops-experience__overlay {
+    align-content: end;
+    padding: clamp(54px, 12vw, 82px) 24px;
+  }
+
+  .workshops-experience__play {
+    justify-self: start;
+    width: 76px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

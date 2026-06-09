@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, CalendarDays, Clock3, MapPin, Play, Sparkles, Ticket, Users } from "lucide-react";
 import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
@@ -63,6 +64,39 @@ const basics = [
 ];
 
 export function WorkshopsPage() {
+  const [isExperienceOverlayVisible, setIsExperienceOverlayVisible] = useState(true);
+  const experienceOverlayTimer = useRef<number | null>(null);
+
+  const scheduleExperienceOverlayHide = useCallback(() => {
+    if (experienceOverlayTimer.current !== null) {
+      window.clearTimeout(experienceOverlayTimer.current);
+    }
+
+    experienceOverlayTimer.current = window.setTimeout(() => {
+      setIsExperienceOverlayVisible(false);
+    }, 4200);
+  }, []);
+
+  const revealExperienceOverlay = useCallback(() => {
+    setIsExperienceOverlayVisible(true);
+    scheduleExperienceOverlayHide();
+  }, [scheduleExperienceOverlayHide]);
+
+  useEffect(() => {
+    revealExperienceOverlay();
+    window.addEventListener("scroll", revealExperienceOverlay, { passive: true });
+    window.addEventListener("pointermove", revealExperienceOverlay, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", revealExperienceOverlay);
+      window.removeEventListener("pointermove", revealExperienceOverlay);
+
+      if (experienceOverlayTimer.current !== null) {
+        window.clearTimeout(experienceOverlayTimer.current);
+      }
+    };
+  }, [revealExperienceOverlay]);
+
   return (
     <main className="workshops-page">
       <section className="workshops-hero" id="workshops">
@@ -215,26 +249,28 @@ export function WorkshopsPage() {
         </div>
       </section>
 
-      <section className="workshops-experience">
-        <div className="workshops-experience__copy">
-          <p className="workshops-kicker">Lo que se vive en workshops</p>
-          <h2>Aprender. Conectar. Inspirar.</h2>
-          <p>
-            Cada taller deja una ocasión para aprender, crecer, conocer y llevarte nuevas herramientas. Mira así se
-            viven los workshops Levitate: una comunidad que se entrena, se inspira y se eleva juntos.
-          </p>
-        </div>
+      <section
+        className={`workshops-experience${isExperienceOverlayVisible ? "" : " is-overlay-hidden"}`}
+        onFocus={revealExperienceOverlay}
+        onPointerMove={revealExperienceOverlay}
+      >
+        <img
+          className="workshops-experience__background"
+          src={assets.community}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+        />
+        <div className="workshops-experience__overlay">
+          <div className="workshops-experience__copy">
+            <p className="workshops-kicker">Lo que se vive en workshops</p>
+            <h2>Aprender. Conectar. Inspirar.</h2>
+          </div>
 
-        <article className="workshops-video-card">
-          <img src={assets.community} alt="Comunidad Levitate reunida después de una experiencia de formación." loading="lazy" />
-          <button type="button" aria-label="Ver video de workshops">
+          <button className="workshops-experience__play" type="button" aria-label="Ver video de workshops">
             <Play aria-hidden="true" size={30} fill="currentColor" />
           </button>
-          <div>
-            <strong>Así se viven los workshops Levitate</strong>
-            <span>1:45</span>
-          </div>
-        </article>
+        </div>
       </section>
 
       <section className="workshops-light-section workshops-basics">
