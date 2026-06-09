@@ -4566,114 +4566,6 @@ button {
   transform: translateY(-2px);
 }
 
-.premiation-awards-end > .premiation-alliances {
-  position: relative;
-  padding-top: clamp(54px, 7vw, 92px);
-  padding-bottom: clamp(54px, 7vw, 92px);
-  overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.98) 0%, rgba(5, 5, 5, 0.92) 46%, rgba(5, 5, 5, 0.54) 100%),
-    radial-gradient(circle at 88% 18%, rgba(228, 92, 154, 0.24), transparent 20rem),
-    url("/assets/visuals/hero-stage.jpg") right center / cover no-repeat;
-}
-
-.premiation-alliances::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(5, 5, 5, 0.18), rgba(5, 5, 5, 0.7)),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 5px);
-  content: "";
-  pointer-events: none;
-}
-
-.premiation-alliances .premiation-section__body {
-  z-index: 1;
-}
-
-.premiation-alliances__layout {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.86fr) minmax(420px, 1fr);
-  gap: clamp(32px, 6vw, 88px);
-  align-items: center;
-}
-
-.premiation-alliances__heading h2 {
-  max-width: 590px;
-  margin-top: 10px;
-  font-size: var(--premiation-title-size);
-}
-
-.premiation-alliances__heading h2::first-letter {
-  color: inherit;
-}
-
-.premiation-alliances__copy {
-  position: relative;
-  display: grid;
-  align-content: center;
-  min-height: 270px;
-  padding-left: clamp(30px, 5vw, 70px);
-  border-left: 1px solid rgba(228, 92, 154, 0.54);
-}
-
-.premiation-alliances__copy p {
-  max-width: 720px;
-  margin: 0;
-  color: rgba(247, 243, 239, 0.78);
-  font-size: var(--premiation-lead-size);
-  line-height: 1.55;
-}
-
-.premiation-alliances__accent {
-  display: grid;
-  margin-top: clamp(28px, 3.2vw, 42px) !important;
-  padding-top: clamp(24px, 2.8vw, 36px);
-  color: var(--premiation-pink) !important;
-  font-size: var(--premiation-lead-size) !important;
-  font-weight: 950;
-  line-height: 1.25 !important;
-  border-top: 1px solid rgba(228, 92, 154, 0.72);
-}
-
-.premiation-logos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: clamp(22px, 3vw, 34px);
-}
-
-.premiation-logo-card {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-items: center;
-  min-height: 150px;
-  overflow: hidden;
-  border: 1px solid rgba(228, 92, 154, 0.58);
-  border-radius: 8px;
-  background: rgba(5, 5, 5, 0.46);
-}
-
-.premiation-logo-card img {
-  justify-self: center;
-  max-width: 72%;
-  max-height: 82px;
-  object-fit: contain;
-}
-
-.premiation-logo-card span {
-  display: block;
-  min-height: 44px;
-  padding: 13px 14px;
-  color: var(--premiation-pink);
-  font-size: 0.82rem;
-  font-weight: 950;
-  letter-spacing: 0.12em;
-  text-align: center;
-  text-transform: uppercase;
-  border-top: 1px solid rgba(228, 92, 154, 0.28);
-}
-
 @keyframes premiation-rank-enter {
   from {
     opacity: 0;
@@ -4742,7 +4634,6 @@ button {
 
 @media (max-width: 1080px) {
   .premiation-mvp__layout,
-  .premiation-alliances__layout,
   .premiation-split-heading,
   .premiation-awards-end > .premiation-bottom {
     grid-template-columns: 1fr;
@@ -4786,18 +4677,6 @@ button {
 
   .premiation-direct__stage {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .premiation-logos {
-    max-width: 560px;
-  }
-
-  .premiation-alliances__copy {
-    min-height: auto;
-    padding-top: 34px;
-    padding-left: 0;
-    border-top: 1px solid rgba(228, 92, 154, 0.54);
-    border-left: 0;
   }
 
   .premiation-bottom a {
@@ -4920,13 +4799,6 @@ button {
     height: 28px;
   }
 
-  .premiation-logos {
-    grid-template-columns: 1fr;
-  }
-
-  .premiation-alliances__heading h2 {
-    font-size: var(--premiation-title-size);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
