@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, CalendarDays, Clock3, MapPin, Play, Sparkles, Ticket, Users } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock3, MapPin, Sparkles, Ticket, Users } from "lucide-react";
 import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
@@ -254,10 +254,6 @@ export function WorkshopsPage() {
             <p className="workshops-kicker">Lo que se vive en workshops</p>
             <h2>Aprender. Conectar. Inspirar.</h2>
           </div>
-
-          <button className="workshops-experience__play" type="button" aria-label="Ver video de workshops">
-            <Play aria-hidden="true" size={30} fill="currentColor" />
-          </button>
         </div>
       </section>
 
