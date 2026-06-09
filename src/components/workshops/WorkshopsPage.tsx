@@ -119,7 +119,6 @@ export function WorkshopsPage() {
       <section className="workshops-light-section workshops-intro">
         <div className="workshops-intro__layout">
           <article className="workshops-intro__panel">
-            <p className="workshops-light-kicker">¿Qué son los workshops Levitate?</p>
             <h2>Más que una clase, una experiencia formativa.</h2>
             <p>
               Cada workshop está diseñado para entrenar, inspirar y potenciar tu arte. Vivirás una experiencia única con
@@ -158,22 +157,6 @@ export function WorkshopsPage() {
               Los workshops son para toda la comunidad apasionada por el vuelo en sus múltiples disciplinas. Encuentra
               opciones para cada nivel, objetivo y momento de tu camino artístico.
             </p>
-            <div className="workshops-important">
-              <img
-                className="workshops-inline-icon"
-                src={`${workshopIconBase}/info.png`}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-              />
-              <div>
-                <h3>Importante</h3>
-                <p>
-                  Algunas disciplinas pueden tener restricciones por edad o nivel. Por ejemplo, cintas o trapecio pueden
-                  ser únicamente para participantes mayores de 12 años.
-                </p>
-              </div>
-            </div>
           </article>
         </div>
       </section>
@@ -254,13 +237,18 @@ export function WorkshopsPage() {
         onFocus={revealExperienceOverlay}
         onPointerMove={revealExperienceOverlay}
       >
-        <img
+        <video
           className="workshops-experience__background"
-          src={assets.community}
-          alt=""
           aria-hidden="true"
-          loading="lazy"
-        />
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={assets.community}
+          preload="metadata"
+        >
+          <source src="/assets/visuals/workshops-experience-bg.mp4" type="video/mp4" />
+        </video>
         <div className="workshops-experience__overlay">
           <div className="workshops-experience__copy">
             <p className="workshops-kicker">Lo que se vive en workshops</p>
