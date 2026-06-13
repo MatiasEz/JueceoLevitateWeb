@@ -118,12 +118,29 @@ export function WorkshopsPage() {
 
       <section className="workshops-light-section workshops-intro">
         <div className="workshops-intro__layout">
-          <article className="workshops-intro__panel">
+          <article className="workshops-intro__copy">
             <h2>Más que una clase, una experiencia formativa.</h2>
             <p>
               Cada workshop está diseñado para entrenar, inspirar y potenciar tu arte. Vivirás una experiencia única con
               docentes invitados de alto nivel.
             </p>
+          </article>
+
+          <figure className="workshops-intro__media">
+            <img src={assets.workshops} alt="Participantes entrenando en una experiencia formativa Levitate." loading="lazy" />
+          </figure>
+
+          <article className="workshops-intro__audience">
+            <p className="workshops-light-kicker">¿Quién puede tomarlos?</p>
+            <h2>Para quienes empiezan, entrenan y quieren seguir creciendo.</h2>
+            <p>
+              Los workshops son para toda la comunidad apasionada por el vuelo en sus múltiples disciplinas. Encuentra
+              opciones para cada nivel, objetivo y momento de tu camino artístico.
+            </p>
+          </article>
+
+          <div className="workshops-intro__disciplines">
+            <h3>Disciplinas</h3>
             <div className="workshops-disciplines" aria-label="Disciplinas de workshops">
               {disciplines.map((discipline) => (
                 <span key={discipline.label}>
@@ -132,32 +149,19 @@ export function WorkshopsPage() {
                 </span>
               ))}
             </div>
-            <div className="workshops-note">
-              <img
-                className="workshops-inline-icon"
-                src={`${workshopIconBase}/info.png`}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-              />
-              No todas las sedes cuentan con workshops. La disponibilidad se comunica y publica en la convocatoria de
-              cada evento.
-            </div>
-          </article>
+          </div>
 
-          <figure className="workshops-intro__media">
-            <img src={assets.workshops} alt="Participantes entrenando en una experiencia formativa Levitate." loading="lazy" />
-            <figcaption>Entrenamiento escénico · técnica · expresión</figcaption>
-          </figure>
-
-          <article className="workshops-intro__panel">
-            <p className="workshops-light-kicker">¿Quién puede tomarlos?</p>
-            <h2>Para quienes empiezan, entrenan y quieren seguir creciendo.</h2>
-            <p>
-              Los workshops son para toda la comunidad apasionada por el vuelo en sus múltiples disciplinas. Encuentra
-              opciones para cada nivel, objetivo y momento de tu camino artístico.
-            </p>
-          </article>
+          <div className="workshops-note workshops-note--wide">
+            <img
+              className="workshops-inline-icon"
+              src={`${workshopIconBase}/info.png`}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            />
+            No todas las sedes cuentan con workshops. La disponibilidad se comunica y publica en la convocatoria de cada
+            evento.
+          </div>
         </div>
       </section>
 
