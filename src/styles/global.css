@@ -7952,7 +7952,8 @@ button {
 .levitate-why {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(360px, 0.84fr) minmax(560px, 1.16fr);
+  grid-template-columns: minmax(320px, 0.76fr) minmax(560px, 1.24fr);
+  column-gap: clamp(28px, 4vw, 68px);
   min-height: 680px;
   padding: clamp(60px, 7vw, 110px) clamp(42px, 6.4vw, 112px);
   background:
@@ -7987,16 +7988,17 @@ button {
 
 .levitate-why__copy .levitate-eyebrow {
   margin-bottom: 14px;
-  letter-spacing: 0.44em;
+  font-size: clamp(1.05rem, 1.42vw, 1.45rem);
+  letter-spacing: 0.32em;
 }
 
 .levitate-why__copy h2 {
-  max-width: 560px;
+  max-width: 520px;
   margin: 0;
   font-family: "Bebas Neue", Impact, "Arial Narrow", "Roboto Condensed", sans-serif;
-  font-size: clamp(6.6rem, 11.6vw, 13rem);
+  font-size: clamp(5.4rem, 8.4vw, 9.6rem);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.015em;
   line-height: 0.78;
   text-transform: uppercase;
 }
