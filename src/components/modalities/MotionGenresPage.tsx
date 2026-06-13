@@ -1,4 +1,4 @@
-import { ArrowRight, Scale, Sparkles, Star, UsersRound } from "lucide-react";
+import { ArrowRight, Scale, Sparkles, UsersRound } from "lucide-react";
 import { assets } from "../../data/homeContent";
 import { LevitateFooter } from "../home/LevitateFooter";
 import { LevitateHeader } from "../home/LevitateHeader";
@@ -12,17 +12,12 @@ const benefits = [
   {
     icon: UsersRound,
     title: "Evaluación con claridad",
-    copy: "Los jueces evalúan tu danza dentro de contextos adecuados a cada disciplina.",
+    copy: "Los jueces evalúan tu coreo dentro de contextos adecuados a cada disciplina.",
   },
   {
     icon: Scale,
     title: "Vive una clasificación justa",
     copy: "Cada coreografía compite en su género, para una valoración imparcial.",
-  },
-  {
-    icon: Star,
-    title: "Crece dentro de tu nivel",
-    copy: "Encontrarás a tu comunidad y a oponentes de tu mismo enfoque y ejecución.",
   },
 ];
 
@@ -101,10 +96,6 @@ export function MotionGenresPage() {
           <h2 id="motion-genero-importa">
             El género <span>importa.</span>
           </h2>
-          <p>
-            Seleccionar bien maximiza tu oportunidad de evaluación, te conecta con la categoría correcta y apoya a que
-            compartan tu danza.
-          </p>
         </div>
 
         <div className="motion-genres-benefits">

@@ -5811,10 +5811,7 @@ button {
 }
 
 .motion-genres-intro__header {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(280px, 1fr);
-  gap: clamp(26px, 5vw, 88px);
-  align-items: center;
+  display: block;
 }
 
 .motion-genres-intro h2,
@@ -5844,7 +5841,7 @@ button {
 
 .motion-genres-benefits {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   margin-top: clamp(36px, 5vw, 66px);
 }
@@ -6026,11 +6023,6 @@ button {
 }
 
 @media (max-width: 1080px) {
-  .motion-genres-intro__header {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
   .motion-genres-benefits {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 0;
