@@ -28,13 +28,13 @@ const navItems = [
   },
   {
     label: "Modalidades",
-    href: "#categorías",
+    href: "/modalidades/levitate-motion/generos",
     children: [
       {
         label: "Levitate Motion",
-        href: "#categorías",
+        href: "/modalidades/levitate-motion/generos",
         children: [
-          { label: "Géneros", href: "#categorías" },
+          { label: "Géneros", href: "/modalidades/levitate-motion/generos" },
           { label: "Reglamento", href: "#reglamento-motion" },
           { label: "Evaluación", href: "/evaluaciones" },
         ],

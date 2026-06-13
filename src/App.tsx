@@ -1,4 +1,5 @@
 import { HomePage } from "./components/home/HomePage";
+import { MotionGenresPage } from "./components/modalities/MotionGenresPage";
 import { PremiationPage } from "./components/premiation/PremiationPage";
 import { RulesPage } from "./components/rules/RulesPage";
 import { SedesPage } from "./components/sedes/SedesPage";
@@ -10,12 +11,17 @@ export default function App() {
   const evaluationsMatch = window.location.pathname.match(/^\/evaluaciones\/?$/);
   const legacyRulesMatch = window.location.pathname.match(/^\/reglamento\/?$/);
   const premiationMatch = window.location.pathname.match(/^\/premiacion\/?$/);
+  const motionGenresMatch = window.location.pathname.match(/^\/modalidades\/levitate-motion\/generos\/?$/);
   const sedesMatch = window.location.pathname.match(/^\/sedes\/?$/);
   const workshopsMatch = window.location.pathname.match(/^\/workshops\/?$/);
   const venueMatch = window.location.pathname.match(/^\/sedes\/([^/]+)\/?$/);
 
   if (premiationMatch) {
     return <PremiationPage />;
+  }
+
+  if (motionGenresMatch) {
+    return <MotionGenresPage />;
   }
 
   if (evaluationsMatch || legacyRulesMatch) {

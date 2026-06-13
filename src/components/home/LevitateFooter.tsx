@@ -21,9 +21,12 @@ function getFooterHref(item: string, useRootLinks: boolean) {
     return "/workshops";
   }
 
+  if (item === "Categorías") {
+    return "/modalidades/levitate-motion/generos";
+  }
+
   const anchors: Record<string, string> = {
     Bases: "#convocatorias",
-    Categorías: "#categorías",
     Contacto: "#contacto",
     Convocatorias: "#convocatorias",
     Inicio: "#inicio",
