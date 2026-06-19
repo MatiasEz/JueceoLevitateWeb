@@ -1,5 +1,6 @@
 export {
   LevitateAdminHomeScreen,
+  LevitateAuthRoute,
   LevitateChoreographerRegistrationScreen,
   LevitateDanceRegistrationScreen,
   LevitateParticipantRegistrationScreen,

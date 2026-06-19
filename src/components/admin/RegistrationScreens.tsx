@@ -1,12 +1,16 @@
 import {
+  AtSign,
   BadgeCheck,
   Building2,
   CalendarDays,
   ChevronDown,
+  CircleAlert,
   ClipboardList,
   GraduationCap,
   Home,
+  KeyRound,
   LockKeyhole,
+  LogIn,
   LogOut,
   Mail,
   Menu,
@@ -17,19 +21,23 @@ import {
   Plus,
   Save,
   Search,
+  ShieldCheck,
   Shirt,
+  UserPlus,
   UserRoundPlus,
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 
 type AdminScreenId = "home" | "choreographers" | "participants" | "dance";
+type AuthMode = "login" | "register";
 
 type AdminNavItem = {
   label: string;
   icon: LucideIcon;
   screen?: AdminScreenId;
+  action?: "logout";
 };
 
 type FieldOption = {
@@ -52,8 +60,14 @@ const adminMenuItems: AdminNavItem[] = [
   { label: "Registrar baile", icon: Music2, screen: "dance" },
   { label: "Cambiar contraseña", icon: LockKeyhole },
   { label: "Reporte participante", icon: ClipboardList },
-  { label: "Salir", icon: LogOut },
+  { label: "Salir", icon: LogOut, action: "logout" },
 ];
+
+const authStorageKey = "levitate-admin-session";
+const hardcodedUser = {
+  username: "ati",
+  password: "ati",
+};
 
 const divisions: FieldOption[] = [
   { value: "baby", label: "Baby: hasta los 6 años" },
@@ -101,10 +115,37 @@ const danceLevels: FieldOption[] = [
   { value: "avanzado", label: "Avanzado" },
 ];
 
+const venueOptions: FieldOption[] = [
+  { value: "cdmx", label: "CDMX - 29 /31 mayo 2026" },
+  { value: "puebla", label: "Puebla - 7 junio 2026" },
+  { value: "edomex", label: "Edo. Méx. - 13 /15 noviembre 2026" },
+];
+
 const choreographers = ["Alexa Rivera", "Mariana Lugo", "Daniela Soto", "Renata Molina"];
 const assignedChoreographers = ["Ati"];
 const students = ["Camila Núñez", "Lucía Flores", "Valentina Ruiz", "Mía Castillo", "Sofía León"];
 const assignedStudents = ["Alexia Bustos", "Regina Mora"];
+
+function readAuthSession() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.localStorage.getItem(authStorageKey) === hardcodedUser.username;
+}
+
+function writeAuthSession(isAuthenticated: boolean) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  if (isAuthenticated) {
+    window.localStorage.setItem(authStorageKey, hardcodedUser.username);
+    return;
+  }
+
+  window.localStorage.removeItem(authStorageKey);
+}
 
 function LevitateAdminLogo() {
   return (
@@ -267,12 +308,145 @@ function RegistrationPageScaffold({ children }: { children: ReactNode }) {
   );
 }
 
+function LevitateAuthScreen({ onAuthenticated }: { onAuthenticated: () => void }) {
+  const [mode, setMode] = useState<AuthMode>("login");
+  const [loginError, setLoginError] = useState("");
+  const [registerNotice, setRegisterNotice] = useState("");
+
+  const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const username = String(formData.get("username") ?? "").trim().toLowerCase();
+    const password = String(formData.get("password") ?? "");
+
+    if (username === hardcodedUser.username && password === hardcodedUser.password) {
+      writeAuthSession(true);
+      setLoginError("");
+      onAuthenticated();
+      return;
+    }
+
+    setLoginError("Usuario o contraseña incorrectos.");
+  };
+
+  const handleRegisterSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.currentTarget.reset();
+    setRegisterNotice("Registro recibido.");
+    setMode("login");
+  };
+
+  return (
+    <main className="levitate-admin-page levitate-auth-page">
+      <AdminTopBrand />
+      <div className="levitate-admin-rule" aria-hidden="true" />
+
+      <section className="levitate-auth-shell">
+        <div className="levitate-auth-copy">
+          <p>Panel de academias</p>
+          <h1>Acceso Levitate</h1>
+          <span aria-hidden="true" />
+          <div>
+            <ShieldCheck aria-hidden="true" size={22} />
+            <strong>Gestión privada para registrar participantes, coreógrafos y bailes.</strong>
+          </div>
+        </div>
+
+        <section className="levitate-auth-card" aria-label="Acceso de usuario">
+          <div className="levitate-auth-tabs" role="tablist" aria-label="Acceso o registro">
+            <button
+              aria-selected={mode === "login"}
+              className={mode === "login" ? "is-active" : ""}
+              onClick={() => {
+                setMode("login");
+                setLoginError("");
+              }}
+              role="tab"
+              type="button"
+            >
+              <LogIn aria-hidden="true" size={17} />
+              Ingresar
+            </button>
+            <button
+              aria-selected={mode === "register"}
+              className={mode === "register" ? "is-active" : ""}
+              onClick={() => {
+                setMode("register");
+                setRegisterNotice("");
+              }}
+              role="tab"
+              type="button"
+            >
+              <UserPlus aria-hidden="true" size={17} />
+              Crear usuario
+            </button>
+          </div>
+
+          {mode === "login" ? (
+            <form className="levitate-auth-form" onSubmit={handleLoginSubmit}>
+              <AdminField icon={AtSign} label="Usuario">
+                <input autoComplete="username" name="username" required type="text" />
+              </AdminField>
+              <AdminField icon={KeyRound} label="Contraseña">
+                <input autoComplete="current-password" name="password" required type="password" />
+              </AdminField>
+              {loginError ? (
+                <p className="levitate-auth-message levitate-auth-message--error">
+                  <CircleAlert aria-hidden="true" size={17} />
+                  {loginError}
+                </p>
+              ) : null}
+              {registerNotice ? (
+                <p className="levitate-auth-message">
+                  <ShieldCheck aria-hidden="true" size={17} />
+                  {registerNotice}
+                </p>
+              ) : null}
+              <button className="levitate-auth-submit" type="submit">
+                <LogIn aria-hidden="true" size={18} />
+                Ingresar
+              </button>
+            </form>
+          ) : (
+            <form className="levitate-auth-form" onSubmit={handleRegisterSubmit}>
+              <AdminField icon={Users} label="Nombre">
+                <input autoComplete="name" name="name" required type="text" />
+              </AdminField>
+              <AdminField icon={AtSign} label="Usuario">
+                <input autoComplete="username" name="username" required type="text" />
+              </AdminField>
+              <AdminField icon={Mail} label="Correo electrónico">
+                <input autoComplete="email" name="email" required type="email" />
+              </AdminField>
+              <AdminField icon={KeyRound} label="Contraseña">
+                <input autoComplete="new-password" name="password" required type="password" />
+              </AdminField>
+              <AdminField icon={Building2} label="Academia">
+                <input name="academy" required type="text" />
+              </AdminField>
+              <AdminField icon={CalendarDays} label="Sede">
+                <AdminSelect defaultValue="cdmx" id="auth-venue" options={venueOptions} />
+              </AdminField>
+              <button className="levitate-auth-submit" type="submit">
+                <UserPlus aria-hidden="true" size={18} />
+                Crear usuario
+              </button>
+            </form>
+          )}
+        </section>
+      </section>
+    </main>
+  );
+}
+
 function AdminSidebar({
   activeScreen,
   onScreenChange,
+  onLogout,
 }: {
   activeScreen: AdminScreenId;
   onScreenChange: (screen: AdminScreenId) => void;
+  onLogout: () => void;
 }) {
   return (
     <aside className="levitate-admin-sidebar" aria-label="Menú administrativo">
@@ -288,6 +462,11 @@ function AdminSidebar({
               className={isActive ? "is-active" : ""}
               key={item.label}
               onClick={() => {
+                if (item.action === "logout") {
+                  onLogout();
+                  return;
+                }
+
                 if (item.screen) {
                   onScreenChange(item.screen);
                 }
@@ -472,15 +651,31 @@ function getAdminScreen(screen: AdminScreenId) {
 export function LevitateRegistrationRoute() {
   const [activeScreen, setActiveScreen] = useState<AdminScreenId>("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(readAuthSession);
 
   const handleScreenChange = (screen: AdminScreenId) => {
     setActiveScreen(screen);
     setIsMobileMenuOpen(false);
   };
 
+  const handleAuthenticated = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    writeAuthSession(false);
+    setIsAuthenticated(false);
+    setIsMobileMenuOpen(false);
+    setActiveScreen("home");
+  };
+
+  if (!isAuthenticated) {
+    return <LevitateAuthScreen onAuthenticated={handleAuthenticated} />;
+  }
+
   return (
     <main className={`levitate-admin-shell${isMobileMenuOpen ? " is-mobile-menu-open" : ""}`}>
-      <AdminSidebar activeScreen={activeScreen} onScreenChange={handleScreenChange} />
+      <AdminSidebar activeScreen={activeScreen} onLogout={handleLogout} onScreenChange={handleScreenChange} />
       <button
         aria-label="Cerrar menú"
         className="levitate-admin-mobile-scrim"
@@ -503,6 +698,18 @@ export function LevitateRegistrationRoute() {
       </section>
     </main>
   );
+}
+
+export function LevitateAuthRoute() {
+  const handleAuthenticated = () => {
+    writeAuthSession(true);
+
+    if (typeof window !== "undefined") {
+      window.location.assign("/registro");
+    }
+  };
+
+  return <LevitateAuthScreen onAuthenticated={handleAuthenticated} />;
 }
 
 export function LevitateParticipantRegistrationScreen() {
